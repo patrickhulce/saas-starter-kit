@@ -1,0 +1,19 @@
+jobs:
+  build:
+    docker:
+      - image: circleci/node:6.14.1
+    working_directory: ~/the-product
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: yarn install
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run: yarn build
+      - run: yarn test:lint
+      - run: yarn test:unit --ci --coverage --runInBand --verbose
+
+
