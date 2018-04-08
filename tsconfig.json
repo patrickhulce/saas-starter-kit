@@ -1,0 +1,18 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "outDir": "./dist",
+    "target": "es2015",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "declaration": true,
+    "preserveWatchOutput": true,
+
+    "strict": true,
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts"
+  ]
+}
