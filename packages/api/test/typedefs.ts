@@ -1,6 +1,7 @@
 import * as express from 'express'
 import {SQLExtension} from 'klay'
 import {Server} from 'net'
+import {IAccount, IUser} from '../../shared/lib/typedefs'
 
 export interface IState {
   app: express.Application
@@ -8,4 +9,8 @@ export interface IState {
   server?: Server
   port?: number
   baseURL?: string
+
+  account?: IAccount
+  user?: IUser
+  token?: string
 }

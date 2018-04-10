@@ -7,7 +7,20 @@ const debug = require('debug')('the-product:api')
 
 export const loggers: express.RequestHandler[] = []
 
-function logRequest(req: express.Request, res: express.Response, next: express.NextFunction): void {
+function logRequestBasics(
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
+): void {
+  debug(`request received: ${req.method} ${req.path}`)
+  next()
+}
+
+function logRequestDetails(
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction,
+): void {
   debug(`request received: query=${JSON.stringify(req.query)},body=${JSON.stringify(req.body)}`)
   next()
 }
@@ -26,9 +39,11 @@ async function logResponse(
 
 if (!conf.isUnderTest) {
   loggers.push(morgan('short'))
+} else {
+  loggers.push(logRequestBasics)
 }
 
 if (conf.debug) {
-  loggers.push(logRequest)
+  loggers.push(logRequestDetails)
   loggers.push(logResponse)
 }
