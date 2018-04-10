@@ -1,0 +1,40 @@
+{
+  "private": true,
+  "name": "@the-product/api",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "tsc",
+    "test": "npm run test:lint && npm run test:unit",
+    "test:lint": "lint",
+    "test:unit": "jest --forceExit"
+  },
+  "config": {
+    "tslint": {
+      "rules": {
+        "no-implicit-dependencies": false,
+        "no-unsafe-any": false
+      }
+    }
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "debug": "^3.1.0",
+    "klay": "^2.5.0-alpha.402e57b5",
+    "lodash": "^4.17.5",
+    "morgan": "^1.9.0",
+    "mysql2": "^1.5.3"
+  },
+  "devDependencies": {
+    "@patrickhulce/lint": "^2.1.1",
+    "@types/body-parser": "^1.16.8",
+    "@types/cookie-parser": "^1.4.1",
+    "@types/express": "^4.11.1",
+    "@types/jest": "^22.2.2",
+    "@types/morgan": "^1.7.35",
+    "jest": "^22.4.3",
+    "ts-jest": "^22.4.2",
+    "tslint": "^5.9.1",
+    "typescript": "^2.8.1"
+  }
+}
