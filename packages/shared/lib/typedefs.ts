@@ -53,6 +53,9 @@ export enum JsEnvironment {
 }
 
 export interface IConf {
+  debug: boolean
+  isUnderTest: boolean
+
   secret: string
   jsEnvironment: JsEnvironment
   database: ISQLOptions

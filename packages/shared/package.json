@@ -12,6 +12,7 @@
   "config": {
     "tslint": {
       "rules": {
+        "no-implicit-dependencies": false,
         "no-unsafe-any": false
       }
     }

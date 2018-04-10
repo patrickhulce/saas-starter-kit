@@ -1,6 +1,9 @@
 import {IConf, JsEnvironment} from './typedefs'
 
 const conf: IConf = {
+  debug: false,
+  isUnderTest: false,
+
   jsEnvironment: JsEnvironment.Server,
   secret: 'super-secret-string',
   database: {
