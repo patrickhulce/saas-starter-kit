@@ -11,6 +11,7 @@
 		"test:unit": "jest"
 	},
 	"devDependencies": {
+		"jest-junit": "^3.6.0",
 		"lerna": "^2.9.1"
 	}
 }

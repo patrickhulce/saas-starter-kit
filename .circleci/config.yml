@@ -2,13 +2,11 @@ jobs:
   build:
     docker:
       - image: circleci/node:6.14.1
-      - image: mysql:5.7
-        environment:
-          MYSQL_USER: root
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
+      - image: circleci/mysql:5.7
     working_directory: ~/the-product
     steps:
       - checkout
+      - run: sudo apt install mysql-client
       - restore_cache:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn install
@@ -16,9 +14,19 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
-      - run: mysql -u root -e "create database if not exists the_product;"
+      - run:
+          name: 'create mysql database'
+          command: mysql -h 127.0.0.1 -u root -e "create database if not exists the_product;"
       - run: yarn build
       - run: yarn test:lint
-      - run: yarn test:unit --ci --coverage --runInBand --verbose
+      - run:
+          name: 'yarn test:unit'
+          command: yarn test:unit --ci --coverage --runInBand --verbose --testResultsProcessor="jest-junit"
+          environment:
+            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
 
 
