@@ -1,3 +1,5 @@
 export {default as conf} from './conf'
 export * from './model-context'
 export * from './kiln'
+export * from './typedefs'
+export {configuration as authConfiguration} from './auth'

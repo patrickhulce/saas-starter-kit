@@ -1,6 +1,5 @@
 import {
   IKiln,
-  IModel,
   Kiln,
   RouteExtension,
   RouterExtension,
@@ -14,11 +13,6 @@ import {ModelID} from './typedefs'
 
 export const kiln: IKiln = new Kiln()
 
-export const models: {[name: string]: IModel} = {
-  [ModelID.Account]: accountModel,
-  [ModelID.User]: userModel,
-}
-
 kiln.addModel({name: ModelID.Account, model: accountModel})
 kiln.addModel({name: ModelID.User, model: userModel, meta: {tableName: 'example_users'}})
 
@@ -30,3 +24,6 @@ kiln.addExtension({extension: routeExtension})
 
 const routerExtension = new RouterExtension({})
 kiln.addExtension({extension: routerExtension})
+
+export * from './models/account'
+export * from './models/user'
