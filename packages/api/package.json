@@ -6,7 +6,7 @@
     "build": "tsc",
     "test": "npm run test:lint && npm run test:unit",
     "test:lint": "lint",
-    "test:unit": "jest --forceExit"
+    "test:unit": "jest"
   },
   "config": {
     "tslint": {

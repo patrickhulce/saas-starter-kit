@@ -2,6 +2,10 @@ jobs:
   build:
     docker:
       - image: circleci/node:6.14.1
+      - image: mysql:5.7
+        environment:
+          MYSQL_USER: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
     working_directory: ~/the-product
     steps:
       - checkout
@@ -12,6 +16,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
+      - run: mysql -u root -e "create database if not exists the_product;"
       - run: yarn build
       - run: yarn test:lint
       - run: yarn test:unit --ci --coverage --runInBand --verbose
