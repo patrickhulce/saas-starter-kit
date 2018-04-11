@@ -10,9 +10,13 @@
     "preserveWatchOutput": true,
 
     "strict": true,
+    // Remove when https://github.com/firebase/firebase-functions/pull/215 is published
+    "noImplicitAny": false,
   },
   "exclude": [
-    "node_modules",
+    "**/node_modules/",
+    "**/dist/",
+    "**/dist-firebase/",
     "**/*.test.ts"
   ]
 }

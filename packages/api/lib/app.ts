@@ -1,3 +1,5 @@
+import './typedefs' // tslint:disable-line
+
 import {json} from 'body-parser'
 import * as cookies from 'cookie-parser'
 import * as express from 'express'

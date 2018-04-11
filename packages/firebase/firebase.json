@@ -1,0 +1,24 @@
+{
+  "functions": {
+    "source": "./",
+    "predeploy": "test -e dist/firebase/lib/http.js && test -e node_modules/express"
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "function": "api"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
