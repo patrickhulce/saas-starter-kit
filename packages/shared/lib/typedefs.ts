@@ -54,7 +54,10 @@ export enum JsEnvironment {
 
 export interface IConf {
   debug: boolean
+  production: boolean
   isUnderTest: boolean
+
+  apiPathPrefix: string
 
   secret: string
   jsEnvironment: JsEnvironment
