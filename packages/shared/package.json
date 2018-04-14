@@ -5,6 +5,7 @@
   "main": "./lib/index.ts",
   "scripts": {
     "build": "tsc",
+    "build:watch": "tsc -w",
     "test": "npm run test:lint && npm run test:unit",
     "test:lint": "lint",
     "test:unit": "jest"

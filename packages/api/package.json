@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "build": "tsc",
+    "build:watch": "tsc -w",
     "test": "npm run test:lint && npm run test:unit",
     "test:lint": "lint",
     "test:unit": "jest"

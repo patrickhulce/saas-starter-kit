@@ -10,6 +10,7 @@
     "deploy": "firebase deploy",
     "logs": "firebase functions:log",
     "build": "./scripts/build-firebase.js && tsc",
+    "build:watch": "concurrently './scripts/build-firebase.js --watch' 'tsc -w'",
     "test": "/usr/bin/true",
     "test:lint": "/usr/bin/true",
     "test:unit": "/usr/bin/true"
@@ -19,6 +20,7 @@
     "firebase-functions": "^1.0.1"
   },
   "devDependencies": {
+    "concurrently": "^3.5.1",
     "watch": "^1.0.2"
   }
 }
