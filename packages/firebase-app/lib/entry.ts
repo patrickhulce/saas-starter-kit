@@ -3,6 +3,6 @@ process.env.NODE_ENV = 'firebase-production' // tslint:disable-line
 import conf from '../../shared/lib/conf'
 
 const overrides = functions.config()
-if (overrides.sqlURL) conf.database.connectionURL = overrides.sqlURL
+if (overrides.mysql) conf.database.connectionURL = overrides.mysql.url
 
 export * from './http'

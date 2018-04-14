@@ -5,7 +5,7 @@
   "main": "./dist/firebase-app/lib/entry-development.js",
   "scripts": {
     "start": "concurrently './scripts/build-firebase.js --watch' 'tsc -w' 'cd dist-firebase && firebase serve'",
-    "deploy": "NODE_ENV=firebase-production npm run build && cd dist-firebase && firebase deploy",
+    "deploy": "./scripts/deploy-to-prod.js",
     "logs": "firebase functions:log",
     "build": "./scripts/build-firebase.js && tsc",
     "build:watch": "concurrently './scripts/build-firebase.js --watch' 'tsc -w'",
