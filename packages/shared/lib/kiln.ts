@@ -14,7 +14,7 @@ import {ModelID} from './typedefs'
 export const kiln: IKiln = new Kiln()
 
 kiln.addModel({name: ModelID.Account, model: accountModel})
-kiln.addModel({name: ModelID.User, model: userModel, meta: {tableName: 'example_users'}})
+kiln.addModel({name: ModelID.User, model: userModel})
 
 export const sqlExtension = new SQLExtension(conf.database)
 kiln.addExtension({extension: sqlExtension})
