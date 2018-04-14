@@ -37,10 +37,14 @@ function resetAndCopyAllFiles() {
     Object.assign(dependencies, package.dependencies)
   }
 
-  console.log('coalescing all package.json dependencies...')
+  console.log('modifying package.json...')
   const outputPackagePath = `${FIREBASE_DIR}/dist-firebase/package.json`
   const firebasePackage = require(outputPackagePath)
   firebasePackage.dependencies = dependencies
+  if (/production/.test(process.env.NODE_ENV)) {
+    firebasePackage.main = firebasePackage.main.replace(/-development/, '');
+  }
+
   fs.writeFileSync(outputPackagePath, JSON.stringify(firebasePackage, undefined, 2))
   console.log('done!')
 }

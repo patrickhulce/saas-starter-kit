@@ -14,5 +14,15 @@ const conf: IConf = {
   },
 }
 
+if (process.env.NODE_ENV === 'firebase-development') {
+  conf.debug = true
+  conf.apiPathPrefix = '/api'
+}
+
+if (process.env.NODE_ENV === 'firebase-production') {
+  conf.production = true
+  conf.apiPathPrefix = '/api'
+}
+
 // tslint:disable-next-line
 export default conf

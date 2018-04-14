@@ -11,7 +11,8 @@
 npm install -g firebase-tools
 firebase login
 
-# 3.
+# 3. Set your project ID in .firebaserc
+sed -ibak s/saas-starter-kit/super-cool-product/ .firebaserc
 ```
 
 
