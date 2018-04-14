@@ -1,8 +1,6 @@
 import {
   IKiln,
   Kiln,
-  RouteExtension,
-  RouterExtension,
   SQLExtension,
 } from 'klay'
 
@@ -18,12 +16,6 @@ kiln.addModel({name: ModelID.User, model: userModel})
 
 export const sqlExtension = new SQLExtension(conf.database)
 kiln.addExtension({extension: sqlExtension})
-
-const routeExtension = new RouteExtension({})
-kiln.addExtension({extension: routeExtension})
-
-const routerExtension = new RouterExtension({})
-kiln.addExtension({extension: routerExtension})
 
 export * from './models/account'
 export * from './models/user'
