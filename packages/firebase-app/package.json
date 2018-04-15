@@ -9,9 +9,9 @@
     "logs": "firebase functions:log",
     "build": "./scripts/build-firebase.js && tsc",
     "build:watch": "concurrently './scripts/build-firebase.js --watch' 'tsc -w'",
-    "test": "/usr/bin/true",
-    "test:lint": "/usr/bin/true",
-    "test:unit": "/usr/bin/true"
+    "test": "echo passed",
+    "test:lint": "echo passed",
+    "test:unit": "echo passed"
   },
   "dependencies": {
     "firebase-admin": "^5.12.0",
