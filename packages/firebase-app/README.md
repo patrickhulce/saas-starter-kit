@@ -24,7 +24,16 @@ firebase functions:config:set 'mysql.url=mysql://root:<password>@<ip>/the_produc
 yarn deploy
 ```
 
+### Setup Auth
+```bash
+# 1. Configure Sign-in Providers
+# https://console.firebase.google.com/project/saas-starter-kit/authentication/providers
+
+# 2. Make sure you've setup ToS
+```
+
 
 ## Resources
 
 * [Sample server](https://github.com/firebase/functions-samples/tree/master/quickstarts/time-server)
+* [Verify auth](https://firebase.google.com/docs/auth/admin/verify-id-tokens)
