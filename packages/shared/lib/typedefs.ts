@@ -8,7 +8,6 @@ export enum ModelID {
 export interface IAccount {
   id?: number
   name: string
-  slug: string
   plan: AccountPlan
   createdAt?: Date
   updatedAt?: Date
@@ -17,11 +16,9 @@ export interface IAccount {
 export interface IUser {
   id?: number
   accountId: number
+  firebaseId: string
   role: AuthRole
   email: string
-  password: string
-  firstName: string
-  lastName: string
   createdAt?: Date
   updatedAt?: Date
 }

@@ -20,7 +20,7 @@
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@firebase/app-types/-/app-types-0.1.2.tgz#a20cb346e3be374c0bdee6b102de0ea5e8e6fa27"
 
-"@firebase/app@^0.1.10":
+"@firebase/app@0.1.10", "@firebase/app@^0.1.10":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@firebase/app/-/app-0.1.10.tgz#fc80c62dbe4d601cad1495bc095309adb9074f85"
   dependencies:
@@ -28,11 +28,21 @@
     "@firebase/util" "0.1.10"
     tslib "^1.9.0"
 
+"@firebase/auth-types@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@firebase/auth-types/-/auth-types-0.2.0.tgz#38f9ce77b7b513eafac7e2e8291f1fe97031895a"
+
+"@firebase/auth@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@firebase/auth/-/auth-0.4.1.tgz#89adbff1cbd6beebf61dedac95d812f89092be09"
+  dependencies:
+    "@firebase/auth-types" "0.2.0"
+
 "@firebase/database-types@0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@firebase/database-types/-/database-types-0.2.0.tgz#c442af71e4c376e6bb78f6aa62645b5a0e2b87b6"
 
-"@firebase/database@^0.2.0":
+"@firebase/database@0.2.1", "@firebase/database@^0.2.0":
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/@firebase/database/-/database-0.2.1.tgz#af4f3b80a7bccd4a561fdc76d8c1867243dd0665"
   dependencies:
@@ -42,15 +52,76 @@
     faye-websocket "0.11.1"
     tslib "^1.9.0"
 
+"@firebase/firestore-types@0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@firebase/firestore-types/-/firestore-types-0.2.2.tgz#e60b6c7a458538b1bf8ed89d9df981fa17a74871"
+
+"@firebase/firestore@0.3.7":
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/@firebase/firestore/-/firestore-0.3.7.tgz#7160ebcd2574ca56521df847086bf291dd216ff0"
+  dependencies:
+    "@firebase/firestore-types" "0.2.2"
+    "@firebase/logger" "0.1.0"
+    "@firebase/webchannel-wrapper" "0.2.7"
+    grpc "^1.9.1"
+    tslib "^1.9.0"
+
+"@firebase/functions-types@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@firebase/functions-types/-/functions-types-0.1.0.tgz#2295f51acc15a9301ab7ff802039cf3c2b9e5a36"
+
+"@firebase/functions@0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@firebase/functions/-/functions-0.1.0.tgz#70794ca535f8ec71781f1e6d44bc7d1ad4715a1a"
+  dependencies:
+    "@firebase/functions-types" "0.1.0"
+    "@firebase/messaging-types" "^0.1.1"
+    isomorphic-fetch "^2.2.1"
+
 "@firebase/logger@0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@firebase/logger/-/logger-0.1.0.tgz#0a7b3af8a43e4b48cc9b16e518c07d8a2ea290e8"
+
+"@firebase/messaging-types@0.1.2", "@firebase/messaging-types@^0.1.1":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@firebase/messaging-types/-/messaging-types-0.1.2.tgz#4975eeb31db0a16a9fcc7b9afb2ff60f79160c46"
+
+"@firebase/messaging@0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@firebase/messaging/-/messaging-0.2.3.tgz#bad9e253dd7cba732d3dde67bde9286482d0968e"
+  dependencies:
+    "@firebase/messaging-types" "0.1.2"
+    "@firebase/util" "0.1.10"
+    tslib "^1.9.0"
+
+"@firebase/polyfill@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@firebase/polyfill/-/polyfill-0.3.0.tgz#a28af79ebd99ee96f388a9f51a430b0c5e9efe00"
+  dependencies:
+    promise-polyfill "^7.1.0"
+    tslib "^1.9.0"
+    whatwg-fetch "^2.0.3"
+
+"@firebase/storage-types@0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@firebase/storage-types/-/storage-types-0.1.2.tgz#682a60117ff51ab861830727fb7b52f7998701fd"
+
+"@firebase/storage@0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@firebase/storage/-/storage-0.1.8.tgz#81a71de873130184446f07c813f882fd168cd524"
+  dependencies:
+    "@firebase/storage-types" "0.1.2"
+    tslib "^1.9.0"
 
 "@firebase/util@0.1.10":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@firebase/util/-/util-0.1.10.tgz#7898f6e36c8231c287c4024c313000df677b1363"
   dependencies:
     tslib "^1.9.0"
+
+"@firebase/webchannel-wrapper@0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.7.tgz#0495fd7294348d9887abb182aa27432cb8936488"
 
 "@google-cloud/common-grpc@^0.6.0":
   version "0.6.1"
@@ -1620,11 +1691,7 @@ copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
 
-core-js@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.0.tgz#569c050918be6486b3837552028ae0466b717086"
-
-core-js@^2.0.0, core-js@^2.4.0:
+core-js@^2.0.0, core-js@^2.4.0, core-js@^2.5.0:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.5.tgz#b14dde936c640c0579a6b50cabcc132dd6127e3b"
 
@@ -1960,6 +2027,10 @@ doctrine@^2.0.0:
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-2.1.0.tgz#5cd01fc101621b42c4cd7f5d1a66243716d3f39d"
   dependencies:
     esutils "^2.0.2"
+
+dom-storage@^2.0.2:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/dom-storage/-/dom-storage-2.1.0.tgz#00fb868bc9201357ea243c7bcfd3304c1e34ea39"
 
 domain-browser@^1.1.1:
   version "1.2.0"
@@ -2680,6 +2751,21 @@ firebase-functions@^1.0.1:
     jsonwebtoken "^7.1.9"
     lodash "^4.6.1"
 
+firebase@^4.12.1:
+  version "4.12.1"
+  resolved "https://registry.yarnpkg.com/firebase/-/firebase-4.12.1.tgz#973776a6d74d5314a20d8413fe333412082fc919"
+  dependencies:
+    "@firebase/app" "0.1.10"
+    "@firebase/auth" "0.4.1"
+    "@firebase/database" "0.2.1"
+    "@firebase/firestore" "0.3.7"
+    "@firebase/functions" "0.1.0"
+    "@firebase/messaging" "0.2.3"
+    "@firebase/polyfill" "0.3.0"
+    "@firebase/storage" "0.1.8"
+    dom-storage "^2.0.2"
+    xmlhttprequest "^1.8.0"
+
 flat-cache@^1.2.1:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-1.3.0.tgz#d3030b32b38154f4e3b7e9c709f490f7ef97c481"
@@ -3073,7 +3159,7 @@ growly@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
 
-grpc@^1.10.0:
+grpc@^1.10.0, grpc@^1.9.1:
   version "1.10.1"
   resolved "https://registry.yarnpkg.com/grpc/-/grpc-1.10.1.tgz#90691404aeb769a98784924d08e8fd07c920b2da"
   dependencies:
@@ -3252,11 +3338,7 @@ home-or-tmp@^2.0.0:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.1"
 
-hosted-git-info@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.5.0.tgz#6d60e34b3abbc8313062c3b798ef8d901a07af3c"
-
-hosted-git-info@^2.1.4:
+hosted-git-info@^2.1.4, hosted-git-info@^2.5.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.6.0.tgz#23235b29ab230c576aab0d4f13fc046b0b038222"
 
@@ -4313,54 +4395,54 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
 
-klay-core@2.5.0-alpha.aee39384:
-  version "2.5.0-alpha.aee39384"
-  resolved "https://registry.yarnpkg.com/klay-core/-/klay-core-2.5.0-alpha.aee39384.tgz#3e948b8a14def25d6bab0129c8ac7e9f4d1d8a32"
+klay-core@^2.5.0-alpha.aee39384, klay-core@^2.5.0-alpha.c74b9671:
+  version "2.5.0-alpha.c74b9671"
+  resolved "https://registry.yarnpkg.com/klay-core/-/klay-core-2.5.0-alpha.c74b9671.tgz#9153d7c207ca89ed7c418b8c678fda02e5ad41e3"
   dependencies:
     lodash "^4.14.93"
 
-klay-db@2.5.0-alpha.aee39384:
-  version "2.5.0-alpha.aee39384"
-  resolved "https://registry.yarnpkg.com/klay-db/-/klay-db-2.5.0-alpha.aee39384.tgz#3adbae1e3bf0d0e40c0101c68ff47010e7383994"
+klay-db@^2.5.0-alpha.aee39384, klay-db@^2.5.0-alpha.c74b9671:
+  version "2.5.0-alpha.c74b9671"
+  resolved "https://registry.yarnpkg.com/klay-db/-/klay-db-2.5.0-alpha.c74b9671.tgz#a4d8f637ff1872d63f5f8168566a8cb56c5b8c5d"
   dependencies:
-    klay-core "^2.5.0-alpha.aee39384"
+    klay-core "^2.5.0-alpha.c74b9671"
     lodash "^4.17.5"
     uuid "^3.2.1"
 
-klay-kiln-express@2.5.0-alpha.aee39384:
-  version "2.5.0-alpha.aee39384"
-  resolved "https://registry.yarnpkg.com/klay-kiln-express/-/klay-kiln-express-2.5.0-alpha.aee39384.tgz#71be56055a9209d8a70bae45d4a050746342fe3d"
+klay-kiln-express@^2.5.0-alpha.aee39384:
+  version "2.5.0-alpha.c74b9671"
+  resolved "https://registry.yarnpkg.com/klay-kiln-express/-/klay-kiln-express-2.5.0-alpha.c74b9671.tgz#3949d36418cb21f7e0a4fc3e4f864ae4bae3a082"
   dependencies:
     "@types/express" "^4.11.1"
     "@types/swagger-schema-official" "^2.0.9"
     bluebird "^3.5.1"
     express "^4.16.2"
     jsonwebtoken "^8.2.0"
-    klay-core "^2.5.0-alpha.aee39384"
-    klay-db "^2.5.0-alpha.aee39384"
-    klay-kiln "^2.5.0-alpha.aee39384"
+    klay-core "^2.5.0-alpha.c74b9671"
+    klay-db "^2.5.0-alpha.c74b9671"
+    klay-kiln "^2.5.0-alpha.c74b9671"
     lodash "^4.16.2"
 
-klay-kiln-sql@2.5.0-alpha.aee39384:
-  version "2.5.0-alpha.aee39384"
-  resolved "https://registry.yarnpkg.com/klay-kiln-sql/-/klay-kiln-sql-2.5.0-alpha.aee39384.tgz#ebf085f86c11ea24d0ca6431287813e0dc239f92"
+klay-kiln-sql@^2.5.0-alpha.aee39384:
+  version "2.5.0-alpha.c74b9671"
+  resolved "https://registry.yarnpkg.com/klay-kiln-sql/-/klay-kiln-sql-2.5.0-alpha.c74b9671.tgz#15e5ab791310ac4dcabe4c9efa9b8a33cd24fee9"
   dependencies:
     "@types/sequelize" "^4.27.7"
     bluebird "^3.5.1"
     colors "^1.2.1"
-    klay-core "^2.5.0-alpha.aee39384"
-    klay-db "^2.5.0-alpha.aee39384"
-    klay-kiln "^2.5.0-alpha.aee39384"
+    klay-core "^2.5.0-alpha.c74b9671"
+    klay-db "^2.5.0-alpha.c74b9671"
+    klay-kiln "^2.5.0-alpha.c74b9671"
     lodash "^4.15.0"
     sequelize "^4.33.4"
     umzug "^2.1.0"
     yargs "^11.0.0"
 
-klay-kiln@2.5.0-alpha.aee39384:
-  version "2.5.0-alpha.aee39384"
-  resolved "https://registry.yarnpkg.com/klay-kiln/-/klay-kiln-2.5.0-alpha.aee39384.tgz#ed7cf65177a7dfbef84e5f3fbe1985c5c8b0614e"
+klay-kiln@^2.5.0-alpha.aee39384, klay-kiln@^2.5.0-alpha.c74b9671:
+  version "2.5.0-alpha.c74b9671"
+  resolved "https://registry.yarnpkg.com/klay-kiln/-/klay-kiln-2.5.0-alpha.c74b9671.tgz#3bb1d565afc291d67ab277e855bb7956d4e97443"
   dependencies:
-    klay-core "^2.5.0-alpha.aee39384"
+    klay-core "^2.5.0-alpha.c74b9671"
     lodash "^4.15.0"
 
 klay@2.5.0-alpha.aee39384:
@@ -5544,6 +5626,10 @@ process@^0.11.10:
 progress@^1.1.8:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/progress/-/progress-1.1.8.tgz#e260c78f6161cdd9b0e56cc3e0a85de17c7a57be"
+
+promise-polyfill@^7.1.0:
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-7.1.2.tgz#ab05301d8c28536301622d69227632269a70ca3b"
 
 protobufjs@^5.0.0:
   version "5.0.2"
@@ -7126,7 +7212,7 @@ whatwg-encoding@^1.0.1, whatwg-encoding@^1.0.3:
   dependencies:
     iconv-lite "0.4.19"
 
-whatwg-fetch@>=0.10.0:
+whatwg-fetch@>=0.10.0, whatwg-fetch@^2.0.3:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.4.tgz#dde6a5df315f9d39991aa17621853d720b85566f"
 
@@ -7249,6 +7335,10 @@ xml-name-validator@^3.0.0:
 xml@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/xml/-/xml-1.0.1.tgz#78ba72020029c5bc87b8a81a3cfcd74b4a2fc1e5"
+
+xmlhttprequest@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/xmlhttprequest/-/xmlhttprequest-1.8.0.tgz#67fe075c5c24fef39f9d65f5f7b7fe75171968fc"
 
 xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.1"
