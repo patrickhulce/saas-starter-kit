@@ -4395,19 +4395,31 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
 
-klay-core@^2.5.0-alpha.aee39384, klay-core@^2.5.0-alpha.c74b9671:
+klay-core@^2.5.0-alpha.21e48694, klay-core@^2.5.0-alpha.88546303, klay-core@^2.5.0-alpha.aee39384, klay-core@^2.5.0-alpha.c74b9671:
   version "2.5.0-alpha.c74b9671"
   resolved "https://registry.yarnpkg.com/klay-core/-/klay-core-2.5.0-alpha.c74b9671.tgz#9153d7c207ca89ed7c418b8c678fda02e5ad41e3"
   dependencies:
     lodash "^4.14.93"
 
-klay-db@^2.5.0-alpha.aee39384, klay-db@^2.5.0-alpha.c74b9671:
+klay-db@^2.5.0-alpha.21e48694, klay-db@^2.5.0-alpha.88546303, klay-db@^2.5.0-alpha.aee39384, klay-db@^2.5.0-alpha.c74b9671:
   version "2.5.0-alpha.c74b9671"
   resolved "https://registry.yarnpkg.com/klay-db/-/klay-db-2.5.0-alpha.c74b9671.tgz#a4d8f637ff1872d63f5f8168566a8cb56c5b8c5d"
   dependencies:
     klay-core "^2.5.0-alpha.c74b9671"
     lodash "^4.17.5"
     uuid "^3.2.1"
+
+klay-kiln-express@^2.5.0-alpha.88546303:
+  version "2.5.0-alpha.21e48694"
+  resolved "https://registry.yarnpkg.com/klay-kiln-express/-/klay-kiln-express-2.5.0-alpha.21e48694.tgz#52b4daac537ad29336404f99ff543444f5a3b349"
+  dependencies:
+    bluebird "^3.5.1"
+    express "^4.16.2"
+    jsonwebtoken "^8.2.0"
+    klay-core "^2.5.0-alpha.21e48694"
+    klay-db "^2.5.0-alpha.21e48694"
+    klay-kiln "^2.5.0-alpha.21e48694"
+    lodash "^4.16.2"
 
 klay-kiln-express@^2.5.0-alpha.aee39384:
   version "2.5.0-alpha.c74b9671"
@@ -4423,7 +4435,7 @@ klay-kiln-express@^2.5.0-alpha.aee39384:
     klay-kiln "^2.5.0-alpha.c74b9671"
     lodash "^4.16.2"
 
-klay-kiln-sql@^2.5.0-alpha.aee39384:
+klay-kiln-sql@^2.5.0-alpha.88546303, klay-kiln-sql@^2.5.0-alpha.aee39384:
   version "2.5.0-alpha.c74b9671"
   resolved "https://registry.yarnpkg.com/klay-kiln-sql/-/klay-kiln-sql-2.5.0-alpha.c74b9671.tgz#15e5ab791310ac4dcabe4c9efa9b8a33cd24fee9"
   dependencies:
@@ -4438,12 +4450,22 @@ klay-kiln-sql@^2.5.0-alpha.aee39384:
     umzug "^2.1.0"
     yargs "^11.0.0"
 
-klay-kiln@^2.5.0-alpha.aee39384, klay-kiln@^2.5.0-alpha.c74b9671:
+klay-kiln@^2.5.0-alpha.21e48694, klay-kiln@^2.5.0-alpha.88546303, klay-kiln@^2.5.0-alpha.aee39384, klay-kiln@^2.5.0-alpha.c74b9671:
   version "2.5.0-alpha.c74b9671"
   resolved "https://registry.yarnpkg.com/klay-kiln/-/klay-kiln-2.5.0-alpha.c74b9671.tgz#3bb1d565afc291d67ab277e855bb7956d4e97443"
   dependencies:
     klay-core "^2.5.0-alpha.c74b9671"
     lodash "^4.15.0"
+
+klay@2.5.0-alpha.88546303:
+  version "2.5.0-alpha.88546303"
+  resolved "https://registry.yarnpkg.com/klay/-/klay-2.5.0-alpha.88546303.tgz#db07b2fd29b1d4fb04ab6f3c108a2f78a5fb7647"
+  dependencies:
+    klay-core "^2.5.0-alpha.88546303"
+    klay-db "^2.5.0-alpha.88546303"
+    klay-kiln "^2.5.0-alpha.88546303"
+    klay-kiln-express "^2.5.0-alpha.88546303"
+    klay-kiln-sql "^2.5.0-alpha.88546303"
 
 klay@2.5.0-alpha.aee39384:
   version "2.5.0-alpha.aee39384"
