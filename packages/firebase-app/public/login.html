@@ -22,11 +22,11 @@
       callbacks: {
         uiShown() {
           document.getElementById('loader-container').style.display = 'none';
-          document.getElementById('firebaseui-auth-container').style.visibility = 'visible';
+          document.getElementById('firebaseui-auth-container').style.display = 'block';
         },
         async signInSuccessWithAuthResult(authResult) {
           document.getElementById('loader-container').style.display = 'block';
-          document.getElementById('firebaseui-auth-container').style.visibility = 'hidden';
+          document.getElementById('firebaseui-auth-container').style.display = 'none';
 
           if (authResult.additionalUserInfo.isNewUser) {
             await fetch('/api/v1/accounts/register', {
@@ -71,8 +71,9 @@
       flex-direction: column;
     }
 
-    h1 {
+    h1.app-name {
       color: white;
+      font-size: 48px;
       font-weight: bold;
       text-shadow: 0 1px 5px #444;
       margin-bottom: 40px;
@@ -83,7 +84,11 @@
       border-radius: 5px;
       background: white;
       box-shadow: 0 5px 15px #444;
-      visibility: hidden;
+      display: none;
+    }
+
+    #loader-container {
+      height: 250px
     }
 
     .loader,
@@ -155,7 +160,7 @@
 </head>
 
 <body>
-  <h1>THE_PRODUCT_DISPLAY_NAME</h1>
+  <h1 class="app-name">THE_PRODUCT_DISPLAY_NAME</h1>
   <div id="firebaseui-auth-container"></div>
   <div id="loader-container">
     <div class="loader"></div>
