@@ -1,19 +1,18 @@
 {
-	"private": true,
-	"workspaces": [
-		"packages/*"
-	],
-	"scripts": {
-		"clean": "rm -fR dist/ || echo 'Nothing to clean...'",
-		"build": "npm run clean && tsc",
-		"build:watch": "npm run clean && lerna run build:watch",
-		"test": "npm run build && npm run test:lint && npm run test:unit",
-		"test:lint": "lerna run test:lint --concurrency 1",
-		"test:unit": "jest"
-	},
-	"devDependencies": {
-		"jest-junit": "^3.6.0",
-		"lerna": "^2.9.1",
-		"shelljs": "^0.8.1"
-	}
+  "private": true,
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "bump-klay": "lerna exec --concurrency 1 'yarn add --exact --force klay@next'",
+    "clean": "rm -fR dist/ || echo 'Nothing to clean...'",
+    "build": "npm run clean && tsc",
+    "build:watch": "npm run clean && lerna run build:watch",
+    "test": "npm run build && npm run test:lint && npm run test:unit",
+    "test:lint": "lerna run test:lint --concurrency 1",
+    "test:unit": "jest"
+  },
+  "devDependencies": {
+    "jest-junit": "^3.6.0",
+    "lerna": "^2.9.1",
+    "shelljs": "^0.8.1"
+  }
 }
