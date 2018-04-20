@@ -1,14 +1,17 @@
 {
   "functions": {
     "source": "./",
-    "predeploy": "test -e dist/firebase-app/lib/entry.js && test -e node_modules/express && grep 'entry.js' package.json"
+    "predeploy":
+      "test -e dist/firebase-app/lib/entry.js && test -e node_modules/express && grep 'entry.js' package.json"
   },
   "hosting": {
     "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "headers": [
+      {
+        "source": "**/*.@(js|css)",
+        "headers": [{"key": "Cache-Control", "value": "max-age=31536000, public"}]
+      }
     ],
     "rewrites": [
       {
