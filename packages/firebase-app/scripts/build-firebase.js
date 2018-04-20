@@ -7,6 +7,7 @@ const shell = require('shelljs')
 const watch = require('watch')
 
 const IS_WATCH = process.argv.includes('--watch')
+const SKIP_WEBPACK = process.env.SKIP_WEBPACK === 'true'
 
 const FIREBASE_DIR = path.join(__dirname, '..')
 const ROOT_DIR = path.join(FIREBASE_DIR, '../..')
@@ -16,7 +17,7 @@ process.chdir(FIREBASE_DIR)
 if (!fs.existsSync('dist-firebase/')) shell.mkdir('dist-firebase/')
 
 function resetAndCopyAllFiles() {
-  if (!IS_WATCH) {
+  if (!IS_WATCH && !SKIP_WEBPACK) {
     console.log('building webpack')
     shell.exec('yarn clean && yarn build', {cwd: FRONTEND_DIR})
   }
@@ -75,5 +76,7 @@ if (IS_WATCH) {
     }
   })
 
-  shell.exec('yarn start', {cwd: FRONTEND_DIR, async: true})
+  if (!SKIP_WEBPACK) {
+    shell.exec('node server.js', {cwd: FRONTEND_DIR, async: true})
+  }
 }

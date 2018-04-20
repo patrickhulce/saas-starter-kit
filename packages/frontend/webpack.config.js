@@ -18,11 +18,11 @@ module.exports = {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   entry: {
-    login: `${__dirname}/src/login.ts`,
+    login: [`${__dirname}/src/login.ts`],
   },
   output: {
     path: `${__dirname}/dist`,
-    filename: `[name].[chunkhash].js`,
+    filename: `[name].[hash].js`,
     publicPath: '/',
   },
   resolve: {
@@ -50,9 +50,8 @@ module.exports = {
   },
 }
 
+const config = module.exports
 if (process.env.NODE_ENV === 'production') {
-  const config = module.exports
-
   Object.assign(config, {
     mode: 'production',
     devtool: 'source-map',
@@ -61,12 +60,21 @@ if (process.env.NODE_ENV === 'production') {
   config.plugins = [
     ...config.plugins,
     new ExtractCssPlugin({
-      filename: `[name].[chunkhash].css`,
+      filename: `[name].[hash].css`,
     }),
   ]
 
   config.module.rules[1].use = [
     ExtractCssPlugin.loader,
     ...cssLoader,
+  ]
+} else {
+  for (const files of Object.values(config.entry)) {
+    files.push('webpack-hot-middleware/client')
+  }
+
+  config.plugins = [
+    ...config.plugins,
+    new webpack.HotModuleReplacementPlugin(),
   ]
 }
