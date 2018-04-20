@@ -6,13 +6,21 @@ const debounce = require('lodash').debounce
 const shell = require('shelljs')
 const watch = require('watch')
 
+const IS_WATCH = process.argv.includes('--watch')
+
 const FIREBASE_DIR = path.join(__dirname, '..')
 const ROOT_DIR = path.join(FIREBASE_DIR, '../..')
+const FRONTEND_DIR = path.join(ROOT_DIR, 'packages/frontend')
 process.chdir(FIREBASE_DIR)
 
 if (!fs.existsSync('dist-firebase/')) shell.mkdir('dist-firebase/')
 
 function resetAndCopyAllFiles() {
+  if (!IS_WATCH) {
+    console.log('building webpack')
+    shell.exec('yarn clean && yarn build', {cwd: FRONTEND_DIR})
+  }
+
   if (fs.existsSync('dist-firebase/public/')) {
     console.log('removing public files...')
     shell.rm('-rf', 'dist-firebase/public/')
@@ -52,7 +60,7 @@ function resetAndCopyAllFiles() {
 
 resetAndCopyAllFiles()
 
-if (process.argv.includes('--watch')) {
+if (IS_WATCH) {
   function filter(file) {
     return !['dist-firebase', 'node_modules'].includes(path.basename(file))
   }
@@ -66,4 +74,6 @@ if (process.argv.includes('--watch')) {
       debouncedReset();
     }
   })
+
+  shell.exec('yarn start', {cwd: FRONTEND_DIR, async: true})
 }
