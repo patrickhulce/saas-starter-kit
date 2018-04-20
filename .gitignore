@@ -7,3 +7,5 @@ yarn-error.log
 npm-debug.log
 lerna-debug.log
 firebase-debug.log
+
+*.d.ts

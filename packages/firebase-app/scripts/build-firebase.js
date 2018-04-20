@@ -23,8 +23,9 @@ function resetAndCopyAllFiles() {
     shell.rm('dist-firebase/node_modules')
   }
 
-  console.log('copying over public folder...')
+  console.log('copying over public assets...')
   shell.cp('-rf', 'public/', 'dist-firebase/')
+  shell.cp('../frontend/dist/*', 'dist-firebase/public/')
   console.log('copying over firebase files...')
   shell.cp(['firebase.json', '.firebaserc', 'package.json'], 'dist-firebase/')
 
