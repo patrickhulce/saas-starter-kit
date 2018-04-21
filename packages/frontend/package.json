@@ -21,11 +21,15 @@
   "dependencies": {
     "firebase": "^4.12.1",
     "firebaseui": "^2.7.0",
-    "loading-page": "^1.0.1"
+    "loading-page": "^1.0.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
   },
   "devDependencies": {
     "@patrickhulce/lint": "^2.1.1",
     "@types/jest": "^22.2.2",
+    "@types/react": "^16.3.12",
+    "@types/react-dom": "^16.0.5",
     "awesome-typescript-loader": "^5.0.0",
     "css-loader": "^0.28.11",
     "express": "^4.16.3",

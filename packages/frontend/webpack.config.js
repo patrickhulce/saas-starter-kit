@@ -18,7 +18,7 @@ module.exports = {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   entry: {
-    login: [`${__dirname}/src/login.ts`],
+    login: [`${__dirname}/src/login.tsx`],
   },
   output: {
     path: `${__dirname}/dist`,
@@ -30,8 +30,6 @@ module.exports = {
     modules: [__dirname, 'node_modules'],
   },
   plugins: [
-    new webpack.NormalModuleReplacementPlugin(/^firebase$/, `${__dirname}/shims/firebase.js`),
-    new webpack.NormalModuleReplacementPlugin(/^firebaseui$/, `${__dirname}/shims/firebaseui.js`),
     new HtmlWebpackPlugin({
       chunks: ['login'],
       filename: 'login.html',
