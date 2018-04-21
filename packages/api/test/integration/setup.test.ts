@@ -17,13 +17,14 @@ module.exports = (state: IState) => {
 
     it('should create an account', async () => {
       const payload = {
-        name: 'Fake Unicorn',
-        userDisplayName: 'Admin User',
-        email: 'admin@example.com',
-        password: 'password1',
+        account: {name: 'Fake Unicorn'},
+        user: {
+          firstName: 'Admin',
+          lastName: 'User',
+          email: 'admin@example.com',
+          password: 'password1',
+        },
       }
-
-      global.__firebaseCreateUserMock = jest.fn().mockReturnValue({uid: '1234'})
 
       const response = await fetch(`${state.baseURL}/v1/accounts/register`, {
         method: 'POST',
@@ -38,8 +39,6 @@ module.exports = (state: IState) => {
 
       expect(account).toHaveProperty('id')
       expect(user).toHaveProperty('id')
-      expect(user.firebaseId).toEqual('1234')
-      expect(global.__firebaseCreateUserMock).toHaveBeenCalled()
     })
 
     it('should login', async () => {
@@ -48,8 +47,6 @@ module.exports = (state: IState) => {
         username: 'admin@example.com',
         password: 'password1',
       }
-
-      global.__firebaseSignInMock = jest.fn().mockReturnValue({uid: state.user.firebaseId})
 
       const response = await fetch(`${state.baseURL}/v1/oauth/token`, {
         method: 'POST',

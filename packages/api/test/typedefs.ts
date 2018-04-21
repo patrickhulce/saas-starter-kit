@@ -14,14 +14,3 @@ export interface IState {
   user?: IUser
   token?: string
 }
-
-declare global {
-  namespace NodeJS {
-    interface Global {
-      __firebaseSignInMock: any
-      __firebaseCreateUserMock: any
-      __firebaseGetUserByEmailMock: any
-      __firebaseVerifyTokenMock: any
-    }
-  }
-}

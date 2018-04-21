@@ -1,7 +1,7 @@
 import * as express from 'express'
-import * as firebase from 'firebase-admin'
-import {assert, CRUD_ROUTES, IDatabaseExecutor, IRouterOptions} from 'klay'
+import {CRUD_ROUTES, IDatabaseExecutor, IRouterOptions} from 'klay'
 import {
+  accountModel,
   AccountPlan,
   AuthRole,
   IAccount,
@@ -10,6 +10,7 @@ import {
   modelContext,
   ModelID,
   sqlExtension,
+  userModel,
 } from '../../../shared/lib'
 
 const accountExecutor = kiln.build(ModelID.Account, sqlExtension) as IDatabaseExecutor<IAccount>
@@ -18,14 +19,8 @@ const userExecutor = kiln.build(ModelID.User, sqlExtension) as IDatabaseExecutor
 const registerModel = modelContext
   .object()
   .children({
-    name: modelContext.string().max(80),
-    userDisplayName: modelContext.string().optional(),
-    email: modelContext.email(),
-    password: modelContext
-      .string()
-      .min(8)
-      .max(40)
-      .optional(),
+    account: accountModel.clone().pick(['name']),
+    user: userModel.clone().pick(['firstName', 'lastName', 'email', 'password']),
   })
 
 export const accountsRouterOptions: IRouterOptions = {
@@ -34,33 +29,12 @@ export const accountsRouterOptions: IRouterOptions = {
     ...CRUD_ROUTES,
     'POST /register': {
       bodyModel: registerModel,
-      async handler(
-        req: express.Request,
-        res: express.Response,
-        next: express.NextFunction,
-      ): Promise<void> {
-        const payload = req.validated!.body
-
-        let firebaseUser: firebase.auth.UserRecord | undefined
-        try {
-          firebaseUser = await firebase.auth().getUserByEmail(payload.email)
-        } catch (err) {
-          // Ignore firebase error, user might not exist
-        }
-
-        if (!firebaseUser) {
-          assert.ok(payload.password, 'password required for new user')
-          firebaseUser = await firebase.auth().createUser({
-            email: payload.email,
-            displayName: payload.userDisplayName || 'User',
-            password: payload.password,
-          })
-        }
-
+      async handler(req: express.Request, res: express.Response): Promise<void> {
         const response = await accountExecutor.transaction(async transaction => {
+          const payload = req.validated!.body
           const account = await accountExecutor.create(
             {
-              name: payload.name,
+              name: payload.account.name,
               plan: AccountPlan.Gold,
             },
             {transaction},
@@ -69,9 +43,11 @@ export const accountsRouterOptions: IRouterOptions = {
           const user = await userExecutor.create(
             {
               accountId: account.id!,
-              firebaseId: firebaseUser!.uid,
-              email: payload.email,
+              email: payload.user.email,
+              password: payload.user.password,
               role: AuthRole.Admin,
+              firstName: payload.user.firstName,
+              lastName: payload.user.lastName,
             },
             {transaction},
           )

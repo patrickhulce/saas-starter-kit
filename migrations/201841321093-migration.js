@@ -30,21 +30,22 @@ module.exports = {
         },
         type: Sequelize.BIGINT,
       },
-      firebaseId: Sequelize.STRING(40),
       role: Sequelize.TEXT,
       email: Sequelize.STRING(250),
+      password: Sequelize.STRING(40),
+      firstName: Sequelize.STRING(100),
+      lastName: Sequelize.STRING(100),
       createdAt: Sequelize.DATE(6),
       updatedAt: Sequelize.DATE(6),
-    })
-    await queryInterface.addIndex('users', {
-      name: 'users_unique_firebaseid',
-      unique: true,
-      fields: ['firebaseId'],
     })
     await queryInterface.addIndex('users', {
       name: 'users_unique_email',
       unique: true,
       fields: ['email'],
+    })
+    await queryInterface.addIndex('users', {
+      name: 'users_email_asc__password_asc',
+      fields: [{attribute: 'email', order: 'ASC'}, {attribute: 'password', order: 'ASC'}],
     })
     await queryInterface.addIndex('users', {
       name: 'users_updatedat_desc',
