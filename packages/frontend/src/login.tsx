@@ -2,9 +2,12 @@
 import './login.scss'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+import Tabs, {Tab} from 'material-ui/Tabs'
+import TextField from 'material-ui/TextField/TextField'
+import Button from 'material-ui/Button/Button'
 
 interface LoginPageState {
-  view: 'login' | 'register'
+  selectedTab: number
   errorMessage?: string
 }
 
@@ -81,13 +84,9 @@ class LoginForm extends Form {
     return (
       <form name="login" onSubmit={this.handleSubmit}>
         {errMsg}
-        <label htmlFor="email">
-          Email: <input name="email" type="email" required />
-        </label>
-        <label htmlFor="password">
-          Password: <input name="password" type="password" required />
-        </label>
-        <input type="submit" value="Submit" />
+        <TextField name="email" type="email" label="Email" required />
+        <TextField name="password" type="password" label="Password" required />
+        <Button variant="raised" color="primary" type="submit">Login</Button>
       </form>
     )
   }
@@ -118,51 +117,39 @@ class RegisterForm extends Form {
     return (
       <form name="register" onSubmit={this.handleSubmit}>
         {errMsg}
-        <label htmlFor="first">
-          First Name: <input name="first" type="text" required />
-        </label>
-        <label htmlFor="last">
-          Last Name: <input name="last" type="text" required />
-        </label>
-        <label htmlFor="email">
-          Email: <input name="email" type="email" required />
-        </label>
-        <label htmlFor="password">
-          Password: <input name="password" type="password" required />
-        </label>
-        <label htmlFor="cpassword">
-          Confirm Password: <input name="cpassword" type="password" required />
-        </label>
-        <input type="submit" value="Submit" />
+        <div>
+        <TextField name="first" type="first" label="First Name" className="half-text" required />
+        <TextField name="last" type="last" label="Last Name" className="half-text" required />
+        </div>
+        <TextField name="email" type="email" label="Email" required />
+        <TextField name="password" type="password" label="Password" required />
+        <TextField name="cpassword" type="cpassword" label="Confirm Password" required />
+        <Button variant="raised" color="primary" type="submit">Register</Button>
       </form>
     )
   }
 }
 
 class LoginPage extends React.Component<{}, LoginPageState> {
-  constructor(props) {
-    super(props)
-    this.state = {view: 'login'}
-  }
+  state = {selectedTab: 0}
 
   render() {
-    let form
-    let buttonText
-    let buttonAction
-    if (this.state.view === 'login') {
-      form = <LoginForm />
-      buttonText = 'Need an account?'
-      buttonAction = 'register'
-    } else {
-      form = <RegisterForm />
-      buttonText = 'Already registered?'
-      buttonAction = 'login'
-    }
+    const onChange = (evt, value) => this.setState({selectedTab: value})
 
     return (
-      <div>
-        {form}
-        <button onClick={() => this.setState({view: buttonAction})}>{buttonText}</button>
+      <div className="account-forms">
+        <Tabs
+          value={this.state.selectedTab}
+          onChange={onChange}
+          indicatorColor="primary"
+          textColor="primary"
+          fullWidth
+        >
+          <Tab label="Login" />
+          <Tab label="Create an Account" />
+        </Tabs>
+        {this.state.selectedTab === 0 && <LoginForm />}
+        {this.state.selectedTab === 1 && <RegisterForm />}
       </div>
     )
   }

@@ -28,16 +28,24 @@
     background: white;
     border-radius: 10px;
     width: 300px;
-    padding: 20px;
     min-height: 200px;
   }
 
-  form {
+  .account-forms form {
     display: flex;
     flex-direction: column;
+    padding: 10px;
 
-    label {
+    > div {
       margin-bottom: 10px;
+    }
+
+    > button {
+      margin-top: 10px;
+    }
+
+    .half-text {
+      width: 50%;
     }
   }
 }
