@@ -10,10 +10,6 @@
     height: 100%;
     margin: 0;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
   }
 
   h1.app-name {
@@ -26,27 +22,35 @@
   }
 
   #app-root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .account-forms {
     background: white;
     border-radius: 10px;
     width: 300px;
     min-height: 200px;
-  }
 
-  .account-forms form {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
+    form {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
 
-    > div {
-      margin-bottom: 10px;
-    }
+      > div {
+        margin-bottom: 10px;
+      }
 
-    > button {
-      margin-top: 10px;
-    }
+      > button {
+        margin-top: 10px;
+      }
 
-    .half-text {
-      width: 50%;
+      .half-text {
+        width: 50%;
+      }
     }
   }
 }

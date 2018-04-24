@@ -136,7 +136,8 @@ class LoginPage extends React.Component<{}, LoginPageState> {
   render() {
     const onChange = (evt, value) => this.setState({selectedTab: value})
 
-    return (
+    return [
+      <h1 className="app-name">THE_PRODUCT_DISPLAY_NAME</h1>,
       <div className="account-forms">
         <Tabs
           value={this.state.selectedTab}
@@ -151,8 +152,11 @@ class LoginPage extends React.Component<{}, LoginPageState> {
         {this.state.selectedTab === 0 && <LoginForm />}
         {this.state.selectedTab === 1 && <RegisterForm />}
       </div>
-    )
+    ]
   }
 }
 
-ReactDOM.render(<LoginPage />, document.getElementById('app-root'))
+// HACK: let the CSS kick-in before rendering
+setTimeout(() => {
+  ReactDOM.render(<LoginPage />, document.getElementById('app-root'))
+}, 0)

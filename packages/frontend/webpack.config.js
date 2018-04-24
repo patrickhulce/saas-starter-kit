@@ -36,7 +36,7 @@ module.exports = {
       template: `${__dirname}/src/login.html`,
     }),
     new ScriptExtHtmlWebpackPlugin({
-      inline: /inline\./,
+      inline: 'inline.',
       defaultAttribute: 'defer',
     }),
   ],
