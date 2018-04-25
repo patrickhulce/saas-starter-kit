@@ -84,7 +84,7 @@ class LoginForm extends Form {
     return (
       <form name="login" onSubmit={this.handleSubmit}>
         {errMsg}
-        <TextField name="email" type="email" label="Email" required />
+        <TextField name="email" type="email" label="Email" autoFocus required />
         <TextField name="password" type="password" label="Password" required />
         <Button variant="raised" color="primary" type="submit">Login</Button>
       </form>
@@ -123,7 +123,7 @@ class RegisterForm extends Form {
         </div>
         <TextField name="email" type="email" label="Email" required />
         <TextField name="password" type="password" label="Password" required />
-        <TextField name="cpassword" type="cpassword" label="Confirm Password" required />
+        <TextField name="cpassword" type="password" label="Confirm Password" required />
         <Button variant="raised" color="primary" type="submit">Register</Button>
       </form>
     )
