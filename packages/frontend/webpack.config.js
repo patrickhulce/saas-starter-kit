@@ -68,7 +68,7 @@ if (process.env.NODE_ENV === 'production') {
   ]
 } else {
   for (const files of Object.values(config.entry)) {
-    files.push('webpack-hot-middleware/client')
+    files.unshift('webpack-hot-middleware/client')
   }
 
   config.plugins = [
