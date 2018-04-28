@@ -1,10 +1,13 @@
 /* tslint:disable */
-import './login.scss'
+import * as styles from './login.scss'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import Tabs, {Tab} from 'material-ui/Tabs'
 import TextField from 'material-ui/TextField/TextField'
 import Button from 'material-ui/Button/Button'
+import FormControlLabel from 'material-ui/Form/FormControlLabel'
+import Checkbox from 'material-ui/Checkbox/Checkbox'
+import FormHelperText from 'material-ui/Form/FormHelperText'
 
 interface LoginPageState {
   selectedTab: number
@@ -86,7 +89,9 @@ class LoginForm extends Form {
         {errMsg}
         <TextField name="email" type="email" label="Email" autoFocus required />
         <TextField name="password" type="password" label="Password" required />
-        <Button variant="raised" color="primary" type="submit">Login</Button>
+        <Button variant="raised" color="primary" type="submit">
+          Login
+        </Button>
       </form>
     )
   }
@@ -118,13 +123,22 @@ class RegisterForm extends Form {
       <form name="register" onSubmit={this.handleSubmit}>
         {errMsg}
         <div>
-        <TextField name="first" type="first" label="First Name" className="half-text" required />
-        <TextField name="last" type="last" label="Last Name" className="half-text" required />
+          <TextField name="first" type="first" label="First Name" className="half-text" required />
+          <TextField name="last" type="last" label="Last Name" className="half-text" required />
         </div>
         <TextField name="email" type="email" label="Email" required />
         <TextField name="password" type="password" label="Password" required />
         <TextField name="cpassword" type="password" label="Confirm Password" required />
-        <Button variant="raised" color="primary" type="submit">Register</Button>
+        <FormControlLabel
+          control={<Checkbox name="newsletter" value="newsletter" color="primary" />}
+          label="Send me tips and updates (unsubscribe anytime)"
+        />
+        <FormHelperText className={styles.tos} >
+          By registering, you agree to our <a href="TOS_URL">terms of service</a>
+        </FormHelperText>
+        <Button variant="raised" color="primary" type="submit">
+          Register
+        </Button>
       </form>
     )
   }
@@ -151,7 +165,7 @@ class LoginPage extends React.Component<{}, LoginPageState> {
         </Tabs>
         {this.state.selectedTab === 0 && <LoginForm />}
         {this.state.selectedTab === 1 && <RegisterForm />}
-      </div>
+      </div>,
     ]
   }
 }
@@ -160,3 +174,8 @@ class LoginPage extends React.Component<{}, LoginPageState> {
 setTimeout(() => {
   ReactDOM.render(<LoginPage />, document.getElementById('app-root'))
 }, 0)
+
+const anyModule = module as any
+if (anyModule.hot) {
+  anyModule.hot.accept(() => ReactDOM.render(<LoginPage />, document.getElementById('app-root')))
+}
