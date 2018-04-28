@@ -133,7 +133,7 @@ class RegisterForm extends Form {
           control={<Checkbox name="newsletter" value="newsletter" color="primary" />}
           label="Send me tips and updates (unsubscribe anytime)"
         />
-        <FormHelperText className={styles.tos} >
+        <FormHelperText className={styles.tos}>
           By registering, you agree to our <a href="TOS_URL">terms of service</a>
         </FormHelperText>
         <Button variant="raised" color="primary" type="submit">
