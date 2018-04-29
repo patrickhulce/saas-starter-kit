@@ -70,7 +70,7 @@ export class RegisterForm extends Form {
           label="Send me tips and updates (unsubscribe anytime)"
         />
         <FormHelperText className={styles.tos}>
-          By registering, you agree to our <a href="TOS_URL">terms of service</a>
+          By registering, you agree to our <a target="_blank" href="TOS_URL">terms of service</a>
         </FormHelperText>
         <Button
           className="atmn-create-account-submit"
