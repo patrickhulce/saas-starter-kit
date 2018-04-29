@@ -4,17 +4,17 @@ exports[`lib/app.ts initialize should have sent a welcome email 1`] = `
 Object {
   "content": Object {
     "from": "noreply@THE_DOMAIN",
-    "html": "Hello Admin User,
-Please follow this link to verify your email address.
-<a href=\\"http://THE_DOMAIN/\\">http://THE_DOMAIN/</a>
-If you did not register this address, you can ignore this email.
-Thanks,
-The THE_PRODUCT_DISPLAY_NAME Team",
+    "html": "Hello Admin User,<br><br>You're receiving this message because you registered an account for THE_PRODUCT_DISPLAY_NAME.<br>Please follow the link below to verify your email address.<br><br><a href=\\"http://THE_DOMAIN/\\">http://THE_DOMAIN/</a><br><br>If you did not register an account with us, you can ignore this email.<br><br>Thanks,<br>The THE_PRODUCT_DISPLAY_NAME Team",
     "subject": "Welcome to THE_PRODUCT_DISPLAY_NAME! - Verify your email",
     "text": "Hello Admin User,
-Please follow this link to verify your email address.
+
+You're receiving this message because you registered an account for THE_PRODUCT_DISPLAY_NAME.
+Please follow the link below to verify your email address.
+
 http://THE_DOMAIN/
-If you did not register this address, you can ignore this email.
+
+If you did not register an account with us, you can ignore this email.
+
 Thanks,
 The THE_PRODUCT_DISPLAY_NAME Team",
   },
