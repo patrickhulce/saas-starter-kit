@@ -41,6 +41,12 @@ module.exports = (state: IState) => {
       expect(user).toHaveProperty('id')
     })
 
+    it('should have sent a welcome email', () => {
+      const send = (global as any).__sparkpostSend
+      expect(send).toHaveBeenCalled()
+      expect(send.mock.calls[0][0]).toMatchSnapshot()
+    })
+
     it('should login', async () => {
       const payload = {
         grant_type: 'password',

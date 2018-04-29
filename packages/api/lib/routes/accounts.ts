@@ -12,16 +12,15 @@ import {
   sqlExtension,
   userModel,
 } from '../../../shared/lib'
+import {sendWelcomeEmail} from '../hooks/register'
 
 const accountExecutor = kiln.build(ModelID.Account, sqlExtension) as IDatabaseExecutor<IAccount>
 const userExecutor = kiln.build(ModelID.User, sqlExtension) as IDatabaseExecutor<IUser>
 
-const registerModel = modelContext
-  .object()
-  .children({
-    account: accountModel.clone().pick(['name']),
-    user: userModel.clone().pick(['firstName', 'lastName', 'email', 'password']),
-  })
+const registerModel = modelContext.object().children({
+  account: accountModel.clone().pick(['name']),
+  user: userModel.clone().pick(['firstName', 'lastName', 'email', 'password']),
+})
 
 export const accountsRouterOptions: IRouterOptions = {
   modelName: ModelID.Account,
@@ -52,6 +51,7 @@ export const accountsRouterOptions: IRouterOptions = {
             {transaction},
           )
 
+          await sendWelcomeEmail(user.email, `${user.firstName} ${user.lastName}`)
           return {account, user}
         })
 

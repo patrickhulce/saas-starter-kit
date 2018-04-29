@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lib/app.ts initialize should have sent a welcome email 1`] = `
+Object {
+  "content": Object {
+    "from": "noreply@THE_DOMAIN",
+    "html": "Hello Admin User,
+Please follow this link to verify your email address.
+<a href=\\"http://THE_DOMAIN/\\">http://THE_DOMAIN/</a>
+If you did not register this address, you can ignore this email.
+Thanks,
+The THE_PRODUCT_DISPLAY_NAME Team",
+    "subject": "Welcome to THE_PRODUCT_DISPLAY_NAME! - Verify your email",
+    "text": "Hello Admin User,
+Please follow this link to verify your email address.
+http://THE_DOMAIN/
+If you did not register this address, you can ignore this email.
+Thanks,
+The THE_PRODUCT_DISPLAY_NAME Team",
+  },
+  "options": Object {
+    "transactional": true,
+  },
+  "recipients": Array [
+    Object {
+      "address": Object {
+        "email": "admin@example.com.sink.sparkpostmail.com",
+        "name": "Admin User",
+      },
+      "tags": Array [
+        "welcome",
+        "email-verification",
+      ],
+    },
+  ],
+}
+`;

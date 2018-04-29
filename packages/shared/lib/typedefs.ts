@@ -1,4 +1,4 @@
-import { ISQLOptions } from 'klay'
+import {ISQLOptions} from 'klay'
 
 export enum ModelID {
   Account = 'account',
@@ -61,4 +61,5 @@ export interface IConf {
   secret: string
   jsEnvironment: JsEnvironment
   database: ISQLOptions
+  sparkpost: {fromAddress: string; apiKey: string; sendToSink: boolean}
 }
