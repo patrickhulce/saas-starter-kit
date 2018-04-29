@@ -5,17 +5,24 @@ import TextField from 'material-ui/TextField/TextField'
 import Button from 'material-ui/Button/Button'
 
 export async function login(email: string, password: string): Promise<void> {
-  const response = await fetch('/api/v1/oauth/token', {
+  const authResponse = await fetch('/api/v1/oauth/token', {
     method: 'POST',
     body: JSON.stringify({username: email, password, grant_type: 'password'}),
     headers: {'content-type': 'application/json'},
     credentials: 'same-origin',
   })
 
-  if (response.status !== 200) {
+  if (authResponse.status !== 200) {
     throw new Error('Unauthorized')
   }
 
+  const userResponse = await fetch('/api/v1/users/me', {credentials: 'same-origin'})
+  if (userResponse.status !== 200) {
+    throw new Error('Invalid User')
+  }
+
+  const user = await userResponse.json()
+  localStorage.setItem('loggedInUser', JSON.stringify(user))
   window.location.href = '/'
 }
 

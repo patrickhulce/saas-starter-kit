@@ -34,7 +34,7 @@ async function createAccount(
 }
 
 export class RegisterForm extends Form {
-  public async _handleSubmit(data: any) {
+  public async _handleSubmit(data: any): Promise<void> {
     if (data.cpassword !== data.password) {
       this.setState({errorMessage: 'Passwords did not match'})
       return
@@ -53,7 +53,7 @@ export class RegisterForm extends Form {
     }
   }
 
-  public render() {
+  public render(): JSX.Element {
     const errMsg = this.state.errorMessage ? <div>{this.state.errorMessage}</div> : undefined
     return (
       <form name='register' onSubmit={this.handleSubmit}>
