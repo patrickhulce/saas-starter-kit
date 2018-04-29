@@ -63,5 +63,14 @@ module.exports = (state: IState) => {
       expect(response.status).toBe(200)
       state.token = (await response.json()).access_token
     })
+
+    it('should fetch logged in user', async () => {
+      const response = await fetch(`${state.baseURL}/v1/users/me`, {
+        headers: {cookie: `token=${state.token}`},
+      })
+
+      expect(response.status).toBe(200)
+      expect(await response.json()).toEqual(state.user)
+    })
   })
 }

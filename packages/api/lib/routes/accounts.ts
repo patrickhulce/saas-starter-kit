@@ -22,12 +22,17 @@ const registerModel = modelContext.object().children({
   user: userModel.clone().pick(['firstName', 'lastName', 'email', 'password']),
 })
 
+const registerResponseModel = modelContext
+  .object()
+  .children({account: accountModel, user: userModel})
+
 export const accountsRouterOptions: IRouterOptions = {
   modelName: ModelID.Account,
   routes: {
     ...CRUD_ROUTES,
     'POST /register': {
       bodyModel: registerModel,
+      responseModel: registerResponseModel,
       async handler(req: express.Request, res: express.Response): Promise<void> {
         const response = await accountExecutor.transaction(async transaction => {
           const payload = req.validated!.body
