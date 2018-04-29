@@ -6071,65 +6071,65 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
 
-klay-core@2.5.0-alpha.f668358a:
-  version "2.5.0-alpha.f668358a"
-  resolved "https://registry.yarnpkg.com/klay-core/-/klay-core-2.5.0-alpha.f668358a.tgz#c52b8c320ef6000cf13d88ecc4f28a7d50638308"
+klay-core@2.5.0-alpha.84196bee:
+  version "2.5.0-alpha.84196bee"
+  resolved "https://registry.yarnpkg.com/klay-core/-/klay-core-2.5.0-alpha.84196bee.tgz#1a091997d6cef29189edd67bbc78c6adb513f40d"
   dependencies:
     lodash "^4.14.93"
 
-klay-db@2.5.0-alpha.f668358a:
-  version "2.5.0-alpha.f668358a"
-  resolved "https://registry.yarnpkg.com/klay-db/-/klay-db-2.5.0-alpha.f668358a.tgz#e7272fda04b2e213cb0cb4a6b1320fd82f75a0a8"
+klay-db@2.5.0-alpha.84196bee:
+  version "2.5.0-alpha.84196bee"
+  resolved "https://registry.yarnpkg.com/klay-db/-/klay-db-2.5.0-alpha.84196bee.tgz#35218b5d0d3c756e7cd422ec21edf568605381f6"
   dependencies:
-    klay-core "2.5.0-alpha.f668358a"
+    klay-core "2.5.0-alpha.84196bee"
     lodash "^4.17.5"
     uuid "^3.2.1"
 
-klay-kiln-express@2.5.0-alpha.f668358a:
-  version "2.5.0-alpha.f668358a"
-  resolved "https://registry.yarnpkg.com/klay-kiln-express/-/klay-kiln-express-2.5.0-alpha.f668358a.tgz#f4c1d51723548c68dd951742fcfda075b27025d5"
+klay-kiln-express@2.5.0-alpha.84196bee:
+  version "2.5.0-alpha.84196bee"
+  resolved "https://registry.yarnpkg.com/klay-kiln-express/-/klay-kiln-express-2.5.0-alpha.84196bee.tgz#fbc465b405949d671143bed60b7a8fd401d3bf1c"
   dependencies:
     "@types/express" "^4.11.1"
     "@types/swagger-schema-official" "^2.0.9"
     bluebird "^3.5.1"
     express "^4.16.2"
     jsonwebtoken "^8.2.0"
-    klay-core "2.5.0-alpha.f668358a"
-    klay-db "2.5.0-alpha.f668358a"
-    klay-kiln "2.5.0-alpha.f668358a"
+    klay-core "2.5.0-alpha.84196bee"
+    klay-db "2.5.0-alpha.84196bee"
+    klay-kiln "2.5.0-alpha.84196bee"
     lodash "^4.16.2"
 
-klay-kiln-sql@2.5.0-alpha.f668358a:
-  version "2.5.0-alpha.f668358a"
-  resolved "https://registry.yarnpkg.com/klay-kiln-sql/-/klay-kiln-sql-2.5.0-alpha.f668358a.tgz#9519569d5c65fa123c66bd821f718db32c0ea6c4"
+klay-kiln-sql@2.5.0-alpha.84196bee:
+  version "2.5.0-alpha.84196bee"
+  resolved "https://registry.yarnpkg.com/klay-kiln-sql/-/klay-kiln-sql-2.5.0-alpha.84196bee.tgz#b2432496d8e0a14d651803ef83440f32f3cb5f85"
   dependencies:
     "@types/sequelize" "^4.27.7"
     bluebird "^3.5.1"
     colors "^1.2.1"
-    klay-core "2.5.0-alpha.f668358a"
-    klay-db "2.5.0-alpha.f668358a"
-    klay-kiln "2.5.0-alpha.f668358a"
+    klay-core "2.5.0-alpha.84196bee"
+    klay-db "2.5.0-alpha.84196bee"
+    klay-kiln "2.5.0-alpha.84196bee"
     lodash "^4.15.0"
     sequelize "^4.33.4"
     umzug "^2.1.0"
     yargs "^11.0.0"
 
-klay-kiln@2.5.0-alpha.f668358a:
-  version "2.5.0-alpha.f668358a"
-  resolved "https://registry.yarnpkg.com/klay-kiln/-/klay-kiln-2.5.0-alpha.f668358a.tgz#f37139974e0d4e37ac750ae0b8c2afd63e97bf0d"
+klay-kiln@2.5.0-alpha.84196bee:
+  version "2.5.0-alpha.84196bee"
+  resolved "https://registry.yarnpkg.com/klay-kiln/-/klay-kiln-2.5.0-alpha.84196bee.tgz#8db148be18d3576d96bb05bb9cd08b380bdda6af"
   dependencies:
-    klay-core "2.5.0-alpha.f668358a"
+    klay-core "2.5.0-alpha.84196bee"
     lodash "^4.15.0"
 
-klay@2.5.0-alpha.f668358a:
-  version "2.5.0-alpha.f668358a"
-  resolved "https://registry.yarnpkg.com/klay/-/klay-2.5.0-alpha.f668358a.tgz#a44745e37384a64fa112fe1fa687e3c0baf16f8f"
+klay@2.5.0-alpha.84196bee:
+  version "2.5.0-alpha.84196bee"
+  resolved "https://registry.yarnpkg.com/klay/-/klay-2.5.0-alpha.84196bee.tgz#5dac0611c39026da84f7be0b492f708b5771aa28"
   dependencies:
-    klay-core "2.5.0-alpha.f668358a"
-    klay-db "2.5.0-alpha.f668358a"
-    klay-kiln "2.5.0-alpha.f668358a"
-    klay-kiln-express "2.5.0-alpha.f668358a"
-    klay-kiln-sql "2.5.0-alpha.f668358a"
+    klay-core "2.5.0-alpha.84196bee"
+    klay-db "2.5.0-alpha.84196bee"
+    klay-kiln "2.5.0-alpha.84196bee"
+    klay-kiln-express "2.5.0-alpha.84196bee"
+    klay-kiln-sql "2.5.0-alpha.84196bee"
 
 lazy-cache@^1.0.3:
   version "1.0.4"

@@ -15,7 +15,10 @@
       "rules": {
         "ordered-imports": false,
         "prefer-function-over-method": false,
-        "no-submodule-imports": [true, "material-ui"],
+        "no-submodule-imports": [
+          true,
+          "material-ui"
+        ],
         "no-implicit-dependencies": false,
         "no-unsafe-any": false
       }
@@ -24,6 +27,7 @@
   "dependencies": {
     "firebase": "^4.12.1",
     "firebaseui": "^2.7.0",
+    "klay": "2.5.0-alpha.84196bee",
     "loading-page": "^1.0.1",
     "material-ui": "^1.0.0-beta.43",
     "react": "^16.3.2",
