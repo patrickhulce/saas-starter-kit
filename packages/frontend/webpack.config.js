@@ -18,7 +18,7 @@ module.exports = {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   entry: {
-    login: [`${__dirname}/src/login.tsx`],
+    login: [`${__dirname}/src/login/index.tsx`],
   },
   output: {
     path: `${__dirname}/dist`,
@@ -33,7 +33,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       chunks: ['login'],
       filename: 'login.html',
-      template: `${__dirname}/src/login.html`,
+      template: `${__dirname}/src/login/login.html`,
     }),
     new ScriptExtHtmlWebpackPlugin({
       inline: 'inline.',
