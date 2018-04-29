@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "main": "./dist/firebase-app/lib/entry-development.js",
   "scripts": {
-    "start": "concurrently './scripts/build-firebase.js --watch' 'tsc -w' 'cd dist-firebase && firebase serve'",
+    "start": "concurrently './scripts/build-firebase.js --watch' 'tsc -w' 'cd dist-firebase && DEBUG=the-product:* firebase serve'",
     "deploy": "./scripts/deploy-to-prod.js",
     "logs": "firebase functions:log",
     "build": "./scripts/build-firebase.js && tsc",

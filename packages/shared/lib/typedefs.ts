@@ -56,6 +56,8 @@ export interface IConf {
   production: boolean
   isUnderTest: boolean
 
+  domain: string
+  displayName: string
   apiPathPrefix: string
 
   secret: string

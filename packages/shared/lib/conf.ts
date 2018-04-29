@@ -5,6 +5,8 @@ const conf: IConf = {
   production: false,
   isUnderTest: typeof it === 'function' || !!process.env.CI, // tslint:disable-line
 
+  domain: 'THE_DOMAIN',
+  displayName: 'THE_PRODUCT_DISPLAY_NAME',
   apiPathPrefix: '',
 
   jsEnvironment: JsEnvironment.Server,
@@ -16,7 +18,7 @@ const conf: IConf = {
   sparkpost: {
     sendToSink: true,
     apiKey: process.env.SPARKPOST_API_KEY || '',
-    fromAddress: process.env.SPARKPOST_FROM || 'noreply@THE_DOMAIN',
+    fromAddress: process.env.SPARKPOST_FROM || '',
   },
 }
 
@@ -30,6 +32,10 @@ if (process.env.APP_ENV === 'firebase-production') {
   conf.production = true
   conf.apiPathPrefix = '/api'
   conf.sparkpost.sendToSink = false
+}
+
+if (!conf.sparkpost.fromAddress) {
+  conf.sparkpost.fromAddress = `noreply@${conf.domain}`
 }
 
 // tslint:disable-next-line
