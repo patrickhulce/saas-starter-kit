@@ -34,6 +34,8 @@ async function createAccount(
     const data = await response.json()
     throw new Error('Error creating account')
   }
+
+  await login(email, password)
 }
 
 async function login(email: string, password: string) {
@@ -48,7 +50,7 @@ async function login(email: string, password: string) {
     throw new Error('Unauthorized')
   }
 
-  ;(window as any).location = '/'
+  window.location.href = '/'
 }
 
 class Form extends React.Component<{}, any> {
