@@ -8,9 +8,9 @@ const conf: IConf = {
   apiPathPrefix: '',
 
   jsEnvironment: JsEnvironment.Server,
-  secret: 'super-secret-string',
+  secret: process.env.SECRET || 'super-secret-string',
   database: {
-    connectionURL: 'mysql://root@localhost/the_product',
+    connectionURL: process.env.APP_MYSQL_URL || 'mysql://root@localhost/the_product',
   },
 
   sparkpost: {
@@ -20,12 +20,12 @@ const conf: IConf = {
   },
 }
 
-if (process.env.NODE_ENV === 'firebase-development') {
+if (process.env.APP_ENV === 'firebase-development') {
   conf.apiPathPrefix = '/api'
   conf.sparkpost.sendToSink = false
 }
 
-if (process.env.NODE_ENV === 'firebase-production') {
+if (process.env.APP_ENV === 'firebase-production') {
   conf.debug = false
   conf.production = true
   conf.apiPathPrefix = '/api'

@@ -1,13 +1,10 @@
 import * as functions from 'firebase-functions'
-process.env.NODE_ENV = 'firebase-production' // tslint:disable-line
-import conf from '../../shared/lib/conf'
-
+/* tslint:disable */
 const overrides = functions.config()
-if (overrides.mysql) conf.database.connectionURL = overrides.mysql.url
-
-if (overrides.email) {
-  conf.sparkpost.apiKey = overrides.email.sparkpost
-  conf.sparkpost.fromAddress = overrides.email.from
-}
-
+process.env.APP_ENV = 'firebase-production'
+process.env.SECRET = overrides.crypto.secret
+process.env.APP_MYSQL_URL = overrides.mysql.url
+process.env.SPARKPOST_API_KEY = overrides.email.sparkpost
+process.env.SPARKPOST_FROM = overrides.email.from
+import conf from '../../shared/lib/conf'
 export * from './http'

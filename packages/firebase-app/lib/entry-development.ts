@@ -1,2 +1,2 @@
-process.env.NODE_ENV = 'firebase-development' // tslint:disable-line
+process.env.APP_ENV = 'firebase-development' // tslint:disable-line
 export * from './http'
