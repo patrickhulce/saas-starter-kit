@@ -55,6 +55,13 @@ export class RegisterForm extends Form {
 
   public render(): JSX.Element {
     const errMsg = this.state.errorMessage ? <div>{this.state.errorMessage}</div> : undefined
+    const newsletterLabel = (
+      <span className={styles.newsletter}>
+        Send me email tips and updates
+        <small>(Roughly once a month, unsubscribe anytime)</small>
+      </span>
+    )
+
     return (
       <form name="register" onSubmit={this.handleSubmit}>
         {errMsg}
@@ -67,7 +74,7 @@ export class RegisterForm extends Form {
         <TextField name="cpassword" type="password" label="Confirm Password" required />
         <FormControlLabel
           control={<Checkbox name="newsletter" value="newsletter" color="primary" />}
-          label="Send me tips and updates (unsubscribe anytime)"
+          label={newsletterLabel}
         />
         <FormHelperText className={styles.tos}>
           By registering, you agree to our <a target="_blank" href="TOS_URL">terms of service</a>

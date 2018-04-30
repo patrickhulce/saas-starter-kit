@@ -19,6 +19,12 @@
           true,
           "material-ui"
         ],
+        "quotemark": [
+          true,
+          "single",
+          "jsx-double",
+          "avoid-escape"
+        ],
         "no-implicit-dependencies": false,
         "no-unsafe-any": false
       }
