@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@the-product/firebase",
+  "name": "@the-product/firebase-app",
   "version": "0.1.0",
   "main": "./dist/firebase-app/lib/entry-development.js",
   "scripts": {
@@ -9,9 +9,9 @@
     "logs": "firebase functions:log",
     "build": "./scripts/build-firebase.js && tsc",
     "build:watch": "concurrently './scripts/build-firebase.js --watch' 'tsc -w'",
-    "test": "echo passed",
-    "test:lint": "echo passed",
-    "test:unit": "echo passed"
+    "test": "echo noop",
+    "test:lint": "echo noop",
+    "test:unit": "echo noop"
   },
   "dependencies": {
     "firebase-admin": "^5.12.0",
