@@ -3,7 +3,7 @@ import {IConf, JsEnvironment} from './typedefs'
 const conf: IConf = {
   debug: true,
   production: false,
-  isUnderTest: typeof it === 'function' || !!process.env.CI, // tslint:disable-line
+  isUnderTest: typeof it === 'function', // tslint:disable-line
 
   domain: 'THE_DOMAIN',
   displayName: 'THE_PRODUCT_DISPLAY_NAME',
@@ -34,7 +34,7 @@ if (process.env.APP_ENV === 'firebase-production') {
   conf.sparkpost.sendToSink = false
 }
 
-if (!conf.sparkpost.fromAddress) {
+if (!conf.sparkpost.fromAddress || conf.isUnderTest) {
   conf.sparkpost.fromAddress = `noreply@${conf.domain}`
 }
 
