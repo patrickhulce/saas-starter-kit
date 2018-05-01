@@ -1,3 +1,4 @@
+import '../typedefs' // tslint:disable-line
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import {IUser} from '../../../shared/lib/typedefs'

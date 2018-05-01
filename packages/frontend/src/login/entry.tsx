@@ -1,3 +1,4 @@
+import '../typedefs' // tslint:disable-line
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import Tabs, {Tab} from 'material-ui/Tabs'
