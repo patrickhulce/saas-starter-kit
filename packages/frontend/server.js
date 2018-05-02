@@ -14,8 +14,11 @@ app.use('/api', proxy({target: 'http://localhost:5000/', changeOrigin: true}))
 app.get('/login', (req, res) => res.redirect('/login.html'))
 app.use(middleware(compiler, {}))
 app.use(hot(compiler))
-// eslint-disable-next-line no-console
-app.listen(8080, () => console.log('listening on port 8080'))
+
+const server = app.listen(process.env.PORT || 8080, () => {
+  // eslint-disable-next-line no-console
+  console.log(`webpackdev listening on ${server.address().port}`)
+})
 
 if (process.env.START_FIREBASE) {
   shell.exec('SKIP_WEBPACK=true yarn start', {cwd: '../firebase-app', async: true})

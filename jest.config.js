@@ -1,6 +1,7 @@
 module.exports = {
   collectCoverageFrom: [
     '**/*.ts',
+    '**/*.tsx',
     '!**/*.d.ts',
     '!**/lib/index.ts',
   ],
@@ -11,6 +12,7 @@ module.exports = {
   testPathIgnorePatterns: [
     '/node_modules/',
     '/test/integration/',
+    '/e2e/test/',
   ],
   testRegex: '\\.test.(ts|js)x?$'
 }
