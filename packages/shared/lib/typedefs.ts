@@ -63,5 +63,7 @@ export interface IConf {
   secret: string
   jsEnvironment: JsEnvironment
   database: ISQLOptions
+
+  mailslurp: {apiKey: string}
   sparkpost: {fromAddress: string; apiKey: string; sendToSink: boolean}
 }

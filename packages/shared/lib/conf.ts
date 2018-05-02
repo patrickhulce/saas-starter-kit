@@ -15,6 +15,10 @@ const conf: IConf = {
     connectionURL: process.env.APP_MYSQL_URL || 'mysql://root@localhost/the_product',
   },
 
+  mailslurp: {
+    apiKey: process.env.MAILSLURP_API_KEY || '',
+  },
+
   sparkpost: {
     sendToSink: true,
     apiKey: process.env.SPARKPOST_API_KEY || '',

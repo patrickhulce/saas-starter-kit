@@ -5,4 +5,17 @@ export interface IState {
   page: Page
   rootURL: string
   waitFor: number
+  userMailbox?: IMailbox
+}
+
+export interface IMailbox {
+  id: string
+  address: string
+}
+
+export interface IMessage {
+  to: string[]
+  from: string
+  subject: string
+  body: string
 }
