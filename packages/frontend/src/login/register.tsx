@@ -56,23 +56,28 @@ export class RegisterForm extends Form {
   public render(): JSX.Element {
     const errMsg = this.state.errorMessage ? <div>{this.state.errorMessage}</div> : undefined
     return (
-      <form name='register' onSubmit={this.handleSubmit}>
+      <form name="register" onSubmit={this.handleSubmit}>
         {errMsg}
         <div>
-          <TextField name='first' type='first' label='First Name' className='half-text' required />
-          <TextField name='last' type='last' label='Last Name' className='half-text' required />
+          <TextField name="first" type="first" label="First Name" className="half-text" required />
+          <TextField name="last" type="last" label="Last Name" className="half-text" required />
         </div>
-        <TextField name='email' type='email' label='Email' required />
-        <TextField name='password' type='password' label='Password' required />
-        <TextField name='cpassword' type='password' label='Confirm Password' required />
+        <TextField name="email" type="email" label="Email" required />
+        <TextField name="password" type="password" label="Password" required />
+        <TextField name="cpassword" type="password" label="Confirm Password" required />
         <FormControlLabel
-          control={<Checkbox name='newsletter' value='newsletter' color='primary' />}
-          label='Send me tips and updates (unsubscribe anytime)'
+          control={<Checkbox name="newsletter" value="newsletter" color="primary" />}
+          label="Send me tips and updates (unsubscribe anytime)"
         />
         <FormHelperText className={styles.tos}>
-          By registering, you agree to our <a href='TOS_URL'>terms of service</a>
+          By registering, you agree to our <a href="TOS_URL">terms of service</a>
         </FormHelperText>
-        <Button variant='raised' color='primary' type='submit'>
+        <Button
+          className="atmn-create-account-submit"
+          variant="raised"
+          color="primary"
+          type="submit"
+        >
           Register
         </Button>
       </form>

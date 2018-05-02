@@ -17,17 +17,17 @@ class LoginPage extends React.Component<{}, ILoginPageState> {
     const onChange = (evt, value) => this.setState({selectedTab: value})
 
     return [
-      <h1 className='app-name'>THE_PRODUCT_DISPLAY_NAME</h1>,
-      <div className='account-forms'>
+      <h1 className="app-name">THE_PRODUCT_DISPLAY_NAME</h1>,
+      <div className="account-forms">
         <Tabs
           value={this.state.selectedTab}
           onChange={onChange}
-          indicatorColor='primary'
-          textColor='primary'
+          indicatorColor="primary"
+          textColor="primary"
           fullWidth
         >
-          <Tab label='Login' />
-          <Tab label='Create an Account' />
+          <Tab label="Login" />
+          <Tab className="atmn-create-account" label="Create an Account" />
         </Tabs>
         {this.state.selectedTab === 0 && <LoginForm />}
         {this.state.selectedTab === 1 && <RegisterForm />}

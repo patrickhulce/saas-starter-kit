@@ -38,11 +38,11 @@ export class LoginForm extends Form {
   public render(): JSX.Element {
     const errMsg = this.state.errorMessage ? <div>{this.state.errorMessage}</div> : undefined
     return (
-      <form name='login' onSubmit={this.handleSubmit}>
+      <form name="login" onSubmit={this.handleSubmit}>
         {errMsg}
-        <TextField name='email' type='email' label='Email' autoFocus required />
-        <TextField name='password' type='password' label='Password' required />
-        <Button variant='raised' color='primary' type='submit'>
+        <TextField name="email" type="email" label="Email" autoFocus required />
+        <TextField name="password" type="password" label="Password" required />
+        <Button variant="raised" color="primary" type="submit">
           Login
         </Button>
       </form>
