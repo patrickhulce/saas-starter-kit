@@ -3,13 +3,15 @@
 const fs = require('fs')
 const shelljs = require('shelljs')
 
+const FIREBASE_DIST = 'packages/firebase-app/dist-firebase/dist'
+
 async function run() {
-  if (!fs.existsSync('../packages/firebase-app/dist-firebase/dist/api/lib/')) shelljs.exec('npm run build')
+  if (!fs.existsSync(`${FIREBASE_DIST}/api/lib/`)) shelljs.exec('npm run build')
 
   // Load the API to register all necessary models
-  require('../packages/firebase-app/dist-firebase/dist/api/lib/app')
+  require(`../${FIREBASE_DIST}/api/lib/app`)
   // Load in the SQL extension to sync
-  const sqlExtension = require('../packages/firebase-app/dist-firebase/dist/shared/lib').sqlExtension
+  const sqlExtension = require(`../${FIREBASE_DIST}/shared/lib`).sqlExtension
 
   console.log('Syncing database...')
   await sqlExtension.sequelize.sync({force: true})
