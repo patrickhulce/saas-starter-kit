@@ -23,7 +23,7 @@
     "lodash": "^4.17.5"
   },
   "devDependencies": {
-    "@patrickhulce/lint": "^2.1.1",
+    "@patrickhulce/lint": "2.1.2",
     "@types/jest": "^22.2.2",
     "jest": "^22.4.3",
     "ts-jest": "^22.4.2",

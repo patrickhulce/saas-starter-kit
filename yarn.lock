@@ -231,24 +231,7 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@patrickhulce/lint@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@patrickhulce/lint/-/lint-2.1.1.tgz#9a4190dfa5cf56276d892b48f0b379abb4267b3b"
-  dependencies:
-    babel-eslint "^7.2.1"
-    debug "^2.6.3"
-    eslint "^3.19.0"
-    eslint-formatter-pretty "^1.1.0"
-    eslint-import-resolver-webpack "^0.8.1"
-    eslint-plugin-import "^2.2.0"
-    eslint-plugin-promise "^3.5.0"
-    eslint-plugin-react "^6.10.3"
-    eslint-plugin-unicorn "^2.1.1"
-    lodash "^4.17.4"
-    prettier "^1.9.2"
-    yargs "^7.0.2"
-
-"@patrickhulce/lint@^2.1.2":
+"@patrickhulce/lint@2.1.2", "@patrickhulce/lint@^2.1.2":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@patrickhulce/lint/-/lint-2.1.2.tgz#994abd1f2b409e49ba52d79530612a70c39abd9a"
   dependencies:
