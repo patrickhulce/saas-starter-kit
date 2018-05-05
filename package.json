@@ -1,6 +1,8 @@
 {
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "bump-klay": "lerna exec --concurrency 1 'yarn add --exact --force klay@next'",
     "build": "lerna run build --scope '@the-product/firebase-app'",
@@ -10,6 +12,7 @@
     "test:e2e": "cd packages/e2e && yarn start"
   },
   "devDependencies": {
+    "firebase-tools": "^3.18.4",
     "jest-junit": "^3.6.0",
     "lerna": "^2.9.1",
     "shelljs": "^0.8.1"

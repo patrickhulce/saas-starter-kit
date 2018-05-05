@@ -22,18 +22,13 @@ function resetAndCopyAllFiles() {
     shell.exec('yarn clean && yarn build', {cwd: FRONTEND_DIR})
   }
 
-  if (fs.existsSync('dist-firebase/public/')) {
-    console.log('removing public files...')
-    shell.rm('-rf', 'dist-firebase/public/')
-  }
-
   if (fs.existsSync('dist-firebase/node_modules/')) {
     console.log('removing old node_modules folder...')
     shell.rm('dist-firebase/node_modules')
   }
 
   console.log('copying over public assets...')
-  shell.cp('-rf', 'public/', 'dist-firebase/')
+  shell.mkdir('-p', 'dist-firebase/public')
   shell.cp('../frontend/dist/*', 'dist-firebase/public/')
   console.log('copying over firebase files...')
   shell.cp(['firebase.json', '.firebaserc', 'package.json'], 'dist-firebase/')

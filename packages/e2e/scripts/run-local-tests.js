@@ -16,7 +16,7 @@ function waitForPatternInOutput(pattern, interval = 250) {
     let errTimeout = setTimeout(() => {
       console.error(DEVSERVER_OUT)
       reject(new Error('Timeout reached'))
-    }, 60 * 1000)
+    }, 30 * 1000)
     let i = setInterval(() => {
       if (DEVSERVER_OUT.some(line => pattern.test(line))) {
         clearInterval(i)
@@ -33,7 +33,8 @@ async function run() {
   const serverProc = childProcess.exec('PORT=0 npm start', {cwd: FIREBASE_DIR})
   serverProc.stdout.on('data', buf => DEVSERVER_OUT.push(buf.toString()))
 
-  await waitForPatternInOutput(/webpack built [a-f0-9]+ in \d+ms/, 1000)
+  await waitForPatternInOutput(/Starting compilation/, 1000)
+  await waitForPatternInOutput(/webpack built [a-f0-9]+ in \d+ms/, 3000)
   await waitForPatternInOutput(/Parsing function triggers/, 1000)
   await waitForPatternInOutput(DEVSERVER_PATTERN)
 
