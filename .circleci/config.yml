@@ -26,6 +26,7 @@ jobs:
           command: yarn test:unit --ci --coverage --runInBand --verbose --testResultsProcessor="jest-junit"
           environment:
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
+      - run: yarn test:e2e
       - store_test_results:
           path: reports/junit
       - store_artifacts:
