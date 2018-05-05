@@ -8,7 +8,7 @@ describe('End-to-End Application', () => {
   const state: IState = {
     browser: undefined as Browser,
     page: undefined as Page,
-    rootURL: `http://localhost:${process.env.PORT}`,
+    rootURL: `http://localhost:${process.env.PORT || 8080}`,
     waitFor: 500,
   }
 
