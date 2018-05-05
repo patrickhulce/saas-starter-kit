@@ -12,10 +12,15 @@ function waitForPatternInOutput(pattern, interval = 250) {
   const logWaiting = () => console.log(`Waiting for "${pattern.source}"...`)
 
   logWaiting()
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
+    let errTimeout = setTimeout(() => {
+      console.error(DEVSERVER_OUT)
+      reject(new Error('Timeout reached'))
+    }, 60 * 1000)
     let i = setInterval(() => {
       if (DEVSERVER_OUT.some(line => pattern.test(line))) {
         clearInterval(i)
+        clearTimeout(errTimeout)
         resolve()
       }
 
@@ -29,7 +34,7 @@ async function run() {
   serverProc.stdout.on('data', buf => DEVSERVER_OUT.push(buf.toString()))
 
   await waitForPatternInOutput(/webpack built [a-f0-9]+ in \d+ms/, 1000)
-  await waitForPatternInOutput(/Parsing function triggers/)
+  await waitForPatternInOutput(/Parsing function triggers/, 1000)
   await waitForPatternInOutput(DEVSERVER_PATTERN)
 
   const port = Number(DEVSERVER_OUT.find(l => DEVSERVER_PATTERN.test(l)).match(DEVSERVER_PATTERN)[1])
