@@ -3,7 +3,7 @@
   "name": "@the-product/frontend",
   "version": "0.1.0",
   "scripts": {
-    "start": "START_FIREBASE=true node server.js",
+    "start": "START_API=true node server.js",
     "clean": "rm -rf dist/",
     "build": "NODE_ENV=production webpack --mode production",
     "test": "npm run test:lint && npm run test:unit",

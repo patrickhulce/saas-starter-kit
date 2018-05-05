@@ -7,7 +7,7 @@ const conf: IConf = {
 
   domain: 'THE_DOMAIN',
   displayName: 'THE_PRODUCT_DISPLAY_NAME',
-  apiPathPrefix: '',
+  apiPathPrefix: '/api',
 
   jsEnvironment: JsEnvironment.Server,
   secret: process.env.SECRET || 'super-secret-string',

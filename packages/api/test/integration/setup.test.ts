@@ -6,7 +6,7 @@ module.exports = (state: IState) => {
     it('should start the server', done => {
       state.server = state.app.listen(() => {
         state.port = state.server.address().port
-        state.baseURL = `http://localhost:${state.port}`
+        state.baseURL = `http://localhost:${state.port}/api`
         done()
       })
     })

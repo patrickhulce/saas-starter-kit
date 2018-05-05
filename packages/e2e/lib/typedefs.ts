@@ -5,6 +5,7 @@ export interface IState {
   page: Page
   rootURL: string
   waitFor: number
+  user?: {password: string}
   userMailbox?: IMailbox
 }
 

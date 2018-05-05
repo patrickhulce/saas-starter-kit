@@ -2,12 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.11
+      - image: circleci/node:8.11-browsers
       - image: circleci/mysql:5.7
     working_directory: ~/the-product
     steps:
       - checkout
-      - run: sudo apt install mysql-client
+      - run: sudo apt-get update
+      - run: sudo apt-get install mysql-client
       - restore_cache:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn install

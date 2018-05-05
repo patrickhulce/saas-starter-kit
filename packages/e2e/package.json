@@ -7,7 +7,7 @@
     "build": "echo noop",
     "test": "npm run test:lint && npm run test:unit",
     "test:lint": "lint",
-    "test:unit": "jest --verbose --runInBand"
+    "test:unit": "jest --verbose --forceExit --runInBand"
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",

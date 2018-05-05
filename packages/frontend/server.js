@@ -20,6 +20,6 @@ const server = app.listen(process.env.PORT || 8080, () => {
   console.log(`webpackdev listening on ${server.address().port}`)
 })
 
-if (process.env.START_FIREBASE) {
-  shell.exec('SKIP_WEBPACK=true yarn start', {cwd: '../firebase-app', async: true})
+if (process.env.START_API) {
+  shell.exec('PORT=5000 yarn start', {cwd: '../api', async: true})
 }

@@ -40,14 +40,16 @@ module.exports = (state: IState) => {
       await state.page.waitForNavigation()
     })
 
-    it('should redirect to app', async () => {
+    it('should have created account', async () => {
       await state.page.waitFor(state.waitFor)
 
-      const content = await state.page.content()
-      expect(content).toContain('Hello, John')
+      const text = await state.page.evaluate(() => document.querySelector('h1').textContent)
+      expect(text).toContain('Hello, John')
+      state.user = {password: 'test_password'}
     })
 
-    it('should send welcome email', async () => {
+    it.skip('should send welcome email', async () => {
+      expect(state.user).toBeDefined()
       const messages = await mailslurp.readMail(state.userMailbox, 1)
 
       expect(messages).toHaveLength(1)
