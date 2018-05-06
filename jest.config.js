@@ -8,7 +8,16 @@ module.exports = {
   transform: {
     '\\.(ts|tsx)$': 'ts-jest',
   },
+  snapshotSerializers: [
+    'enzyme-to-json/serializer',
+  ],
+  setupFiles: [
+    `${__dirname}/packages/frontend/test/setup-tests.ts`
+  ],
   moduleFileExtensions: ['ts', 'js', 'tsx', 'jsx'],
+  moduleNameMapper: {
+    '\.scss$': 'identity-obj-proxy',
+  },
   testPathIgnorePatterns: [
     '/node_modules/',
     '/test/integration/',

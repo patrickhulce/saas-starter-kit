@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`login/register.tsx should render form 1`] = `
+<form
+  name="register"
+  onSubmit={[Function]}
+>
+  <div>
+    <TextField
+      className="half-text"
+      label="First Name"
+      name="first"
+      required={true}
+      select={false}
+      type="first"
+    />
+    <TextField
+      className="half-text"
+      label="Last Name"
+      name="last"
+      required={true}
+      select={false}
+      type="last"
+    />
+  </div>
+  <TextField
+    label="Email"
+    name="email"
+    required={true}
+    select={false}
+    type="email"
+  />
+  <TextField
+    label="Password"
+    name="password"
+    required={true}
+    select={false}
+    type="password"
+  />
+  <TextField
+    label="Confirm Password"
+    name="cpassword"
+    required={true}
+    select={false}
+    type="password"
+  />
+  <WithStyles(FormControlLabel)
+    control={
+      <WithStyles(Checkbox)
+        color="primary"
+        name="newsletter"
+        value="newsletter"
+      />
+    }
+    label={
+      <span
+        className="newsletter"
+      >
+        Send me email tips and updates
+        <small>
+          (Roughly once a month, unsubscribe anytime)
+        </small>
+      </span>
+    }
+  />
+  <WithStyles(FormHelperText)
+    className="tos"
+  >
+    By registering, you agree to our
+    <a
+      href="TOS_URL"
+      target="_blank"
+    >
+      terms of service
+    </a>
+  </WithStyles(FormHelperText)>
+  <WithStyles(Button)
+    className="atmn-create-account-submit"
+    color="primary"
+    type="submit"
+    variant="raised"
+  >
+    Register
+  </WithStyles(Button)>
+</form>
+`;
