@@ -24,7 +24,7 @@ The THE_PRODUCT_DISPLAY_NAME Team",
   "recipients": Array [
     Object {
       "address": Object {
-        "email": "admin@example.com.sink.sparkpostmail.com",
+        "email": "<uuid>@example.com.sink.sparkpostmail.com",
         "name": "Admin User",
       },
       "tags": Array [

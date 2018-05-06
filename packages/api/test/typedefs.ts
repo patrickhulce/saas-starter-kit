@@ -10,6 +10,7 @@ export interface IState {
   port?: number
   baseURL?: string
 
+  login?: {email: string, password: string}
   account?: IAccount
   user?: IUser
   token?: string

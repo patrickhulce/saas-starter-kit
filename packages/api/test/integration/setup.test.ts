@@ -1,3 +1,4 @@
+import * as uuid from 'uuid'
 import * as fetch from 'isomorphic-fetch'
 import {IState} from '../typedefs'
 
@@ -12,13 +13,17 @@ module.exports = (state: IState) => {
     })
 
     it('should create an account', async () => {
+      const login = {
+        email: `${uuid.v4()}@example.com`,
+        password: 'password1'
+      }
+
       const payload = {
         account: {name: 'Fake Unicorn'},
         user: {
           firstName: 'Admin',
           lastName: 'User',
-          email: 'admin@example.com',
-          password: 'password1',
+          ...login,
         },
       }
 
@@ -32,6 +37,7 @@ module.exports = (state: IState) => {
       const {account, user} = await response.json()
       state.account = account
       state.user = user
+      state.login = login
 
       expect(account).toHaveProperty('id')
       expect(user).toHaveProperty('id')
@@ -40,14 +46,17 @@ module.exports = (state: IState) => {
     it('should have sent a welcome email', () => {
       const send = (global as any).__sparkpostSend
       expect(send).toHaveBeenCalled()
-      expect(send.mock.calls[0][0]).toMatchSnapshot()
+      const payload = send.mock.calls[0][0]
+      const address = payload.recipients[0].address
+      address.email = address.email.replace(/.*@/, '<uuid>@')
+      expect(payload).toMatchSnapshot()
     })
 
     it('should login', async () => {
       const payload = {
         grant_type: 'password',
-        username: 'admin@example.com',
-        password: 'password1',
+        username: state.login.email,
+        password: state.login.password,
       }
 
       const response = await fetch(`${state.baseURL}/v1/oauth/token`, {

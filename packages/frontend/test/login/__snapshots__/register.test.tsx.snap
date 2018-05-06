@@ -66,7 +66,7 @@ exports[`login/register.tsx should render form 1`] = `
   <WithStyles(FormHelperText)
     className="tos"
   >
-    By registering, you agree to our
+    By registering, you agree to our 
     <a
       href="TOS_URL"
       target="_blank"
