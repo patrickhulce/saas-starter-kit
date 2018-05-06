@@ -33,9 +33,9 @@ async function run() {
   const serverProc = childProcess.exec('PORT=0 npm start', {cwd: FRONTEND_DIR})
   serverProc.stdout.on('data', buf => DEVSERVER_OUT.push(buf.toString()))
 
-  await waitForPatternInOutput(DEVSERVER_PATTERN)
-  await waitForPatternInOutput(/Starting compilation/, 2000)
-  await waitForPatternInOutput(/webpack built [a-f0-9]+ in \d+ms/, 3000)
+  await waitForPatternInOutput(DEVSERVER_PATTERN, 1000)
+  await waitForPatternInOutput(/Starting compilation/, 5000)
+  await waitForPatternInOutput(/webpack built [a-f0-9]+ in \d+ms/, 5000)
   await waitForPatternInOutput(/API is available/, 1000)
 
   const port = Number(DEVSERVER_OUT.find(l => DEVSERVER_PATTERN.test(l)).match(DEVSERVER_PATTERN)[1])
@@ -51,9 +51,7 @@ async function run() {
     console.error('Error occurred', err.stack)
   }
 
-  try {
-    process.kill(-serverProc.pid)
-  } catch (e) {}
+  process.kill(serverProc.pid)
   process.exit(success ? 0 : 1)
 }
 
