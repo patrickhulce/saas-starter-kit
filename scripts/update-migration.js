@@ -9,8 +9,8 @@ const KLAY_EXECUTABLE = path.join(__dirname, '../node_modules/.bin/klay-kiln-sql
 const LINT_EXECTUABLE = path.join(__dirname, '../node_modules/.bin/lint')
 
 const MIGRATION_FOLDER = path.join(__dirname, '../migrations')
-const DIST_FOLDER = path.join(__dirname, '../packages/firebase-app/dist-firebase/dist')
-const KILN_FILE = path.join(DIST_FOLDER, 'shared/lib/kiln.js')
+const DIST_DIR = path.join(__dirname, '../dist')
+const KILN_FILE = path.join(DIST_DIR, 'shared/lib/kiln.js')
 
 async function run() {
   const filesBefore = fs.readdirSync(MIGRATION_FOLDER)
