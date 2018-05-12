@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`login/login.tsx should render form 1`] = `
+<form
+  name="login"
+  onSubmit={[Function]}
+>
+  <TextField
+    autoFocus={true}
+    label="Email"
+    name="email"
+    required={true}
+    select={false}
+    type="email"
+  />
+  <TextField
+    label="Password"
+    name="password"
+    required={true}
+    select={false}
+    type="password"
+  />
+  <WithStyles(Button)
+    color="primary"
+    type="submit"
+    variant="raised"
+  >
+    Login
+  </WithStyles(Button)>
+</form>
+`;
