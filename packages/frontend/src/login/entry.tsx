@@ -5,20 +5,20 @@ import Tabs, {Tab} from 'material-ui/Tabs'
 import {LoginForm} from './login'
 import {RegisterForm} from './register'
 
-interface ILoginPageState {
+export interface ILoginPageState {
   selectedTab: number
   errorMessage?: string
 }
 
-class LoginPage extends React.Component<{}, ILoginPageState> {
+export class LoginPage extends React.Component<{}, ILoginPageState> {
   public state: ILoginPageState = {selectedTab: 0}
 
   public render(): JSX.Element[] {
     const onChange = (evt, value) => this.setState({selectedTab: value})
 
     return [
-      <h1 className="app-name">THE_PRODUCT_DISPLAY_NAME</h1>,
-      <div className="account-forms">
+      <h1 key="header" className="app-name">THE_PRODUCT_DISPLAY_NAME</h1>,
+      <div key="form" className="account-forms">
         <Tabs
           value={this.state.selectedTab}
           onChange={onChange}
