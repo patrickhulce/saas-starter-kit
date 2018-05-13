@@ -22,7 +22,7 @@ module.exports = (state: IState) => {
 
     it('should switch to create account tab', async () => {
       await state.page.waitFor(state.waitFor)
-      const $createAccountTab = await state.page.$('.atmn-create-account')
+      const $createAccountTab = await state.page.$('[data-testid=create-account-tab]')
       await $createAccountTab.click()
       await state.page.waitFor('form[name=register]')
     })
@@ -36,7 +36,7 @@ module.exports = (state: IState) => {
       await typeIn('input[name=cpassword]', 'test_password')
       await state.page.waitFor(state.waitFor)
 
-      ;(await state.page.$('.atmn-create-account-submit')).click()
+      ;(await state.page.$('[data-testid=create-account-submit]')).click()
       await state.page.waitForNavigation()
     })
 

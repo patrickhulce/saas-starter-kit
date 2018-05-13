@@ -80,7 +80,7 @@ export class RegisterForm extends Form {
           By registering, you agree to our <a target="_blank" href="TOS_URL">terms of service</a>
         </FormHelperText>
         <Button
-          className="atmn-create-account-submit"
+          data-testid="create-account-submit"
           variant="raised"
           color="primary"
           type="submit"

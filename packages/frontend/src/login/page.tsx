@@ -25,7 +25,7 @@ export class LoginPage extends React.Component<{}, ILoginPageState> {
           fullWidth
         >
           <Tab label="Login" />
-          <Tab label="Create an Account" />
+          <Tab data-testid="create-account-tab" label="Create an Account" />
         </Tabs>
         {this.state.selectedTab === 0 && <LoginForm />}
         {this.state.selectedTab === 1 && <RegisterForm />}
