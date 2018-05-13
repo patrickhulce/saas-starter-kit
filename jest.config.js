@@ -8,12 +8,6 @@ module.exports = {
   transform: {
     '\\.(ts|tsx)$': 'ts-jest',
   },
-  snapshotSerializers: [
-    'enzyme-to-json/serializer',
-  ],
-  setupFiles: [
-    `${__dirname}/packages/frontend/test/setup-tests.ts`
-  ],
   moduleFileExtensions: ['ts', 'js', 'tsx', 'jsx'],
   moduleNameMapper: {
     '\.scss$': 'identity-obj-proxy',
@@ -22,6 +16,7 @@ module.exports = {
     '/node_modules/',
     '/test/integration/',
     '/e2e/test/',
+    '/dist/',
   ],
   testRegex: '\\.test.(ts|js)x?$'
 }

@@ -1,31 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`login/login.tsx should render form 1`] = `
-<form
-  name="login"
-  onSubmit={[Function]}
->
-  <TextField
-    autoFocus={true}
-    label="Email"
-    name="email"
-    required={true}
-    select={false}
-    type="email"
-  />
-  <TextField
-    label="Password"
-    name="password"
-    required={true}
-    select={false}
-    type="password"
-  />
-  <WithStyles(Button)
-    color="primary"
-    type="submit"
-    variant="raised"
+<div>
+  <form
+    name="login"
   >
-    Login
-  </WithStyles(Button)>
-</form>
+    <div
+      class="MuiFormControl-root-1"
+    >
+      <label
+        class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
+        data-shrink="false"
+      >
+        Email
+        <span
+          class="MuiFormLabel-asterisk-14"
+        >
+           *
+        </span>
+      </label>
+      <div
+        class="MuiInput-root-15 MuiInput-formControl-16 MuiInput-underline-19"
+      >
+        <input
+          aria-invalid="false"
+          aria-required="true"
+          class="MuiInput-input-23 MuiInput-inputType-26"
+          name="email"
+          required=""
+          type="email"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      class="MuiFormControl-root-1"
+    >
+      <label
+        class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
+        data-shrink="false"
+      >
+        Password
+        <span
+          class="MuiFormLabel-asterisk-14"
+        >
+           *
+        </span>
+      </label>
+      <div
+        class="MuiInput-root-15 MuiInput-formControl-16 MuiInput-underline-19"
+      >
+        <input
+          aria-invalid="false"
+          aria-required="true"
+          class="MuiInput-input-23 MuiInput-inputType-26"
+          name="password"
+          required=""
+          type="password"
+          value=""
+        />
+      </div>
+    </div>
+    <button
+      class="MuiButtonBase-root-43 MuiButton-root-28 MuiButton-raised-33 MuiButton-raisedPrimary-34"
+      tabindex="0"
+      type="submit"
+    >
+      <span
+        class="MuiButton-label-29"
+      >
+        Login
+      </span>
+      <span
+        class="MuiTouchRipple-root-45"
+      />
+    </button>
+  </form>
+</div>
 `;

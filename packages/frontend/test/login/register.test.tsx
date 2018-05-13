@@ -1,10 +1,10 @@
 import * as React from 'react'
-import * as Enzyme from 'enzyme'
+import {render} from 'react-testing-library'
 import {RegisterForm} from '../../src/login/register'
 
 describe('login/register.tsx', () => {
   it('should render form', () => {
-    const form = Enzyme.shallow(<RegisterForm />)
-    expect(form).toMatchSnapshot()
+    const form = render(<RegisterForm />)
+    expect(form.container).toMatchSnapshot()
   })
 })

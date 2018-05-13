@@ -1,86 +1,220 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`login/register.tsx should render form 1`] = `
-<form
-  name="register"
-  onSubmit={[Function]}
->
-  <div>
-    <TextField
-      className="half-text"
-      label="First Name"
-      name="first"
-      required={true}
-      select={false}
-      type="first"
-    />
-    <TextField
-      className="half-text"
-      label="Last Name"
-      name="last"
-      required={true}
-      select={false}
-      type="last"
-    />
-  </div>
-  <TextField
-    label="Email"
-    name="email"
-    required={true}
-    select={false}
-    type="email"
-  />
-  <TextField
-    label="Password"
-    name="password"
-    required={true}
-    select={false}
-    type="password"
-  />
-  <TextField
-    label="Confirm Password"
-    name="cpassword"
-    required={true}
-    select={false}
-    type="password"
-  />
-  <WithStyles(FormControlLabel)
-    control={
-      <WithStyles(Checkbox)
-        color="primary"
-        name="newsletter"
-        value="newsletter"
-      />
-    }
-    label={
-      <span
-        className="newsletter"
+<div>
+  <form
+    name="register"
+  >
+    <div>
+      <div
+        class="MuiFormControl-root-1 half-text"
       >
-        Send me email tips and updates
-        <small>
-          (Roughly once a month, unsubscribe anytime)
-        </small>
-      </span>
-    }
-  />
-  <WithStyles(FormHelperText)
-    className="tos"
-  >
-    By registering, you agree to our 
-    <a
-      href="TOS_URL"
-      target="_blank"
+        <label
+          class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
+          data-shrink="false"
+        >
+          First Name
+          <span
+            class="MuiFormLabel-asterisk-14"
+          >
+             *
+          </span>
+        </label>
+        <div
+          class="MuiInput-root-15 MuiInput-formControl-16 MuiInput-underline-19"
+        >
+          <input
+            aria-invalid="false"
+            aria-required="true"
+            class="MuiInput-input-23 MuiInput-inputType-26"
+            name="first"
+            required=""
+            type="first"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="MuiFormControl-root-1 half-text"
+      >
+        <label
+          class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
+          data-shrink="false"
+        >
+          Last Name
+          <span
+            class="MuiFormLabel-asterisk-14"
+          >
+             *
+          </span>
+        </label>
+        <div
+          class="MuiInput-root-15 MuiInput-formControl-16 MuiInput-underline-19"
+        >
+          <input
+            aria-invalid="false"
+            aria-required="true"
+            class="MuiInput-input-23 MuiInput-inputType-26"
+            name="last"
+            required=""
+            type="last"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiFormControl-root-1"
     >
-      terms of service
-    </a>
-  </WithStyles(FormHelperText)>
-  <WithStyles(Button)
-    className="atmn-create-account-submit"
-    color="primary"
-    type="submit"
-    variant="raised"
-  >
-    Register
-  </WithStyles(Button)>
-</form>
+      <label
+        class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
+        data-shrink="false"
+      >
+        Email
+        <span
+          class="MuiFormLabel-asterisk-14"
+        >
+           *
+        </span>
+      </label>
+      <div
+        class="MuiInput-root-15 MuiInput-formControl-16 MuiInput-underline-19"
+      >
+        <input
+          aria-invalid="false"
+          aria-required="true"
+          class="MuiInput-input-23 MuiInput-inputType-26"
+          name="email"
+          required=""
+          type="email"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      class="MuiFormControl-root-1"
+    >
+      <label
+        class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
+        data-shrink="false"
+      >
+        Password
+        <span
+          class="MuiFormLabel-asterisk-14"
+        >
+           *
+        </span>
+      </label>
+      <div
+        class="MuiInput-root-15 MuiInput-formControl-16 MuiInput-underline-19"
+      >
+        <input
+          aria-invalid="false"
+          aria-required="true"
+          class="MuiInput-input-23 MuiInput-inputType-26"
+          name="password"
+          required=""
+          type="password"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      class="MuiFormControl-root-1"
+    >
+      <label
+        class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
+        data-shrink="false"
+      >
+        Confirm Password
+        <span
+          class="MuiFormLabel-asterisk-14"
+        >
+           *
+        </span>
+      </label>
+      <div
+        class="MuiInput-root-15 MuiInput-formControl-16 MuiInput-underline-19"
+      >
+        <input
+          aria-invalid="false"
+          aria-required="true"
+          class="MuiInput-input-23 MuiInput-inputType-26"
+          name="cpassword"
+          required=""
+          type="password"
+          value=""
+        />
+      </div>
+    </div>
+    <label
+      class="MuiFormControlLabel-root-28"
+    >
+      <span
+        class="MuiButtonBase-root-46 MuiIconButton-root-40 MuiSwitchBase-root-36 MuiCheckbox-root-31 MuiCheckbox-colorPrimary-34"
+      >
+        <span
+          class="MuiIconButton-label-45"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root-48"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+          <input
+            class="MuiSwitchBase-input-39"
+            name="newsletter"
+            type="checkbox"
+            value="newsletter"
+          />
+        </span>
+        <span
+          class="MuiTouchRipple-root-54"
+        />
+      </span>
+      <span
+        class="MuiTypography-root-61 MuiTypography-body1-70 MuiFormControlLabel-label-30"
+      >
+        <span
+          class="newsletter"
+        >
+          Send me email tips and updates
+          <small>
+            (Roughly once a month, unsubscribe anytime)
+          </small>
+        </span>
+      </span>
+    </label>
+    <p
+      class="MuiFormHelperText-root-85 tos"
+    >
+      By registering, you agree to our 
+      <a
+        href="TOS_URL"
+        target="_blank"
+      >
+        terms of service
+      </a>
+    </p>
+    <button
+      class="MuiButtonBase-root-46 MuiButton-root-89 MuiButton-raised-94 MuiButton-raisedPrimary-95 atmn-create-account-submit"
+      tabindex="0"
+      type="submit"
+    >
+      <span
+        class="MuiButton-label-90"
+      >
+        Register
+      </span>
+      <span
+        class="MuiTouchRipple-root-54"
+      />
+    </button>
+  </form>
+</div>
 `;
