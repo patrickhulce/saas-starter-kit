@@ -18,10 +18,10 @@ jobs:
             - node_modules
       - run:
           name: 'create mysql database'
-          command: mysql -h 127.0.0.1 -u root -e "create database if not exists the_product;"
+          command: mysql -h 127.0.0.1 -u root -e "create database the_product;"
       - run: yarn build
       - run: yarn test:lint
-      - run: node ./scripts/sync-database.js
+      - run: yarn migrate --url="mysql://root@localhost/the_product"
       - run:
           name: 'yarn test:unit'
           command: yarn test:unit --ci --coverage --runInBand --verbose --testResultsProcessor="jest-junit"
