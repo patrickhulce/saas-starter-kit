@@ -202,7 +202,8 @@ exports[`login/register.tsx should render form 1`] = `
       </a>
     </p>
     <button
-      class="MuiButtonBase-root-46 MuiButton-root-89 MuiButton-raised-94 MuiButton-raisedPrimary-95 atmn-create-account-submit"
+      class="MuiButtonBase-root-46 MuiButton-root-89 MuiButton-raised-94 MuiButton-raisedPrimary-95"
+      data-testid="create-account-submit"
       tabindex="0"
       type="submit"
     >
