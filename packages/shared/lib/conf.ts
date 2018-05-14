@@ -26,15 +26,17 @@ const conf: IConf = {
   },
 }
 
+if (process.env.APP_ENV === 'development') {
+  conf.sparkpost.sendToSink = false
+}
+
 if (process.env.APP_ENV === 'firebase-development') {
-  conf.apiPathPrefix = '/api'
   conf.sparkpost.sendToSink = false
 }
 
 if (process.env.APP_ENV === 'firebase-production') {
   conf.debug = false
   conf.production = true
-  conf.apiPathPrefix = '/api'
   conf.sparkpost.sendToSink = false
 }
 

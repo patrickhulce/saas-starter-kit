@@ -1,6 +1,6 @@
 import {IState} from '../../lib/typedefs'
-import { Mailslurp } from '../../lib/mailslurp';
-import conf from '../../../shared/lib/conf';
+import {Mailslurp} from '../../lib/mailslurp'
+import conf from '../../../shared/lib/conf'
 
 module.exports = (state: IState) => {
   const mailslurp = new Mailslurp(conf.mailslurp.apiKey)
@@ -48,7 +48,7 @@ module.exports = (state: IState) => {
       state.user = {password: 'test_password'}
     })
 
-    it.skip('should send welcome email', async () => {
+    it('should send welcome email', async () => {
       expect(state.user).toBeDefined()
       const messages = await mailslurp.readMail(state.userMailbox, 1)
 

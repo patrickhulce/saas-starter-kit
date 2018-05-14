@@ -26,7 +26,7 @@ const server = app.listen(process.env.PORT || 8080, () => {
 
 if (process.env.START_API) {
   const cwd = path.join(__dirname, '../api')
-  const server = exec('PORT=5000 yarn start', {cwd, async: true})
+  const server = exec('APP_ENV=development PORT=5000 yarn start', {cwd, async: true})
 
   let shutdown
   const close = exit => async () => {
