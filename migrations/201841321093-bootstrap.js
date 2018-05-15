@@ -32,6 +32,8 @@ module.exports = {
       },
       role: Sequelize.TEXT,
       email: Sequelize.STRING(250),
+      isVerified: Sequelize.BOOLEAN,
+      verificationKey: Sequelize.UUID,
       password: Sequelize.STRING(40),
       firstName: Sequelize.STRING(100),
       lastName: Sequelize.STRING(100),

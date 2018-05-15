@@ -1,4 +1,12 @@
-import {ConstraintType, IModel, READ_ACTIONS, SortDirection, WRITE_ACTIONS} from 'klay'
+import {
+  ConstraintType,
+  DatabaseEvent,
+  IModel,
+  READ_ACTIONS,
+  SortDirection,
+  SupplyWithPreset,
+  WRITE_ACTIONS,
+} from 'klay'
 import conf from '../conf'
 import {modelContext} from '../model-context'
 import {AuthRole, ModelID, Permission} from '../typedefs'
@@ -18,6 +26,12 @@ export const userModel: IModel = modelContext
       .email()
       .max(250)
       .constrain({type: ConstraintType.Unique}),
+    isVerified: modelContext.boolean(),
+    // TODO: add a "api-hidden" property
+    verificationKey: modelContext
+      .uuid()
+      .constrain({type: ConstraintType.Immutable})
+      .automanage({event: DatabaseEvent.Create, supplyWith: SupplyWithPreset.UUID}),
     password: modelContext.password({salt: conf.secret, model: passwordBase}),
     firstName: modelContext.string().max(100),
     lastName: modelContext.string().max(100),

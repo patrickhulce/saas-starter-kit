@@ -1,5 +1,5 @@
 import * as express from 'express'
-import {CRUD_ROUTES, IDatabaseExecutor, IRouterOptions} from 'klay'
+import {IDatabaseExecutor, IRouterOptions} from 'klay'
 import {IUser, kiln, ModelID, sqlExtension, userModel} from '../../../shared/lib'
 
 const userExecutor = kiln.build(ModelID.User, sqlExtension) as IDatabaseExecutor<IUser>
@@ -7,7 +7,6 @@ const userExecutor = kiln.build(ModelID.User, sqlExtension) as IDatabaseExecutor
 export const usersRouterOptions: IRouterOptions = {
   modelName: ModelID.User,
   routes: {
-    ...CRUD_ROUTES,
     'GET /me': {
       responseModel: userModel,
       async handler(req: express.Request, res: express.Response): Promise<void> {
@@ -15,7 +14,20 @@ export const usersRouterOptions: IRouterOptions = {
         const id = (req.grants as any).userContext.id
         const user = await userExecutor.findById(id)
         if (!user) throw new Error('No such user')
+        user.verificationKey = undefined
         res.json(user)
+      },
+    },
+    'GET /verifications': {
+      async handler(req: express.Request, res: express.Response): Promise<void> {
+        const verificationKey = req.query && req.query.key
+        if (!verificationKey) return res.redirect('/')
+        const user = await userExecutor.findOne({where: {verificationKey}})
+        if (!user) return res.redirect('/')
+
+        user.isVerified = true
+        await userExecutor.update(user)
+        res.redirect('/?verification=success')
       },
     },
   },

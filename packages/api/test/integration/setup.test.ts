@@ -15,7 +15,7 @@ module.exports = (state: IState) => {
     it('should create an account', async () => {
       const login = {
         email: `${uuid.v4()}@example.com`,
-        password: 'password1'
+        password: 'password1',
       }
 
       const payload = {
@@ -41,6 +41,8 @@ module.exports = (state: IState) => {
 
       expect(account).toHaveProperty('id')
       expect(user).toHaveProperty('id')
+      expect(user).toHaveProperty('isVerified', false)
+      expect(user).not.toHaveProperty('verificationKey')
     })
 
     it('should have sent a welcome email', () => {
@@ -79,6 +81,16 @@ module.exports = (state: IState) => {
 
       expect(response.status).toBe(200)
       expect(await response.json()).toEqual(state.user)
+    })
+
+    it('should verify email address', async () => {
+      let dbUser = await state.userExecutor.findById(state.user.id)
+      const queryString = `key=${dbUser.verificationKey}`
+      const response = await fetch(`${state.baseURL}/v1/users/verifications?${queryString}`)
+      expect(response.url).toMatch(/verification=success/)
+
+      dbUser = await state.userExecutor.findById(state.user.id)
+      expect(dbUser.isVerified).toBe(true)
     })
   })
 }

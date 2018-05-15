@@ -1,5 +1,5 @@
 import * as express from 'express'
-import {CRUD_ROUTES, IDatabaseExecutor, IRouterOptions} from 'klay'
+import {IDatabaseExecutor, IRouterOptions} from 'klay'
 import {
   accountModel,
   AccountPlan,
@@ -29,7 +29,6 @@ const registerResponseModel = modelContext
 export const accountsRouterOptions: IRouterOptions = {
   modelName: ModelID.Account,
   routes: {
-    ...CRUD_ROUTES,
     'POST /register': {
       bodyModel: registerModel,
       responseModel: registerResponseModel,
@@ -52,10 +51,12 @@ export const accountsRouterOptions: IRouterOptions = {
               role: AuthRole.Admin,
               firstName: payload.user.firstName,
               lastName: payload.user.lastName,
+              isVerified: false,
             },
             {transaction},
           )
 
+          user.verificationKey = undefined
           await sendWelcomeEmail(user.email, `${user.firstName} ${user.lastName}`)
           return {account, user}
         })
