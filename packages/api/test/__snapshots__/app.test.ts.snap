@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`lib/app.ts initialize should have sent a welcome email 1`] = `
+exports[`lib/app.ts account setup should have sent a welcome email 1`] = `
 Object {
   "content": Object {
     "from": "noreply@THE_DOMAIN",
-    "html": "Hello Admin User,<br><br>You're receiving this message because you registered an account for THE_PRODUCT_DISPLAY_NAME.<br>Please follow the link below to verify your email address.<br><br><a href=\\"http://localhost/api/v1/users/verifications?key=<key> you did not register an account with us, you can ignore this email.<br><br>Thanks,<br>The THE_PRODUCT_DISPLAY_NAME Team",
+    "html": "Hello Admin User,<br><br>You're receiving this message because you registered an account for THE_PRODUCT_DISPLAY_NAME.<br>Please follow the link below to verify your email address.<br><br><a href=\\"http://localhost/api/v1/users/verifications?key=<key>\\">http://localhost/api/v1/users/verifications?key=<key></a><br><br>If you did not register an account with us, you can ignore this email.<br><br>Thanks,<br>The THE_PRODUCT_DISPLAY_NAME Team",
     "subject": "Welcome to THE_PRODUCT_DISPLAY_NAME! - Verify your email",
     "text": "Hello Admin User,
 

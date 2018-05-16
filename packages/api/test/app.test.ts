@@ -7,6 +7,7 @@ describe('lib/app.ts', () => {
   const userExecutor = kiln.build(ModelID.User, sqlExtension) as IDatabaseExecutor<IUser>
   const state: IState = {app, sqlExtension, userExecutor}
 
-  require('./integration/setup.test')(state)
+  require('./integration/initialize.test')(state)
+  require('./integration/account-setup.test')(state)
   require('./integration/teardown.test')(state)
 })

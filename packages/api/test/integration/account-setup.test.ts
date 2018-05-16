@@ -1,18 +1,9 @@
 import * as uuid from 'uuid'
 import * as fetch from 'isomorphic-fetch'
 import {IState} from '../typedefs'
-import conf from '../../../shared/lib/conf';
 
 module.exports = (state: IState) => {
-  describe('initialize', () => {
-    it('should start the server', done => {
-      state.server = state.app.listen(() => {
-        state.port = state.server.address().port
-        state.baseURL = `http://localhost:${state.port}/api`
-        done()
-      })
-    })
-
+  describe('account setup', () => {
     it('should create an account', async () => {
       const login = {
         email: `${uuid.v4()}@example.com`,
@@ -51,8 +42,8 @@ module.exports = (state: IState) => {
       expect(send).toHaveBeenCalled()
       const payload = send.mock.calls[0][0]
       const address = payload.recipients[0].address
-      payload.content.text = payload.content.text.replace(/key=\S+/, 'key=<key>')
-      payload.content.html = payload.content.html.replace(/key=\S+/, 'key=<key>')
+      payload.content.text = payload.content.text.replace(/key=[\w-]+/g, 'key=<key>')
+      payload.content.html = payload.content.html.replace(/key=[\w-]+/g, 'key=<key>')
       address.email = address.email.replace(/.*@/, '<uuid>@')
       expect(payload).toMatchSnapshot()
     })
