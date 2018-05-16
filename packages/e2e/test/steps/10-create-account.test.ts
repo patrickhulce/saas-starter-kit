@@ -16,7 +16,7 @@ module.exports = (state: IState) => {
     })
 
     it('should navigate to login page', async () => {
-      await state.page.goto(`${state.rootURL}/login`, {waitUntil: 'load'})
+      await state.page.goto(`${state.rootURL}/login`)
       await state.page.waitFor('#app-root')
     })
 
@@ -55,6 +55,15 @@ module.exports = (state: IState) => {
       expect(messages).toHaveLength(1)
       expect(messages[0].subject).toContain('Welcome')
       expect(messages[0].body).toContain('Hello John User,')
+      state.emailVerificationLink = messages[0].body.match(/>http[^\s<]+/)[0].slice(1)
+    })
+
+    it('should visit verification link', async () => {
+      expect(state.emailVerificationLink).toBeDefined()
+      await state.page.goto(state.emailVerificationLink)
+
+      const pageURL = await state.page.evaluate(() => window.location.href)
+      expect(pageURL).toContain('verification=success')
     })
   })
 }

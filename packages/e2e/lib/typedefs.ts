@@ -7,6 +7,7 @@ export interface IState {
   waitFor: number
   user?: {password: string}
   userMailbox?: IMailbox
+  emailVerificationLink?: string
 }
 
 export interface IMailbox {
