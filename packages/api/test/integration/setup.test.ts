@@ -1,6 +1,7 @@
 import * as uuid from 'uuid'
 import * as fetch from 'isomorphic-fetch'
 import {IState} from '../typedefs'
+import conf from '../../../shared/lib/conf';
 
 module.exports = (state: IState) => {
   describe('initialize', () => {
@@ -50,6 +51,8 @@ module.exports = (state: IState) => {
       expect(send).toHaveBeenCalled()
       const payload = send.mock.calls[0][0]
       const address = payload.recipients[0].address
+      payload.content.text = payload.content.text.replace(/key=\S+/, 'key=<key>')
+      payload.content.html = payload.content.html.replace(/key=\S+/, 'key=<key>')
       address.email = address.email.replace(/.*@/, '<uuid>@')
       expect(payload).toMatchSnapshot()
     })

@@ -59,6 +59,7 @@ export interface IConf {
   isUnderTest: boolean
 
   domain: string
+  origin: string
   displayName: string
   apiPathPrefix: string
 

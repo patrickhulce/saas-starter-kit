@@ -12,7 +12,7 @@ import {
   sqlExtension,
   userModel,
 } from '../../../shared/lib'
-import {sendWelcomeEmail} from '../hooks/register'
+import {runRegisterHooks} from '../hooks/register'
 
 const accountExecutor = kiln.build(ModelID.Account, sqlExtension) as IDatabaseExecutor<IAccount>
 const userExecutor = kiln.build(ModelID.User, sqlExtension) as IDatabaseExecutor<IUser>
@@ -56,8 +56,9 @@ export const accountsRouterOptions: IRouterOptions = {
             {transaction},
           )
 
+          await runRegisterHooks(account, user)
+
           user.verificationKey = undefined
-          await sendWelcomeEmail(user.email, `${user.firstName} ${user.lastName}`)
           return {account, user}
         })
 

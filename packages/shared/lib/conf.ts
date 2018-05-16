@@ -6,6 +6,7 @@ const conf: IConf = {
   isUnderTest: typeof it === 'function', // tslint:disable-line
 
   domain: 'THE_DOMAIN',
+  origin: process.env.APP_ORIGIN || 'http://localhost',
   displayName: 'THE_PRODUCT_DISPLAY_NAME',
   apiPathPrefix: '/api',
 

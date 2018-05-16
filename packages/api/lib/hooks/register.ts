@@ -1,6 +1,7 @@
 import {template} from 'lodash'
 import * as Sparkpost from 'sparkpost'
 import conf from '../../../shared/lib/conf'
+import {IAccount, IUser} from '../../../shared/lib/typedefs'
 
 // tslint:disable-next-line
 const debug = require('debug')('the-product:hooks')
@@ -17,11 +18,15 @@ const WELCOME_TEMPLATE = template(
   ].join('\n'),
 )
 
-export async function sendWelcomeEmail(email: string, name: string): Promise<void> {
+export async function sendWelcomeEmail(
+  email: string,
+  name: string,
+  verificationKey: string,
+): Promise<void> {
+  const publicPath = `${conf.origin}${conf.apiPathPrefix}`
   const sparkpost = new Sparkpost(conf.sparkpost.apiKey)
   const emailToVerify = conf.sparkpost.sendToSink ? `${email}.sink.sparkpostmail.com` : email
-  // TODO: make this a real verify link
-  const verifyLink = `http://${conf.domain}/`
+  const verifyLink = `${publicPath}/v1/users/verifications?key=${verificationKey}`
 
   debug('sending welcome email to', emailToVerify, 'from', conf.sparkpost.fromAddress)
 
@@ -44,4 +49,8 @@ export async function sendWelcomeEmail(email: string, name: string): Promise<voi
       },
     ],
   })
+}
+
+export async function runRegisterHooks(account: IAccount, user: IUser): Promise<void> {
+  await sendWelcomeEmail(user.email, `${user.firstName} ${user.lastName}`, user.verificationKey!)
 }
