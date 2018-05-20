@@ -193,9 +193,10 @@ exports[`login/register.tsx should render form 1`] = `
     <p
       class="MuiFormHelperText-root-85 tos"
     >
-      By registering, you agree to our 
+      By registering, you agree to our
+       
       <a
-        href="TOS_URL"
+        href="http://localhost/tos"
         target="_blank"
       >
         terms of service

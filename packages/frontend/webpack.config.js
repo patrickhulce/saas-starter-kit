@@ -1,3 +1,4 @@
+const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractCssPlugin = require('mini-css-extract-plugin')
@@ -31,6 +32,13 @@ module.exports = {
     modules: [__dirname, 'node_modules'],
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.APP_ENV': JSON.stringify('frontend'),
+      'process.env.SECRET': JSON.stringify('NONE'),
+      'process.env.APP_MYSQL_URL': JSON.stringify('NONE'),
+      'process.env.MAILSLURP_API_KEY': JSON.stringify('NONE'),
+      'process.env.SPARKPOST_API_KEY': JSON.stringify('NONE'),
+    }),
     new HtmlWebpackPlugin({
       chunks: ['login'],
       filename: 'login.html',
@@ -48,7 +56,11 @@ module.exports = {
   ],
   module: {
     rules: [
-      {test: /\.tsx?$/, use: ['awesome-typescript-loader'], include: `${__dirname}/src`},
+      {
+        test: /\.tsx?$/,
+        use: ['awesome-typescript-loader'],
+        include: [path.resolve(__dirname, 'src'), path.resolve(__dirname, '../shared')],
+      },
       {test: /\.scss$/, use: ['style-loader', ...cssLoader], include: `${__dirname}/src`},
     ],
   },

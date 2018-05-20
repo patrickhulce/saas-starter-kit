@@ -1,7 +1,7 @@
 import conf from '../lib/conf'
 
 describe('lib/conf.ts', () => {
-  it('should define JsEnvironment', () => {
-    expect(conf.jsEnvironment).toEqual('server')
+  it('should define isUnderTest', () => {
+    expect(conf.isUnderTest).toEqual(true)
   })
 })

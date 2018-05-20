@@ -2,6 +2,7 @@ import * as React from 'react'
 import Tabs, {Tab} from 'material-ui/Tabs'
 import {LoginForm} from './login'
 import {RegisterForm} from './register'
+import conf from '../../../shared/lib/conf'
 
 export interface ILoginPageState {
   selectedTab: number
@@ -15,7 +16,7 @@ export class LoginPage extends React.Component<{}, ILoginPageState> {
     const onChange = (evt, value) => this.setState({selectedTab: value})
 
     return [
-      <h1 key="header" className="app-name">THE_PRODUCT_DISPLAY_NAME</h1>,
+      <h1 key="header" className="app-name">{conf.displayName}</h1>,
       <div key="form" className="account-forms">
         <Tabs
           value={this.state.selectedTab}

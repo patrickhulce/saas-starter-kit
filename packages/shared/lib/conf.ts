@@ -1,4 +1,4 @@
-import {IConf, JsEnvironment} from './typedefs'
+import {IConf} from './typedefs'
 
 const conf: IConf = {
   debug: true,
@@ -7,11 +7,11 @@ const conf: IConf = {
 
   domain: 'THE_DOMAIN',
   origin: process.env.APP_ORIGIN || 'http://localhost',
+  termsOfServiceURL: 'http://localhost/tos',
   displayName: 'THE_PRODUCT_DISPLAY_NAME',
   apiPathPrefix: '/api',
 
-  jsEnvironment: JsEnvironment.Server,
-  secret: process.env.SECRET || 'super-secret-string',
+  secret: process.env.SECRET || 'unset',
   database: {
     connectionURL: process.env.APP_MYSQL_URL || '',
   },

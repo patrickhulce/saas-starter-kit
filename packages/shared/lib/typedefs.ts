@@ -48,11 +48,6 @@ export enum AccountPlan {
   Gold = 'gold',
 }
 
-export enum JsEnvironment {
-  Browser = 'browser',
-  Server = 'server',
-}
-
 export interface IConf {
   debug: boolean
   production: boolean
@@ -60,11 +55,11 @@ export interface IConf {
 
   domain: string
   origin: string
+  termsOfServiceURL: string
   displayName: string
   apiPathPrefix: string
 
   secret: string
-  jsEnvironment: JsEnvironment
   database: ISQLOptions
 
   mailslurp: {apiKey: string}

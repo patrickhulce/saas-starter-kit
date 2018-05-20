@@ -8,6 +8,7 @@ import Checkbox from 'material-ui/Checkbox/Checkbox'
 import FormHelperText from 'material-ui/Form/FormHelperText'
 import {Form} from './form'
 import {login} from './login'
+import conf from '../../../shared/lib/conf'
 
 async function createAccount(
   accountName: string,
@@ -77,14 +78,12 @@ export class RegisterForm extends Form {
           label={newsletterLabel}
         />
         <FormHelperText className={styles.tos}>
-          By registering, you agree to our <a target="_blank" href="TOS_URL">terms of service</a>
+          By registering, you agree to our{' '}
+          <a target="_blank" href={conf.termsOfServiceURL}>
+            terms of service
+          </a>
         </FormHelperText>
-        <Button
-          data-testid="create-account-submit"
-          variant="raised"
-          color="primary"
-          type="submit"
-        >
+        <Button data-testid="create-account-submit" variant="raised" color="primary" type="submit">
           Register
         </Button>
       </form>
