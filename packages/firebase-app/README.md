@@ -18,7 +18,7 @@ sed -ibak s/saas-starter-kit/super-cool-product/ .firebaserc
 # Add 0.0.0.0/0 to authorization until https://issuetracker.google.com/issues/36388165 is fixed
 
 # 5. Configure your database URL
-firebase functions:config:set 'mysql.url=mysql://root:<password>@<ip>/the_product'
+firebase functions:config:set 'mysql.url=mysql://root:<password>@<ip>/the_product_db'
 
 # 6. Deploy to prod!
 yarn deploy

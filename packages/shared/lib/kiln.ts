@@ -14,6 +14,7 @@ export const kiln: IKiln = new Kiln()
 kiln.addModel({name: ModelID.Account, model: accountModel})
 kiln.addModel({name: ModelID.User, model: userModel})
 
+if (!conf.database.connectionURL) throw new Error('Must provide connection URL')
 export const sqlExtension = new SQLExtension(conf.database)
 kiln.addExtension({extension: sqlExtension})
 

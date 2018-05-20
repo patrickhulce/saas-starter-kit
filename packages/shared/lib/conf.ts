@@ -13,7 +13,7 @@ const conf: IConf = {
   jsEnvironment: JsEnvironment.Server,
   secret: process.env.SECRET || 'super-secret-string',
   database: {
-    connectionURL: process.env.APP_MYSQL_URL || 'mysql://root@localhost/the_product',
+    connectionURL: process.env.APP_MYSQL_URL || '',
   },
 
   mailslurp: {

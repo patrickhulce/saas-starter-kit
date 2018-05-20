@@ -18,16 +18,21 @@ jobs:
             - node_modules
       - run:
           name: 'create mysql database'
-          command: mysql -h 127.0.0.1 -u root -e "create database the_product;"
+          command: mysql -h 127.0.0.1 -u root -e "create database the_product_db;"
       - run: yarn build
       - run: yarn test:lint
-      - run: yarn migrate --url="mysql://root@localhost/the_product"
+      - run: yarn migrate --url="mysql://root@localhost/the_product_db"
       - run:
           name: 'yarn test:unit'
           command: yarn test:unit --ci --coverage --runInBand --verbose --testResultsProcessor="jest-junit"
           environment:
+            APP_MYSQL_URL: "mysql://root@localhost/the_product_db"
             JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
-      - run: yarn test:e2e
+      - run:
+            name: yarn test:e2e
+            command: yarn test:e2e
+            environment:
+                APP_MYSQL_URL: "mysql://root@localhost/the_product_db"
       - store_test_results:
           path: reports/junit
       - store_artifacts:

@@ -10,4 +10,5 @@ Everything you need to get your next Unicorn-for-x startup off the ground.
     - sed -i s/THE_PRODUCT_DISPLAY_NAME/Real Product/
     - sed -i s/saas-starter-kit/your-real-product-name/
     - sed -i s/the-product/your-real-product-name/
-    - sed -i s/the_product/your_database_name/
+    - sed -i s/the_product_db/your_database_name/
+2. Replace all the conf values
