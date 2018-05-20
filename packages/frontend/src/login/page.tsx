@@ -1,4 +1,5 @@
 import * as React from 'react'
+import {Helmet} from 'react-helmet'
 import Tabs, {Tab} from 'material-ui/Tabs'
 import {LoginForm} from './login'
 import {RegisterForm} from './register'
@@ -16,6 +17,9 @@ export class LoginPage extends React.Component<{}, ILoginPageState> {
     const onChange = (evt, value) => this.setState({selectedTab: value})
 
     return [
+      <Helmet key="head">
+        <title>{conf.displayName} Login</title>
+      </Helmet>,
       <h1 key="header" className="app-name">{conf.displayName}</h1>,
       <div key="form" className="account-forms">
         <Tabs
