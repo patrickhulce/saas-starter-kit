@@ -13,6 +13,7 @@
   "config": {
     "tslint": {
       "rules": {
+        "no-null-keyword": false,
         "ordered-imports": false,
         "prefer-function-over-method": false,
         "no-submodule-imports": [

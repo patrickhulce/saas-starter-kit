@@ -9,6 +9,7 @@ import FormHelperText from 'material-ui/Form/FormHelperText'
 import {Form} from './form'
 import {login} from './login'
 import conf from '../../../shared/lib/conf'
+import {ErrorBar} from '../components/error-bar/error-bar'
 
 async function createAccount(
   accountName: string,
@@ -55,7 +56,6 @@ export class RegisterForm extends Form {
   }
 
   public render(): JSX.Element {
-    const errMsg = this.state.errorMessage ? <div>{this.state.errorMessage}</div> : undefined
     const newsletterLabel = (
       <span className={styles.newsletter}>
         Send me email tips and updates
@@ -65,7 +65,7 @@ export class RegisterForm extends Form {
 
     return (
       <form name="register" onSubmit={this.handleSubmit}>
-        {errMsg}
+        <ErrorBar message={this.state.errorMessage} />
         <div>
           <TextField name="first" type="first" label="First Name" className="half-text" required />
           <TextField name="last" type="last" label="Last Name" className="half-text" required />
