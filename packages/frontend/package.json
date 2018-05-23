@@ -32,8 +32,6 @@
     }
   },
   "dependencies": {
-    "firebase": "^4.12.1",
-    "firebaseui": "^2.7.0",
     "klay": "2.5.0-alpha.84196bee",
     "loading-page": "^1.0.1",
     "material-ui": "^1.0.0-beta.43",

@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "@the-product/aws",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "./scripts/package-lambda.js",
+    "test": "echo noop",
+    "test:lint": "echo noop",
+    "test:unit": "echo noop"
+  },
+  "dependencies": {
+    "aws-serverless-express": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/aws-serverless-express": "^3.0.1"
+  }
+}
