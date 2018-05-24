@@ -6,7 +6,7 @@ import * as express from 'express'
 
 import {createAndMergeRouters, createGrantCreationMiddleware} from 'klay'
 import {omit, pick} from 'lodash'
-import {authConfiguration, conf, kiln, sqlExtension} from '../../shared/lib'
+import {authConfiguration, kiln, sqlExtension} from '../../shared/lib'
 import {setPrivateCacheControl} from './middleware/cache-control'
 import {handleError} from './middleware/handle-error'
 import {handlePromise} from './middleware/handle-promise'
