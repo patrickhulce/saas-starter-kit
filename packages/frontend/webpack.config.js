@@ -25,7 +25,7 @@ module.exports = {
   output: {
     path: `${__dirname}/dist`,
     filename: `[name].[hash].js`,
-    publicPath: '/',
+    publicPath: process.env.WEBPACK_PUBLIC_PATH || '/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
