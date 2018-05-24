@@ -9,7 +9,6 @@ const conf: IConf = {
   origin: process.env.APP_ORIGIN || 'http://localhost',
   termsOfServiceURL: 'http://localhost/tos',
   displayName: 'THE_PRODUCT_DISPLAY_NAME',
-  apiPathPrefix: '/api',
 
   secret: process.env.SECRET || 'unset',
   database: {

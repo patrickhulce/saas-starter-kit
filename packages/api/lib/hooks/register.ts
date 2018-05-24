@@ -23,7 +23,7 @@ export async function sendWelcomeEmail(
   name: string,
   verificationKey: string,
 ): Promise<void> {
-  const publicPath = `${conf.origin}${conf.apiPathPrefix}`
+  const publicPath = `${conf.origin}/api`
   const sparkpost = new Sparkpost(conf.sparkpost.apiKey)
   const emailToVerify = conf.sparkpost.sendToSink ? `${email}.sink.sparkpostmail.com` : email
   const verifyLink = `${publicPath}/v1/users/verifications?key=${verificationKey}`

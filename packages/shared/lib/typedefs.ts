@@ -57,7 +57,6 @@ export interface IConf {
   origin: string
   termsOfServiceURL: string
   displayName: string
-  apiPathPrefix: string
 
   secret: string
   database: ISQLOptions

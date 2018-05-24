@@ -13,7 +13,6 @@ const killTree = promisify(killTreeNodeback)
 const app = express()
 const compiler = webpack(config)
 
-app.use('/__', proxy({target: 'http://localhost:5000/'}))
 app.use('/api', proxy({target: 'http://localhost:5000/', changeOrigin: true}))
 app.get('/login', (req, res) => res.redirect('/login.html'))
 app.use(middleware(compiler, {}))
