@@ -8,10 +8,9 @@ const ROOT_DIR = path.join(__dirname, '../../..')
 const FRONTEND_DIR = path.join(ROOT_DIR, 'packages/frontend')
 process.chdir(FRONTEND_DIR)
 
-const BUCKET_PATH = process.env.BUCKET_PATH
-const DEPLOY_PATH = process.env.DEPLOY_PATH
-if (!BUCKET_PATH) throw new Error('Cannot deploy without bucket path')
-if (!DEPLOY_PATH) throw new Error('Cannot deploy without deployment path')
+const BUCKET_PATH = process.argv[2]
+const DEPLOY_PATH = process.argv[3]
+if (process.argv.length !== 4) throw new Error('Usage $0: <bucket path> <deploy path>')
 
 const isDirty = shell.exec('git diff --quiet .').code === 1
 if (isDirty) throw new Error('Cannot deploy frontend with changes')
