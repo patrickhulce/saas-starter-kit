@@ -53,7 +53,6 @@ export interface IConf {
   production: boolean
   isUnderTest: boolean
 
-  domain: string
   origin: string
   termsOfServiceURL: string
   displayName: string

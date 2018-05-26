@@ -5,12 +5,11 @@ const conf: IConf = {
   production: false,
   isUnderTest: typeof it === 'function', // tslint:disable-line
 
-  domain: 'THE_DOMAIN',
   origin: process.env.APP_ORIGIN || 'http://localhost',
   termsOfServiceURL: 'http://localhost/tos',
   displayName: 'THE_PRODUCT_DISPLAY_NAME',
 
-  secret: process.env.SECRET || 'unset',
+  secret: process.env.APP_SECRET || 'unset',
   database: {
     connectionURL: process.env.APP_MYSQL_URL || '',
   },
@@ -41,7 +40,7 @@ if (process.env.APP_ENV === 'firebase-production') {
 }
 
 if (!conf.sparkpost.fromAddress || conf.isUnderTest) {
-  conf.sparkpost.fromAddress = `noreply@${conf.domain}`
+  conf.sparkpost.fromAddress = `noreply@THE_DOMAIN`
 }
 
 // tslint:disable-next-line

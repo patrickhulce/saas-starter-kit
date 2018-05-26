@@ -34,7 +34,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.APP_ENV': JSON.stringify('frontend'),
-      'process.env.SECRET': JSON.stringify('NONE'),
+      'process.env.APP_SECRET': JSON.stringify('NONE'),
       'process.env.APP_MYSQL_URL': JSON.stringify('NONE'),
       'process.env.MAILSLURP_API_KEY': JSON.stringify('NONE'),
       'process.env.SPARKPOST_API_KEY': JSON.stringify('NONE'),
