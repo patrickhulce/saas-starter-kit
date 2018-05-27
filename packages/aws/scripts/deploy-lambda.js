@@ -16,7 +16,7 @@ console.log('package lambda code to zip file...')
 shell.exec('./scripts/package-lambda.js')
 
 const ZIP_FILE_PATH = 'fileb://dist-lambda/package.zip'
-const ARGS = `--function-name ${LAMBDA_FN_NAME} --zip-file ${ZIP_FILE_PATH} --publish`
+const ARGS = `--function-name ${LAMBDA_FN_NAME} --zip-file ${ZIP_FILE_PATH}`
 console.log('uploading to s3...')
 const output = shell.exec(`aws lambda update-function-code ${ARGS}`, {silent: true})
 const {RevisionId, CodeSha256, FunctionArn, Version} = JSON.parse(output.stdout)
