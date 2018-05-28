@@ -32,8 +32,11 @@ fs.writeFileSync(outputPackagePath, JSON.stringify(lambdaPackageJson, undefined,
 console.log('installing production dependencies...')
 shell.exec('npm install', {cwd: LAMBDA_DIR})
 
+console.log('creating proxy entrypoint for lambda...')
+const entrypoint = './dist/aws/lib/entry.js'
+fs.writeFileSync(`${LAMBDA_DIR}/index.js`, `module.exports = require("${entrypoint}")`)
+
 console.log('creating a zip...')
-shell.exec(`zip -r package.zip dist-lambda/`)
-shell.mv('package.zip', 'dist-lambda/')
+shell.exec(`zip -r package.zip ./*`, {cwd: LAMBDA_DIR})
 
 console.log('done!')
