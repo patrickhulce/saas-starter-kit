@@ -54,6 +54,7 @@ export interface IConf {
   isUnderTest: boolean
 
   origin: string
+  cdnAppURL: string
   termsOfServiceURL: string
   displayName: string
 

@@ -6,6 +6,7 @@ const conf: IConf = {
   isUnderTest: typeof it === 'function', // tslint:disable-line
 
   origin: process.env.APP_ORIGIN || 'http://localhost',
+  cdnAppURL: process.env.APP_CDN_URL || 'https://cdn.the-product.com/app/',
   termsOfServiceURL: 'http://localhost/tos',
   displayName: 'THE_PRODUCT_DISPLAY_NAME',
 
