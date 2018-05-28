@@ -63,7 +63,7 @@ module.exports = (state: IState) => {
 
       expect(response.status).toBe(200)
       state.token = (await response.json()).access_token
-      // make sure cookies will be passed through firebase hosting
+      // make sure cookies will be passed through hosting
       expect(response.headers.get('cache-control')).toContain('private')
       expect(response.headers.get('set-cookie')).toContain(state.token)
     })

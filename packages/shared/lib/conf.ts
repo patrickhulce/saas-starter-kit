@@ -30,11 +30,11 @@ if (process.env.APP_ENV === 'development') {
   conf.sparkpost.sendToSink = false
 }
 
-if (process.env.APP_ENV === 'firebase-development') {
+if (process.env.APP_ENV === 'aws-development') {
   conf.sparkpost.sendToSink = false
 }
 
-if (process.env.APP_ENV === 'firebase-production') {
+if (process.env.APP_ENV === 'aws-production') {
   conf.debug = false
   conf.production = true
   conf.sparkpost.sendToSink = false

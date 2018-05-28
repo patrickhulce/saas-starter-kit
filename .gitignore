@@ -2,12 +2,10 @@ coverage/
 node_modules/
 dist/
 dist-lambda/
-dist-firebase/
 
 yarn-error.log
 npm-debug.log
 lerna-debug.log
-firebase-debug.log
 
 *.d.ts
 *.secret

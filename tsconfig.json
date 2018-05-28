@@ -11,13 +11,10 @@
     "jsx": "react",
 
     "strict": true,
-    // Remove when https://github.com/firebase/firebase-functions/pull/215 is published
-    "noImplicitAny": false,
   },
   "exclude": [
     "**/node_modules/",
     "**/dist/",
-    "**/dist-firebase/",
     "**/dist-lambda/",
     "**/*.test.ts"
   ]
