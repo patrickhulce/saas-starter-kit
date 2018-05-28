@@ -28,6 +28,7 @@
      1. Open certificate manager and request a certificate for your domains.
      1. Wait for Amazon approval...
      1. Add a "Custom Domain Name" entry for your domain in API Gateway, select "Edge Optimized", leave path blank, and point to production stage.
+     1. Add a CNAME to the listed cloudfront URL that gets created.
 
 ## Deploy Everything
 1. Deploy the frontend. `./scripts/deploy-frontend.js cdn.the-product.com/app` _Note the hash that is printed in this step_
