@@ -20,9 +20,9 @@ app.use(json({strict: false}))
 app.use(loggers)
 app.use(cookies())
 app.use(setPrivateCacheControl)
+app.use(createGrantCreationMiddleware(authConfiguration))
 
 app.get(pageRoutes, handlePageRequest)
-app.use('/api/v1', createGrantCreationMiddleware(authConfiguration))
 app.use('/api/v1', createAndMergeRouters(kiln, routerMap).router)
 
 app.use(handlePromise)

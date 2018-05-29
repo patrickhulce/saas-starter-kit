@@ -21,11 +21,17 @@ export async function handlePageRequest(
   res: express.Response,
   next: express.NextFunction,
 ): Promise<void> {
-  // TODO: add tests for this behavior
+  // Find the HTML file we should be serving
   const matchingRoute = routeFilesWithPathPrefixes.find(entry => req.path.startsWith(entry.prefix))
   if (!matchingRoute) return next(new Error('Could not find matching HTML file'))
 
+  // Check that user is logged in if they're fetching anything other than the login page
+  const isUserLoggedIn = !!req.grants && !!req.grants.userContext
+  // TODO: add redirectTo functionality
+  if (!isUserLoggedIn && matchingRoute.prefix !== '/login') return res.redirect('/login')
+
   try {
+    // TODO: support tags other than stable
     const tagFileURL = join(conf.cdnAppURL, 'stable.txt').replace(':/', '://')
     debug('attempting to resolve tag at', tagFileURL)
 
