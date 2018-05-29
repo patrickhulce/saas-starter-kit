@@ -1,10 +1,10 @@
-import {join} from 'path'
 import * as express from 'express'
-import * as request from 'request'
 import * as fetch from 'isomorphic-fetch'
+import {join} from 'path'
+import * as request from 'request'
 import conf from '../../../shared/lib/conf'
 
-const debug = require('debug')('the-product:api') // tslint-disable-line
+const debug = require('debug')('the-product:api') // tslint:disable-line
 
 export const pageRoutes = [
   '/',
