@@ -1,5 +1,4 @@
 import * as uuid from 'uuid'
-import * as fetch from 'isomorphic-fetch'
 import {IState} from '../typedefs'
 
 module.exports = (state: IState) => {
@@ -19,7 +18,7 @@ module.exports = (state: IState) => {
         },
       }
 
-      const response = await fetch(`${state.baseURL}/v1/accounts/register`, {
+      const response = await fetch(`${state.apiURL}/v1/accounts/register`, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {'content-type': 'application/json'},
@@ -38,9 +37,8 @@ module.exports = (state: IState) => {
     })
 
     it('should have sent a welcome email', () => {
-      const send = (global as any).__sparkpostSend
-      expect(send).toHaveBeenCalled()
-      const payload = send.mock.calls[0][0]
+      expect(__sparkpostSend).toHaveBeenCalled()
+      const payload = __sparkpostSend.mock.calls[0][0]
       const address = payload.recipients[0].address
       payload.content.text = payload.content.text.replace(/key=[\w-]+/g, 'key=<key>')
       payload.content.html = payload.content.html.replace(/key=[\w-]+/g, 'key=<key>')
@@ -55,7 +53,7 @@ module.exports = (state: IState) => {
         password: state.login.password,
       }
 
-      const response = await fetch(`${state.baseURL}/v1/oauth/token`, {
+      const response = await fetch(`${state.apiURL}/v1/oauth/token`, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {'content-type': 'application/json'},
@@ -69,7 +67,7 @@ module.exports = (state: IState) => {
     })
 
     it('should fetch logged in user', async () => {
-      const response = await fetch(`${state.baseURL}/v1/users/me`, {
+      const response = await fetch(`${state.apiURL}/v1/users/me`, {
         headers: {cookie: `token=${state.token}`},
       })
 
@@ -79,8 +77,9 @@ module.exports = (state: IState) => {
 
     it('should verify email address', async () => {
       let dbUser = await state.userExecutor.findById(state.user.id)
-      const queryString = `key=${dbUser.verificationKey}`
-      const response = await fetch(`${state.baseURL}/v1/users/verifications?${queryString}`)
+      const fetchOpts = {headers: {cookie: `token=${state.token}`}}
+      const query = `key=${dbUser.verificationKey}`
+      const response = await fetch(`${state.apiURL}/v1/users/verifications?${query}`, fetchOpts)
       expect(response.url).toMatch(/verification=success/)
 
       dbUser = await state.userExecutor.findById(state.user.id)

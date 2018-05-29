@@ -10,9 +10,16 @@ export interface IState {
   server?: Server
   port?: number
   baseURL?: string
+  apiURL?: string
 
   login?: {email: string, password: string}
   account?: IAccount
   user?: IUser
   token?: string
+}
+
+declare global {
+  var __sparkpostSend: jest.Mock
+  var __fetch: jest.Mock
+  var __requestGet: jest.Mock
 }

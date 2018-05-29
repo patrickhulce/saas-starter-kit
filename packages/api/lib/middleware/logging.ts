@@ -21,7 +21,10 @@ function logRequestDetails(
   res: express.Response,
   next: express.NextFunction,
 ): void {
-  debug(`request received: query=${JSON.stringify(req.query)},body=${JSON.stringify(req.body)}`)
+  const query = JSON.stringify(req.query)
+  const body = JSON.stringify(req.body)
+  const cookies = JSON.stringify(req.cookies)
+  debug(`request received: query=${query},body=${body},cookies=${cookies}`)
   next()
 }
 

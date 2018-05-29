@@ -9,5 +9,6 @@ describe('lib/app.ts', () => {
 
   require('./integration/initialize.test')(state)
   require('./integration/account-setup.test')(state)
+  require('./integration/serve-frontend.test')(state)
   require('./integration/teardown.test')(state)
 })
