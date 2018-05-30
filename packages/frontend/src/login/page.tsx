@@ -1,3 +1,4 @@
+import * as styles from './login.scss'
 import * as React from 'react'
 import {Helmet} from 'react-helmet'
 import Tabs, {Tab} from 'material-ui/Tabs'
@@ -20,8 +21,11 @@ export class LoginPage extends React.Component<{}, ILoginPageState> {
       <Helmet key="head">
         <title>{conf.displayName} Login</title>
       </Helmet>,
-      <h1 key="header" className="app-name">{conf.displayName}</h1>,
-      <div key="form" className="account-forms">
+      <div key="header" className={styles.header}>
+        <div className={styles.logo}></div>
+        <h1 className={styles.appName}>{conf.displayName}</h1>
+      </div>,
+      <div key="form" className={styles.accountForms}>
         <Tabs
           value={this.state.selectedTab}
           onChange={onChange}

@@ -62,6 +62,7 @@ module.exports = {
         include: [path.resolve(__dirname, 'src'), path.resolve(__dirname, '../shared')],
       },
       {test: /\.scss$/, use: ['style-loader', ...cssLoader], include: `${__dirname}/src`},
+      {test: /\.(jpg|png|svg)$/, use: 'file-loader'},
     ],
   },
 }

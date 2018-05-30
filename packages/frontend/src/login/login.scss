@@ -1,24 +1,17 @@
+@import '../colors';
+
 :global {
   html {
     height: 100%;
   }
 
   body {
-    background: #0771b8;
-    color: #333;
+    background: $primary-brand;
+    color: $darker-gray;
     font-family: Roboto, Helvetica, Arial, sans-serif;
     height: 100%;
     margin: 0;
     padding: 0;
-  }
-
-  h1.app-name {
-    color: white;
-    font-size: 48px;
-    font-weight: bold;
-    text-shadow: 0 1px 5px #444;
-    margin-top: calc(50vh - 260px);
-    margin-bottom: 40px;
   }
 
   #app-root {
@@ -28,29 +21,52 @@
     align-items: center;
     flex-direction: column;
   }
+}
 
-  .account-forms {
-    background: white;
-    border-radius: 10px;
-    width: 375px;
-    min-height: 200px;
+.header {
+  margin-top: calc(50vh - 360px);
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    form {
-      display: flex;
-      flex-direction: column;
-      padding: 10px;
+.logo {
+  height: 200px;
+  width: 200px;
+  background: url('../assets/logo.svg') no-repeat;
+}
 
-      > div {
-        margin-bottom: 10px;
-      }
+h1.app-name {
+  color: $accent-brand;
+  font-size: 48px;
+  font-weight: bold;
+  text-shadow: 0 1px 5px $dark-gray;
+  max-width: 100vw;
+  overflow: hidden;
+}
 
-      > button {
-        margin-top: 10px;
-      }
+.account-forms {
+  background: white;
+  border-radius: 10px;
+  width: 375px;
+  min-height: 200px;
 
-      .half-text {
-        width: 50%;
-      }
+  form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+    > div {
+      margin-bottom: 10px;
+    }
+
+    > button {
+      margin-top: 10px;
+    }
+
+    .half-text {
+      width: 50%;
     }
   }
 }
@@ -62,7 +78,7 @@
     font-size: 0.6em;
     margin-top: -5px;
     display: block;
-    color: #666;
+    color: $medium-gray;
   }
 }
 

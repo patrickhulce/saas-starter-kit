@@ -1,7 +1,9 @@
+@import '../../colors';
+
 .error-bar {
   padding: 10px;
   border-radius: 5px;
-  color: #721c24;
-  background: #fff4f4;
-  border: 1px solid #f5c6c6;
+  color: $dark-red;
+  background: $lightest-pink;
+  border: 1px solid $light-pink;
 }

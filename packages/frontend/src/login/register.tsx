@@ -67,8 +67,8 @@ export class RegisterForm extends Form {
       <form name="register" onSubmit={this.handleSubmit}>
         <ErrorBar message={this.state.errorMessage} />
         <div>
-          <TextField name="first" type="first" label="First Name" className="half-text" required />
-          <TextField name="last" type="last" label="Last Name" className="half-text" required />
+          <TextField name="first" label="First Name" className={styles.halfText} required />
+          <TextField name="last" label="Last Name" className={styles.halfText} required />
         </div>
         <TextField name="email" type="email" label="Email" required />
         <TextField name="password" type="password" label="Password" required />

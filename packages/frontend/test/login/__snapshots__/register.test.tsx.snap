@@ -7,7 +7,7 @@ exports[`login/register.tsx should render form 1`] = `
   >
     <div>
       <div
-        class="MuiFormControl-root-1 half-text"
+        class="MuiFormControl-root-1 halfText"
       >
         <label
           class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
@@ -26,16 +26,16 @@ exports[`login/register.tsx should render form 1`] = `
           <input
             aria-invalid="false"
             aria-required="true"
-            class="MuiInput-input-23 MuiInput-inputType-26"
+            class="MuiInput-input-23"
             name="first"
             required=""
-            type="first"
+            type="text"
             value=""
           />
         </div>
       </div>
       <div
-        class="MuiFormControl-root-1 half-text"
+        class="MuiFormControl-root-1 halfText"
       >
         <label
           class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
@@ -54,10 +54,10 @@ exports[`login/register.tsx should render form 1`] = `
           <input
             aria-invalid="false"
             aria-required="true"
-            class="MuiInput-input-23 MuiInput-inputType-26"
+            class="MuiInput-input-23"
             name="last"
             required=""
-            type="last"
+            type="text"
             value=""
           />
         </div>
