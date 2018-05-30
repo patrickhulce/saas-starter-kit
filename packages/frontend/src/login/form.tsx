@@ -9,7 +9,7 @@ export class Form extends React.Component<{}, any> {
 
   public handleSubmit(evt: any): void {
     evt.preventDefault()
-    const data = {}
+    const data: any = {}
     for (const [prop, val] of new FormData(evt.target).entries()) {
       data[prop] = val
     }

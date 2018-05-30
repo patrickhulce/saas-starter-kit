@@ -14,7 +14,7 @@ export class LoginPage extends React.Component<{}, ILoginPageState> {
   public state: ILoginPageState = {selectedTab: 0}
 
   public render(): JSX.Element[] {
-    const onChange = (evt, value) => this.setState({selectedTab: value})
+    const onChange = (evt: any, value: number) => this.setState({selectedTab: value})
 
     return [
       <Helmet key="head">
