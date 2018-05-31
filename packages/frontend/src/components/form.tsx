@@ -7,7 +7,7 @@ export interface IFormData {
 export class Form<TState extends object> extends React.Component<{}, Partial<TState>> {
   public constructor(props: {}) {
     super(props)
-    this.state = {} as Partial<TState>
+    this.state = {} as Partial<TState> // tslint:disable-line
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
