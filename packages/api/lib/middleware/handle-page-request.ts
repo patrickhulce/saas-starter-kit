@@ -9,10 +9,12 @@ const debug = require('debug')('the-product:api') // tslint:disable-line
 export const pageRoutes = [
   '/',
   '/login',
+  '/account',
 ]
 
 const routeFilesWithPathPrefixes = [
   {file: 'login.html', prefix: '/login'},
+  {file: 'account.html', prefix: '/account'},
   {file: 'index.html', prefix: ''},
 ]
 

@@ -43,5 +43,16 @@ module.exports = (state: IState) => {
       expect(text).toEqual('<document>')
       expect(__requestGet.mock.calls[0][0]).toContain('<hash>/index.html')
     })
+
+    it('should serve the account page', async () => {
+      const response = await fetch(`${state.baseURL}/account`, {
+        headers: {cookie: `token=${state.token}`},
+      })
+
+      expect(response.status).toBe(200)
+      const text = await response.text()
+      expect(text).toEqual('<document>')
+      expect(__requestGet.mock.calls[0][0]).toContain('<hash>/account.html')
+    })
   })
 }

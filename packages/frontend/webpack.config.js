@@ -21,6 +21,7 @@ module.exports = {
   entry: {
     app: [`${__dirname}/src/app/entry.tsx`],
     login: [`${__dirname}/src/login/entry.tsx`],
+    account: [`${__dirname}/src/account/entry.tsx`],
   },
   output: {
     path: `${__dirname}/dist`,
@@ -42,6 +43,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       chunks: ['login'],
       filename: 'login.html',
+      template: `${__dirname}/src/assets/page.html`,
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['account'],
+      filename: 'account.html',
       template: `${__dirname}/src/assets/page.html`,
     }),
     new HtmlWebpackPlugin({
