@@ -6,7 +6,7 @@ import Button from 'material-ui/Button/Button'
 import FormControlLabel from 'material-ui/Form/FormControlLabel'
 import Checkbox from 'material-ui/Checkbox/Checkbox'
 import FormHelperText from 'material-ui/Form/FormHelperText'
-import {Form} from './form'
+import {Form} from '../components/form'
 import {login} from './login'
 import conf from '../../../shared/lib/conf'
 import {ErrorBar} from '../components/error-bar/error-bar'
@@ -35,7 +35,11 @@ async function createAccount(
   await login(email, password)
 }
 
-export class RegisterForm extends Form {
+export interface IRegisterFormState {
+  errorMessage?: string
+}
+
+export class RegisterForm extends Form<IRegisterFormState> {
   public async _handleSubmit(data: any): Promise<void> {
     if (data.cpassword !== data.password) {
       this.setState({errorMessage: 'Passwords did not match'})

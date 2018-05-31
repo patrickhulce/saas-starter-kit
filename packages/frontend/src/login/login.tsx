@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {Form} from './form'
+import {Form, IFormData} from '../components/form'
 import Tabs, {Tab} from 'material-ui/Tabs'
 import TextField from 'material-ui/TextField/TextField'
 import Button from 'material-ui/Button/Button'
@@ -27,8 +27,12 @@ export async function login(email: string, password: string): Promise<void> {
   window.location.href = '/'
 }
 
-export class LoginForm extends Form {
-  public async _handleSubmit(data: any): Promise<void> {
+export interface ILoginFormState {
+  errorMessage?: string
+}
+
+export class LoginForm extends Form<ILoginFormState> {
+  public async _handleSubmit(data: IFormData): Promise<void> {
     try {
       await login(data.email, data.password)
     } catch (err) {
