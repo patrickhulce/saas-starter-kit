@@ -10,8 +10,8 @@ export const usersRouterOptions: IRouterOptions = {
     'GET /me': {
       responseModel: userModel,
       async handler(req: express.Request, res: express.Response): Promise<void> {
-        if (!req.grants) throw new Error('Not authorized')
-        const id = (req.grants as any).userContext.id
+        if (!req.grants || !req.grants.userContext) throw new Error('Not authorized')
+        const id = req.grants.userContext.id
         const user = await userExecutor.findById(id)
         if (!user) throw new Error('No such user')
         user.verificationKey = undefined
