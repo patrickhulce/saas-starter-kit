@@ -42,12 +42,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       chunks: ['login'],
       filename: 'login.html',
-      template: `${__dirname}/src/login/login.html`,
+      template: `${__dirname}/src/assets/page.html`,
     }),
     new HtmlWebpackPlugin({
       chunks: ['app'],
       filename: 'index.html',
-      template: `${__dirname}/src/app/app.html`,
+      template: `${__dirname}/src/assets/page.html`,
     }),
     new ScriptExtHtmlWebpackPlugin({
       inline: 'inline.',
