@@ -2,8 +2,8 @@ import * as styles from './login.scss'
 import * as React from 'react'
 import {Helmet} from 'react-helmet'
 import Tabs, {Tab} from 'material-ui/Tabs'
-import {LoginForm} from './login'
-import {RegisterForm} from './register'
+import {LoginForm} from './forms/login'
+import {RegisterForm} from './forms/register'
 import conf from '../../../shared/lib/conf'
 
 export interface ILoginPageState {

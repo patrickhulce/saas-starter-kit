@@ -1,9 +1,8 @@
 import * as React from 'react'
-import {Form, IFormData} from '../components/form'
-import Tabs, {Tab} from 'material-ui/Tabs'
+import {Form, IFormData} from '../../components/form'
 import TextField from 'material-ui/TextField/TextField'
 import Button from 'material-ui/Button/Button'
-import {ErrorBar} from '../components/error-bar/error-bar'
+import {ErrorBar} from '../../components/error-bar/error-bar'
 
 export async function login(email: string, password: string): Promise<void> {
   const authResponse = await fetch('/api/v1/oauth/token', {

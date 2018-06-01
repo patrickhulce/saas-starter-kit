@@ -1,15 +1,14 @@
-import * as styles from './login.scss'
+import * as styles from '../login.scss'
 import * as React from 'react'
-import Tabs, {Tab} from 'material-ui/Tabs'
 import TextField from 'material-ui/TextField/TextField'
 import Button from 'material-ui/Button/Button'
 import FormControlLabel from 'material-ui/Form/FormControlLabel'
 import Checkbox from 'material-ui/Checkbox/Checkbox'
 import FormHelperText from 'material-ui/Form/FormHelperText'
-import {Form} from '../components/form'
+import {Form} from '../../components/form'
 import {login} from './login'
-import conf from '../../../shared/lib/conf'
-import {ErrorBar} from '../components/error-bar/error-bar'
+import conf from '../../../../shared/lib/conf'
+import {ErrorBar} from '../../components/error-bar/error-bar'
 
 async function createAccount(
   accountName: string,
