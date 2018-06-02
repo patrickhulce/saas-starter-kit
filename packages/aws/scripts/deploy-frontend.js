@@ -5,6 +5,7 @@ const path = require('path')
 const shell = require('shelljs')
 
 const ROOT_DIR = path.join(__dirname, '../../..')
+const AWS_DIR = path.join(__dirname, '../')
 const FRONTEND_DIR = path.join(ROOT_DIR, 'packages/frontend')
 process.chdir(FRONTEND_DIR)
 
@@ -31,3 +32,9 @@ shell.exec(`WEBPACK_PUBLIC_PATH=${WEBPACK_PUBLIC_PATH} yarn build`)
 console.log('uploading to s3...')
 shell.exec(`aws s3 cp ./dist/ ${DESTINATION_PATH} --recursive`)
 
+if (!process.env.SKIP_PROMOTE) {
+  process.chdir(AWS_DIR)
+  const GIT_BRANCH = shell.exec('git rev-parse --abbrev-ref HEAD', {silent: true}).stdout
+  const TAG = `branch-${GIT_BRANCH}`
+  shell.exec(`./scripts/promote-frontend.js ${BUCKET_PATH} ${TAG} ${GIT_HASH}`)
+}
