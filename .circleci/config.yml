@@ -24,7 +24,7 @@ jobs:
       - run: yarn migrate --url="mysql://root@localhost/the_product_db"
       - run:
           name: 'yarn test:unit'
-          command: yarn test:unit --ci --coverage --runInBand --verbose"
+          command: yarn test:unit --ci --coverage --runInBand --verbose
           environment:
             APP_MYSQL_URL: "mysql://root@localhost/the_product_db"
       - run:
