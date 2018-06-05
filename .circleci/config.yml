@@ -24,18 +24,13 @@ jobs:
       - run: yarn migrate --url="mysql://root@localhost/the_product_db"
       - run:
           name: 'yarn test:unit'
-          command: yarn test:unit --ci --coverage --runInBand --verbose --testResultsProcessor="jest-junit"
+          command: yarn test:unit --ci --coverage --runInBand --verbose"
           environment:
             APP_MYSQL_URL: "mysql://root@localhost/the_product_db"
-            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
       - run:
             name: yarn test:e2e
             command: yarn test:e2e
             environment:
                 APP_MYSQL_URL: "mysql://root@localhost/the_product_db"
-      - store_test_results:
-          path: reports/junit
-      - store_artifacts:
-          path: reports/junit
 
 

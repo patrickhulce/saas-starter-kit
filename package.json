@@ -13,7 +13,6 @@
     "test:e2e": "cd packages/e2e && yarn start"
   },
   "devDependencies": {
-    "jest-junit": "^3.6.0",
     "lerna": "^2.9.1",
     "shelljs": "^0.8.1"
   }
