@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`login/login.tsx should render form 1`] = `
+exports[`login/forms/login.tsx should render form 1`] = `
 <div>
   <form
     name="login"
