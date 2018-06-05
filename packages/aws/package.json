@@ -3,7 +3,8 @@
   "name": "@the-product/aws",
   "version": "0.1.0",
   "scripts": {
-    "build": "./scripts/package-lambda.js"
+    "build": "./scripts/package-lambda.js",
+    "deploy": "./scripts/deploy-all.js"
   },
   "dependencies": {
     "aws-serverless-express": "^3.2.0"

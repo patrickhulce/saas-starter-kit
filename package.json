@@ -4,6 +4,7 @@
     "packages/*"
   ],
   "scripts": {
+    "deploy-all": "cd packages/aws && yarn deploy-all",
     "migrate": "klay-kiln-sql migrate",
     "bump-klay": "lerna exec --concurrency 1 'yarn add --exact --force klay@next'",
     "build": "tsc --diagnostics",
