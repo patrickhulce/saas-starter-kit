@@ -4,7 +4,6 @@
   "version": "0.1.0",
   "scripts": {
     "start": "./scripts/run-until-success.sh",
-    "build": "echo noop",
     "test": "npm run test:lint && npm run test:unit",
     "test:lint": "lint",
     "test:unit": "jest --verbose --forceExit --runInBand"

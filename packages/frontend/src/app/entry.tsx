@@ -13,7 +13,7 @@ class Application extends React.Component {
       <Helmet key="head">
         <title>{conf.displayName}</title>
       </Helmet>,
-      <h1 key="header">Hello3, {user.firstName}</h1>,
+      <h1 key="header">Hello, {user.firstName}</h1>,
     ]
   }
 }
