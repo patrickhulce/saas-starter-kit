@@ -42,12 +42,12 @@ describe('login/forms/login.tsx', () => {
 
     fireEvent.submit(getByTestId('login-form'))
     await wait(() => getByTestId('loading-bar'))
-    expect(queryByTestId(/Invalid login/)).toBeNull()
+    expect(queryByTestId('error-bar')).toBeNull()
 
     fetchResolve({status: 400})
-    await wait(() => getByText(/Invalid login/))
+    await wait(() => getByTestId('error-bar'))
 
     expect(queryByTestId('loading-bar')).toBeNull()
-    expect(getByText(/Invalid login/)).toMatchSnapshot()
+    expect(getByTestId('error-bar').textContent).toMatchSnapshot()
   })
 })
