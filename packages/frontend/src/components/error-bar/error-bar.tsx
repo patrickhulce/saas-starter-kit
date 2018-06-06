@@ -11,7 +11,7 @@ export class ErrorBar extends React.Component<IErrorBarProps> {
     if (!message) return null
 
     return (
-      <div className={styles.errorBar} data-testid='error-bar'>
+      <div className={styles.errorBar} data-testid="error-bar">
         {message}
       </div>
     )
