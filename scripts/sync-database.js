@@ -3,6 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const shelljs = require('shelljs')
+shell.config.fatal = true
 
 const DIST_DIR = path.join(__dirname, '../dist')
 

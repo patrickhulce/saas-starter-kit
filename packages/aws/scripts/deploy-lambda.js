@@ -3,6 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const shell = require('shelljs')
+shell.config.fatal = true
 
 const AWS_DIR = path.join(__dirname, '..')
 const LAMBDA_DIR = path.join(AWS_DIR, 'dist-lambda')
@@ -17,8 +18,14 @@ shell.exec('./scripts/package-lambda.js')
 
 const ZIP_FILE_PATH = 'fileb://dist-lambda/package.zip'
 const ARGS = `--function-name ${LAMBDA_FN_NAME} --zip-file ${ZIP_FILE_PATH}`
-console.log('uploading to s3...')
+console.log('uploading to lambda...')
 const output = shell.exec(`aws lambda update-function-code ${ARGS}`, {silent: true})
-const {RevisionId, CodeSha256, FunctionArn, Version} = JSON.parse(output.stdout)
-console.log({RevisionId, CodeSha256, FunctionArn, Version})
+
+try {
+  const {RevisionId, CodeSha256, FunctionArn, Version} = JSON.parse(output.stdout)
+  console.log({RevisionId, CodeSha256, FunctionArn, Version})
+} catch (e) {
+  console.error(output.stderr)
+  console.log(output.stdout)
+}
 

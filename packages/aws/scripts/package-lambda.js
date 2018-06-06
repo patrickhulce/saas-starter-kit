@@ -3,6 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const shell = require('shelljs')
+shell.config.fatal = true
 
 const AWS_DIR = path.join(__dirname, '..')
 const LAMBDA_DIR = path.join(AWS_DIR, 'dist-lambda')
@@ -37,6 +38,6 @@ const entrypoint = './dist/aws/lib/entry.js'
 fs.writeFileSync(`${LAMBDA_DIR}/index.js`, `module.exports = require("${entrypoint}")`)
 
 console.log('creating a zip...')
-shell.exec(`zip -r package.zip ./*`, {cwd: LAMBDA_DIR})
+shell.exec(`zip -r package.zip ./* | grep -v 'adding: node_modules'`, {cwd: LAMBDA_DIR})
 
 console.log('done!')
