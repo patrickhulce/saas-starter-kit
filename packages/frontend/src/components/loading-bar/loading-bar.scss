@@ -1,0 +1,25 @@
+@import '../../colors';
+
+.loading-bar {
+  height: 2px;
+  width: 100%;
+  background: #eee;
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-bar__animated-chunk {
+  width: 10%;
+  height: 2px;
+  background: $primary-brand;
+  position: absolute;
+
+  animation: 3s infinite;
+  animation-name: moveAnimation;
+}
+
+@keyframes moveAnimation {
+  from { left: 0%; }
+  to { left: 100%; }
+}
+

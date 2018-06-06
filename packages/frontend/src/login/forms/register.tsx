@@ -9,6 +9,7 @@ import {Form} from '../../components/form'
 import {login} from './login'
 import conf from '../../../../shared/lib/conf'
 import {ErrorBar} from '../../components/error-bar/error-bar'
+import {LoadingBar} from '../../components/loading-bar/loading-bar'
 
 async function createAccount(
   accountName: string,
@@ -35,6 +36,7 @@ async function createAccount(
 }
 
 export interface IRegisterFormState {
+  isLoading?: boolean
   errorMessage?: string
 }
 
@@ -46,6 +48,7 @@ export class RegisterForm extends Form<IRegisterFormState> {
     }
 
     try {
+      this.setState({isLoading: true})
       await createAccount(
         `${data.first} ${data.last}'s Account`,
         data.first,
@@ -55,6 +58,8 @@ export class RegisterForm extends Form<IRegisterFormState> {
       )
     } catch (err) {
       this.setState({errorMessage: 'Error creating account'})
+    } finally {
+      this.setState({isLoading: false})
     }
   }
 
@@ -68,6 +73,7 @@ export class RegisterForm extends Form<IRegisterFormState> {
 
     return (
       <form name="register" onSubmit={this.handleSubmit}>
+        <LoadingBar isLoading={this.state.isLoading} />
         <ErrorBar message={this.state.errorMessage} />
         <div>
           <TextField name="first" label="First Name" className={styles.halfText} required />

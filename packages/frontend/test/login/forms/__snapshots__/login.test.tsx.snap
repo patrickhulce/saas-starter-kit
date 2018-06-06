@@ -3,6 +3,7 @@
 exports[`login/forms/login.tsx should render form 1`] = `
 <div>
   <form
+    data-testid="login-form"
     name="login"
   >
     <div
@@ -76,5 +77,13 @@ exports[`login/forms/login.tsx should render form 1`] = `
       />
     </button>
   </form>
+</div>
+`;
+
+exports[`login/forms/login.tsx should show an error UI 1`] = `
+<div
+  class="errorBar"
+>
+  Invalid login
 </div>
 `;

@@ -3,6 +3,7 @@ import {Form, IFormData} from '../../components/form'
 import TextField from 'material-ui/TextField/TextField'
 import Button from 'material-ui/Button/Button'
 import {ErrorBar} from '../../components/error-bar/error-bar'
+import {LoadingBar} from '../../components/loading-bar/loading-bar'
 
 export async function login(email: string, password: string): Promise<void> {
   const authResponse = await fetch('/api/v1/oauth/token', {
@@ -27,21 +28,26 @@ export async function login(email: string, password: string): Promise<void> {
 }
 
 export interface ILoginFormState {
+  isLoading?: boolean
   errorMessage?: string
 }
 
 export class LoginForm extends Form<ILoginFormState> {
   public async _handleSubmit(data: IFormData): Promise<void> {
     try {
+      this.setState({isLoading: true})
       await login(data.email, data.password)
     } catch (err) {
       this.setState({errorMessage: 'Invalid login'})
+    } finally {
+      this.setState({isLoading: false})
     }
   }
 
   public render(): JSX.Element {
     return (
-      <form name="login" onSubmit={this.handleSubmit}>
+      <form name="login" onSubmit={this.handleSubmit} data-testid="login-form">
+        <LoadingBar isLoading={this.state.isLoading} />
         <ErrorBar message={this.state.errorMessage} />
         <TextField name="email" type="email" label="Email" autoFocus required />
         <TextField name="password" type="password" label="Password" required />
