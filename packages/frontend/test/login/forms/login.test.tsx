@@ -1,12 +1,12 @@
 import * as React from 'react'
 import {render, fireEvent, wait, waitForElement} from 'react-testing-library'
 import {LoginForm} from '../../../src/login/forms/login'
+import {createFetchMock} from '../../utils'
 
 describe('login/forms/login.tsx', () => {
   let fetchMock: jest.Mock
 
   beforeEach(() => {
-    const mockFetch =
     fetchMock = jest.fn().mockImplementation(async () => ({status: 200}))
     self.fetch = fetchMock
   })
@@ -17,16 +17,19 @@ describe('login/forms/login.tsx', () => {
   })
 
   it('should show a loading UI', async () => {
-    const {getByLabelText, getByTestId} = render(<LoginForm />)
+    const {getByLabelText, getByTestId, queryByTestId} = render(<LoginForm />)
     const email = getByLabelText(/Email/) as HTMLInputElement
     const password = getByLabelText(/Password/) as HTMLInputElement
     email.value = 'test@example.com'
     password.value = 'password1'
 
-    // FIXME: this should really be using wait, but it breaks the test
-    // make a helper for fetch mock to make this easier
+    const mockFetch = createFetchMock()
+    fetchMock.mockImplementation(mockFetch.fn)
+
     fireEvent.submit(getByTestId('login-form'))
-    await waitForElement(() => getByTestId('loading-bar'))
+    await wait(() => getByTestId('loading-bar'))
+    expect(queryByTestId('error-bar')).toBeNull()
+    mockFetch.reject(new Error('short-circuit'))
   })
 
   it('should show an error UI', async () => {
@@ -36,15 +39,14 @@ describe('login/forms/login.tsx', () => {
     email.value = 'test@example.com'
     password.value = 'password1'
 
-    let fetchResolve = (x: any) => x
-    const fetchReturn = new Promise(resolve => { fetchResolve = resolve })
-    fetchMock.mockReturnValue(fetchReturn)
+    const mockFetch = createFetchMock({status: 400})
+    fetchMock.mockImplementation(mockFetch.fn)
 
     fireEvent.submit(getByTestId('login-form'))
     await wait(() => getByTestId('loading-bar'))
     expect(queryByTestId('error-bar')).toBeNull()
 
-    fetchResolve({status: 400})
+    mockFetch.resolve()
     await wait(() => getByTestId('error-bar'))
 
     expect(queryByTestId('loading-bar')).toBeNull()
