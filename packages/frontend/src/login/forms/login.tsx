@@ -49,8 +49,8 @@ export class LoginForm extends Form<ILoginFormState> {
       <form name="login" onSubmit={this.handleSubmit} data-testid="login-form">
         <LoadingBar isLoading={this.state.isLoading} />
         <ErrorBar message={this.state.errorMessage} />
-        <TextField name="email" type="email" label="Email" autoFocus required />
-        <TextField name="password" type="password" label="Password" required />
+        <TextField id="email-input" name="email" type="email" label="Email" autoFocus required />
+        <TextField id="password-input" name="password" type="password" label="Password" required />
         <Button variant="raised" color="primary" type="submit">
           Login
         </Button>

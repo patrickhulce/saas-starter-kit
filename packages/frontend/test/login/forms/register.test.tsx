@@ -10,8 +10,14 @@ describe('register/forms/register.tsx', () => {
     const form = render(<RegisterForm />)
     const firstName = form.getByLabelText(/First Name/) as HTMLInputElement
     const lastName = form.getByLabelText(/Last Name/) as HTMLInputElement
+    const email = form.getByLabelText(/Email/) as HTMLInputElement
+    const password = form.getByLabelText(/^Password/) as HTMLInputElement
+    const confirmPassword = form.getByLabelText(/Confirm Password/) as HTMLInputElement
     firstName.value = 'Klay'
     lastName.value = 'Thompson'
+    email.value = 'klay@example.com'
+    password.value = 'rocko'
+    confirmPassword.value = 'rocko'
     return form
   }
 
@@ -46,7 +52,6 @@ describe('register/forms/register.tsx', () => {
     fireEvent.submit(getByTestId('register-form'))
     await wait(() => getByTestId('loading-bar'))
 
-    // FIXME: get FormData to send the right values
     expect(fetchMock).toHaveBeenCalled()
     expect(fetchMock.mock.calls[0]).toMatchSnapshot()
   })

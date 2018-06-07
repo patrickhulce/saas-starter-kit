@@ -12,6 +12,7 @@ exports[`login/forms/login.tsx should render form 1`] = `
       <label
         class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
         data-shrink="false"
+        for="email-input"
       >
         Email
         <span
@@ -27,6 +28,7 @@ exports[`login/forms/login.tsx should render form 1`] = `
           aria-invalid="false"
           aria-required="true"
           class="MuiInput-input-23 MuiInput-inputType-26"
+          id="email-input"
           name="email"
           required=""
           type="email"
@@ -40,6 +42,7 @@ exports[`login/forms/login.tsx should render form 1`] = `
       <label
         class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
         data-shrink="false"
+        for="password-input"
       >
         Password
         <span
@@ -55,6 +58,7 @@ exports[`login/forms/login.tsx should render form 1`] = `
           aria-invalid="false"
           aria-required="true"
           class="MuiInput-input-23 MuiInput-inputType-26"
+          id="password-input"
           name="password"
           required=""
           type="password"
@@ -84,7 +88,7 @@ exports[`login/forms/login.tsx should send login request to server 1`] = `
 Array [
   "/api/v1/oauth/token",
   Object {
-    "body": "{\\"username\\":\\"\\",\\"password\\":\\"\\",\\"grant_type\\":\\"password\\"}",
+    "body": "{\\"username\\":\\"test@example.com\\",\\"password\\":\\"password1\\",\\"grant_type\\":\\"password\\"}",
     "credentials": "same-origin",
     "headers": Object {
       "content-type": "application/json",

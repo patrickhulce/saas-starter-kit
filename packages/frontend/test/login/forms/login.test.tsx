@@ -46,7 +46,6 @@ describe('login/forms/login.tsx', () => {
     fireEvent.submit(getByTestId('login-form'))
     await wait(() => getByTestId('loading-bar'))
 
-    // FIXME: get FormData to send the right values
     expect(fetchMock).toHaveBeenCalled()
     expect(fetchMock.mock.calls[0]).toMatchSnapshot()
   })

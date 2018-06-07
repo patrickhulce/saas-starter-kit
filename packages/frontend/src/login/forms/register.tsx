@@ -40,6 +40,14 @@ export interface IRegisterFormState {
   errorMessage?: string
 }
 
+const formInputs = {
+  firstName: {id: 'first-name', name: 'first', label: 'First Name'},
+  lastName: {id: 'last-name', name: 'last', label: 'Last Name'},
+  email: {id: 'email', name: 'email', type: 'email', label: 'Email'},
+  password: {id: 'pass', name: 'password', type: 'password', label: 'Password'},
+  confirmPassword: {id: 'cpass', name: 'cpassword', type: 'password', label: 'Confirm Password'},
+}
+
 export class RegisterForm extends Form<IRegisterFormState> {
   public async _handleSubmit(data: any): Promise<void> {
     if (data.cpassword !== data.password) {
@@ -76,12 +84,12 @@ export class RegisterForm extends Form<IRegisterFormState> {
         <LoadingBar isLoading={this.state.isLoading} />
         <ErrorBar message={this.state.errorMessage} />
         <div>
-          <TextField name="first" label="First Name" className={styles.halfText} required />
-          <TextField name="last" label="Last Name" className={styles.halfText} required />
+          <TextField {...formInputs.firstName} className={styles.halfText} required />
+          <TextField {...formInputs.lastName} className={styles.halfText} required />
         </div>
-        <TextField name="email" type="email" label="Email" required />
-        <TextField name="password" type="password" label="Password" required />
-        <TextField name="cpassword" type="password" label="Confirm Password" required />
+        <TextField {...formInputs.email} required />
+        <TextField {...formInputs.password} required />
+        <TextField {...formInputs.confirmPassword} required />
         <FormControlLabel
           control={<Checkbox name="newsletter" value="newsletter" color="primary" />}
           label={newsletterLabel}

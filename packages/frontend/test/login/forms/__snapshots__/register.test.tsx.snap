@@ -13,6 +13,7 @@ exports[`register/forms/register.tsx should render form 1`] = `
         <label
           class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
           data-shrink="false"
+          for="first-name"
         >
           First Name
           <span
@@ -28,6 +29,7 @@ exports[`register/forms/register.tsx should render form 1`] = `
             aria-invalid="false"
             aria-required="true"
             class="MuiInput-input-23"
+            id="first-name"
             name="first"
             required=""
             type="text"
@@ -41,6 +43,7 @@ exports[`register/forms/register.tsx should render form 1`] = `
         <label
           class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
           data-shrink="false"
+          for="last-name"
         >
           Last Name
           <span
@@ -56,6 +59,7 @@ exports[`register/forms/register.tsx should render form 1`] = `
             aria-invalid="false"
             aria-required="true"
             class="MuiInput-input-23"
+            id="last-name"
             name="last"
             required=""
             type="text"
@@ -70,6 +74,7 @@ exports[`register/forms/register.tsx should render form 1`] = `
       <label
         class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
         data-shrink="false"
+        for="email"
       >
         Email
         <span
@@ -85,6 +90,7 @@ exports[`register/forms/register.tsx should render form 1`] = `
           aria-invalid="false"
           aria-required="true"
           class="MuiInput-input-23 MuiInput-inputType-26"
+          id="email"
           name="email"
           required=""
           type="email"
@@ -98,6 +104,7 @@ exports[`register/forms/register.tsx should render form 1`] = `
       <label
         class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
         data-shrink="false"
+        for="pass"
       >
         Password
         <span
@@ -113,6 +120,7 @@ exports[`register/forms/register.tsx should render form 1`] = `
           aria-invalid="false"
           aria-required="true"
           class="MuiInput-input-23 MuiInput-inputType-26"
+          id="pass"
           name="password"
           required=""
           type="password"
@@ -126,6 +134,7 @@ exports[`register/forms/register.tsx should render form 1`] = `
       <label
         class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
         data-shrink="false"
+        for="cpass"
       >
         Confirm Password
         <span
@@ -141,6 +150,7 @@ exports[`register/forms/register.tsx should render form 1`] = `
           aria-invalid="false"
           aria-required="true"
           class="MuiInput-input-23 MuiInput-inputType-26"
+          id="cpass"
           name="cpassword"
           required=""
           type="password"
@@ -226,7 +236,7 @@ exports[`register/forms/register.tsx should send register request to server 1`] 
 Array [
   "/api/v1/accounts/register",
   Object {
-    "body": "{\\"account\\":{\\"name\\":\\" 's Account\\"},\\"user\\":{\\"firstName\\":\\"\\",\\"lastName\\":\\"\\",\\"email\\":\\"\\",\\"password\\":\\"\\"}}",
+    "body": "{\\"account\\":{\\"name\\":\\"Klay Thompson's Account\\"},\\"user\\":{\\"firstName\\":\\"Klay\\",\\"lastName\\":\\"Thompson\\",\\"email\\":\\"klay@example.com\\",\\"password\\":\\"rocko\\"}}",
     "headers": Object {
       "content-type": "application/json",
     },
