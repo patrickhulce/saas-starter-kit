@@ -39,3 +39,13 @@ export function HMR(nodeModule: any, handle: (nodeModule: any) => any): void {
     handle(nodeModule)
   }
 }
+
+export const testIds = {
+  loadingBar: 'loading-bar',
+  errorBar: 'error-bar',
+  // Login IDs
+  createAccountTab: 'create-account-tab',
+  createAccountSubmit: 'create-account-submit',
+  loginForm: 'login-form',
+  registerForm: 'register-form',
+}

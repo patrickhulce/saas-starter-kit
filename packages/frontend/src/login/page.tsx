@@ -6,6 +6,7 @@ import Tab from '@material-ui/core/Tab'
 import {LoginForm} from './forms/login'
 import {RegisterForm} from './forms/register'
 import conf from '../../../shared/lib/conf'
+import {testIds} from '../utils'
 
 export interface ILoginPageState {
   selectedTab: number
@@ -23,7 +24,7 @@ export class LoginPage extends React.Component<{}, ILoginPageState> {
         <title>{conf.displayName} Login</title>
       </Helmet>,
       <div key="header" className={styles.header}>
-        <div className={styles.logo}></div>
+        <div className={styles.logo} />
         <h1 className={styles.appName}>{conf.displayName}</h1>
       </div>,
       <div key="form" className={styles.accountForms}>
@@ -35,7 +36,7 @@ export class LoginPage extends React.Component<{}, ILoginPageState> {
           fullWidth
         >
           <Tab label="Login" />
-          <Tab data-testid="create-account-tab" label="Create an Account" />
+          <Tab data-testid={testIds.createAccountTab} label="Create an Account" />
         </Tabs>
         {this.state.selectedTab === 0 && <LoginForm />}
         {this.state.selectedTab === 1 && <RegisterForm />}

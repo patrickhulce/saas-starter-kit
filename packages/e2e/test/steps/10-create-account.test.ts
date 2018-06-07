@@ -1,6 +1,7 @@
 import {IState} from '../../lib/typedefs'
 import {Mailslurp} from '../../lib/mailslurp'
 import conf from '../../../shared/lib/conf'
+import {testIds} from '../../../frontend/src/utils'
 
 module.exports = (state: IState) => {
   const mailslurp = new Mailslurp(conf.mailslurp.apiKey)
@@ -22,7 +23,7 @@ module.exports = (state: IState) => {
 
     it('should switch to create account tab', async () => {
       await state.page.waitFor(state.waitFor)
-      const $createAccountTab = await state.page.$('[data-testid=create-account-tab]')
+      const $createAccountTab = await state.page.$(`[data-testid=${testIds.createAccountTab}]`)
       await $createAccountTab.click()
       await state.page.waitFor('form[name=register]')
     })
@@ -36,7 +37,7 @@ module.exports = (state: IState) => {
       await typeIn('input[name=cpassword]', 'test_password')
       await state.page.waitFor(state.waitFor)
 
-      ;(await state.page.$('[data-testid=create-account-submit]')).click()
+      ;(await state.page.$(`[data-testid=${testIds.createAccountSubmit}]`)).click()
       await state.page.waitForNavigation()
     })
 

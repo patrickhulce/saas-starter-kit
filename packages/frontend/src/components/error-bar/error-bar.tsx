@@ -1,5 +1,6 @@
 import * as styles from './error-bar.scss'
 import * as React from 'react'
+import {testIds} from '../../utils'
 
 export interface IErrorBarProps {
   message?: string
@@ -11,7 +12,7 @@ export class ErrorBar extends React.Component<IErrorBarProps> {
     if (!message) return null
 
     return (
-      <div className={styles.errorBar} data-testid="error-bar">
+      <div className={styles.errorBar} data-testid={testIds.errorBar}>
         {message}
       </div>
     )

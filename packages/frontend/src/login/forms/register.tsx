@@ -10,6 +10,7 @@ import {login} from './login'
 import conf from '../../../../shared/lib/conf'
 import {ErrorBar} from '../../components/error-bar/error-bar'
 import {LoadingBar} from '../../components/loading-bar/loading-bar'
+import {testIds} from '../../utils'
 
 async function createAccount(
   accountName: string,
@@ -80,7 +81,7 @@ export class RegisterForm extends Form<IRegisterFormState> {
     )
 
     return (
-      <form name="register" onSubmit={this.handleSubmit} data-testid="register-form">
+      <form name="register" onSubmit={this.handleSubmit} data-testid={testIds.registerForm}>
         <LoadingBar isLoading={this.state.isLoading} />
         <ErrorBar message={this.state.errorMessage} />
         <div>
@@ -100,7 +101,12 @@ export class RegisterForm extends Form<IRegisterFormState> {
             terms of service
           </a>
         </FormHelperText>
-        <Button data-testid="create-account-submit" variant="raised" color="primary" type="submit">
+        <Button
+          data-testid={testIds.createAccountSubmit}
+          variant="raised"
+          color="primary"
+          type="submit"
+        >
           Register
         </Button>
       </form>

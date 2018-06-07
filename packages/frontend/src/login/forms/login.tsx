@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button/Button'
 import {Form, IFormData} from '../../components/form'
 import {ErrorBar} from '../../components/error-bar/error-bar'
 import {LoadingBar} from '../../components/loading-bar/loading-bar'
+import {testIds} from '../../utils'
 
 export async function login(email: string, password: string): Promise<void> {
   const authResponse = await fetch('/api/v1/oauth/token', {
@@ -46,7 +47,7 @@ export class LoginForm extends Form<ILoginFormState> {
 
   public render(): JSX.Element {
     return (
-      <form name="login" onSubmit={this.handleSubmit} data-testid="login-form">
+      <form name="login" onSubmit={this.handleSubmit} data-testid={testIds.loginForm}>
         <LoadingBar isLoading={this.state.isLoading} />
         <ErrorBar message={this.state.errorMessage} />
         <TextField id="email-input" name="email" type="email" label="Email" autoFocus required />
