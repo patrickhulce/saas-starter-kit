@@ -18,7 +18,7 @@
         "prefer-function-over-method": false,
         "no-submodule-imports": [
           true,
-          "material-ui"
+          "@material-ui/core"
         ],
         "quotemark": [
           true,
