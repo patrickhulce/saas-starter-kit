@@ -80,4 +80,18 @@ exports[`login/forms/login.tsx should render form 1`] = `
 </div>
 `;
 
+exports[`login/forms/login.tsx should send login request to server 1`] = `
+Array [
+  "/api/v1/oauth/token",
+  Object {
+    "body": "{\\"username\\":\\"\\",\\"password\\":\\"\\",\\"grant_type\\":\\"password\\"}",
+    "credentials": "same-origin",
+    "headers": Object {
+      "content-type": "application/json",
+    },
+    "method": "POST",
+  },
+]
+`;
+
 exports[`login/forms/login.tsx should show an error UI 1`] = `"Invalid login"`;

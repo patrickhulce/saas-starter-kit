@@ -72,7 +72,7 @@ export class RegisterForm extends Form<IRegisterFormState> {
     )
 
     return (
-      <form name="register" onSubmit={this.handleSubmit}>
+      <form name="register" onSubmit={this.handleSubmit} data-testid="register-form">
         <LoadingBar isLoading={this.state.isLoading} />
         <ErrorBar message={this.state.errorMessage} />
         <div>

@@ -1,13 +1,22 @@
 import * as React from 'react'
-import {render, fireEvent, wait, waitForElement} from 'react-testing-library'
+import {render, fireEvent, wait} from 'react-testing-library'
 import {LoginForm} from '../../../src/login/forms/login'
 import {createFetchMock} from '../../utils'
 
 describe('login/forms/login.tsx', () => {
   let fetchMock: jest.Mock
 
+  function renderAndFill(): RenderResult {
+    const form = render(<LoginForm />)
+    const email = form.getByLabelText(/Email/) as HTMLInputElement
+    const password = form.getByLabelText(/Password/) as HTMLInputElement
+    email.value = 'test@example.com'
+    password.value = 'password1'
+    return form
+  }
+
   beforeEach(() => {
-    fetchMock = jest.fn().mockImplementation(async () => ({status: 200}))
+    fetchMock = jest.fn()
     self.fetch = fetchMock
   })
 
@@ -17,33 +26,39 @@ describe('login/forms/login.tsx', () => {
   })
 
   it('should show a loading UI', async () => {
-    const {getByLabelText, getByTestId, queryByTestId} = render(<LoginForm />)
-    const email = getByLabelText(/Email/) as HTMLInputElement
-    const password = getByLabelText(/Password/) as HTMLInputElement
-    email.value = 'test@example.com'
-    password.value = 'password1'
-
+    const {getByTestId, queryByTestId} = renderAndFill()
     const mockFetch = createFetchMock()
     fetchMock.mockImplementation(mockFetch.fn)
 
     fireEvent.submit(getByTestId('login-form'))
     await wait(() => getByTestId('loading-bar'))
+
     expect(queryByTestId('error-bar')).toBeNull()
+
     mockFetch.reject(new Error('short-circuit'))
   })
 
-  it('should show an error UI', async () => {
-    const {getByText, queryByTestId, getByLabelText, getByTestId} = render(<LoginForm />)
-    const email = getByLabelText(/Email/) as HTMLInputElement
-    const password = getByLabelText(/Password/) as HTMLInputElement
-    email.value = 'test@example.com'
-    password.value = 'password1'
+  it('should send login request to server', async () => {
+    const {getByTestId} = renderAndFill()
+    const mockFetch = createFetchMock()
+    fetchMock.mockImplementation(mockFetch.fn)
 
+    fireEvent.submit(getByTestId('login-form'))
+    await wait(() => getByTestId('loading-bar'))
+
+    // FIXME: get FormData to send the right values
+    expect(fetchMock).toHaveBeenCalled()
+    expect(fetchMock.mock.calls[0]).toMatchSnapshot()
+  })
+
+  it('should show an error UI', async () => {
+    const {getByTestId, queryByTestId} = renderAndFill()
     const mockFetch = createFetchMock({status: 400})
     fetchMock.mockImplementation(mockFetch.fn)
 
     fireEvent.submit(getByTestId('login-form'))
     await wait(() => getByTestId('loading-bar'))
+
     expect(queryByTestId('error-bar')).toBeNull()
 
     mockFetch.resolve()

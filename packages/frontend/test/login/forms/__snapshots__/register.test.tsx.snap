@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`login/forms/register.tsx should render form 1`] = `
+exports[`register/forms/register.tsx should render form 1`] = `
 <div>
   <form
+    data-testid="register-form"
     name="register"
   >
     <div>
@@ -220,3 +221,18 @@ exports[`login/forms/register.tsx should render form 1`] = `
   </form>
 </div>
 `;
+
+exports[`register/forms/register.tsx should send register request to server 1`] = `
+Array [
+  "/api/v1/accounts/register",
+  Object {
+    "body": "{\\"account\\":{\\"name\\":\\" 's Account\\"},\\"user\\":{\\"firstName\\":\\"\\",\\"lastName\\":\\"\\",\\"email\\":\\"\\",\\"password\\":\\"\\"}}",
+    "headers": Object {
+      "content-type": "application/json",
+    },
+    "method": "POST",
+  },
+]
+`;
+
+exports[`register/forms/register.tsx should show an error UI 1`] = `"Error creating account"`;

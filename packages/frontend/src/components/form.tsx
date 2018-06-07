@@ -13,6 +13,7 @@ export class Form<TState extends object> extends React.Component<{}, Partial<TSt
 
   public handleSubmit(evt: any): void {
     evt.preventDefault()
+
     const data: IFormData = {}
     for (const [prop, val] of new FormData(evt.target).entries()) {
       data[prop] = val
