@@ -63,7 +63,7 @@ exports[`login/forms/login.tsx should render form 1`] = `
       </div>
     </div>
     <button
-      class="MuiButtonBase-root-43 MuiButton-root-28 MuiButton-raised-33 MuiButton-raisedPrimary-34"
+      class="MuiButtonBase-root-50 MuiButton-root-28 MuiButton-contained-37 MuiButton-containedPrimary-38 MuiButton-raised-40 MuiButton-raisedPrimary-41"
       tabindex="0"
       type="submit"
     >
@@ -73,7 +73,7 @@ exports[`login/forms/login.tsx should render form 1`] = `
         Login
       </span>
       <span
-        class="MuiTouchRipple-root-45"
+        class="MuiTouchRipple-root-53"
       />
     </button>
   </form>

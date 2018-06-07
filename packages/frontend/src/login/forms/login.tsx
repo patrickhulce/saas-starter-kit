@@ -1,7 +1,7 @@
 import * as React from 'react'
+import TextField from '@material-ui/core/TextField/TextField'
+import Button from '@material-ui/core/Button/Button'
 import {Form, IFormData} from '../../components/form'
-import TextField from 'material-ui/TextField/TextField'
-import Button from 'material-ui/Button/Button'
 import {ErrorBar} from '../../components/error-bar/error-bar'
 import {LoadingBar} from '../../components/loading-bar/loading-bar'
 
