@@ -31,6 +31,17 @@ describe('register/forms/register.tsx', () => {
     expect(form.container).toMatchSnapshot()
   })
 
+  it('should check passwords match', async () => {
+    const {getByTestId, getByLabelText} = renderAndFill()
+    const confirmPassword = getByLabelText(/Confirm Password/) as HTMLInputElement
+    confirmPassword.value = 'other'
+
+    fireEvent.submit(getByTestId('register-form'))
+    await wait(() => getByTestId('error-bar'))
+
+    expect(getByTestId('error-bar').textContent).toMatchSnapshot()
+  })
+
   it('should show a loading UI', async () => {
     const {getByTestId, queryByTestId} = renderAndFill()
     const mockFetch = createFetchMock()

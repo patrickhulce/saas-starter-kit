@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`register/forms/register.tsx should check passwords match 1`] = `"Passwords did not match"`;
+
 exports[`register/forms/register.tsx should render form 1`] = `
 <div>
   <form
