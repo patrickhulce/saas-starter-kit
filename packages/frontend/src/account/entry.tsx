@@ -1,24 +1,12 @@
 import '../typedefs' // tslint:disable-line
 import * as React from 'react'
-import {Helmet} from 'react-helmet'
 import {IUser} from '../../../shared/lib/typedefs'
-import conf from '../../../shared/lib/conf'
 import {createRenderFn, findUserOrRedirect, HMR} from '../utils'
+import {AccountPage} from './page'
 
 let user: IUser
 
-class AccountPage extends React.Component {
-  public render(): JSX.Element[] {
-    return [
-      <Helmet key="head">
-        <title>Manage My Account - {conf.displayName}</title>
-      </Helmet>,
-      <h1 key="header">Hello, {user.firstName}</h1>,
-    ]
-  }
-}
-
-const render = createRenderFn(() => <AccountPage />)
+const render = createRenderFn(() => <AccountPage user={user} />)
 
 async function init(): Promise<void> {
   user = await findUserOrRedirect()

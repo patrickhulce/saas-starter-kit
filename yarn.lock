@@ -55,6 +55,12 @@
     scroll "^2.0.3"
     warning "^4.0.1"
 
+"@material-ui/icons@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-1.1.0.tgz#4d025df7b0ba6ace8d6710079ed76013a4d26595"
+  dependencies:
+    recompose "^0.26.0 || ^0.27.0"
+
 "@patrickhulce/lint@2.1.2", "@patrickhulce/lint@^2.1.2":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@patrickhulce/lint/-/lint-2.1.2.tgz#994abd1f2b409e49ba52d79530612a70c39abd9a"
