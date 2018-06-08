@@ -27,7 +27,7 @@ export interface IPageState {
 }
 
 export class AccountPage extends React.Component<IPageProps, IPageState> {
-  state: IPageState = {activeForm: FormType.Personal}
+  public state: IPageState = {activeForm: FormType.Personal}
 
   private _formNavItem(icon: JSX.Element, type: FormType): JSX.Element {
     const classes = type === this.state.activeForm ? styles.active : ''

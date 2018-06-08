@@ -16,9 +16,11 @@
         "no-null-keyword": false,
         "ordered-imports": false,
         "prefer-function-over-method": false,
+        "match-default-export-name": false,
         "no-submodule-imports": [
           true,
-          "@material-ui/core"
+          "@material-ui/core",
+          "@material-ui/icons"
         ],
         "quotemark": [
           true,
