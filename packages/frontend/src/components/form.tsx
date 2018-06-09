@@ -4,7 +4,7 @@ export interface IFormData {
   [key: string]: any
 }
 
-export class Form<TProps = {}, TState = {}> extends React.Component<TProps, TState> {
+export class Form<TProps, TState> extends React.Component<TProps, TState> {
   public constructor(props: TProps) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)

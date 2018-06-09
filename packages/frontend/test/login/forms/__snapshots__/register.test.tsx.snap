@@ -153,7 +153,7 @@ exports[`register/forms/register.tsx should render form 1`] = `
           aria-required="true"
           class="MuiInput-input-23 MuiInput-inputType-26"
           id="cpass"
-          name="cpassword"
+          name="confirmPassword"
           required=""
           type="password"
           value=""
@@ -207,7 +207,7 @@ exports[`register/forms/register.tsx should render form 1`] = `
       class="MuiFormHelperText-root-86 tos"
     >
       By registering, you agree to our
-       
+
       <a
         href="http://localhost/tos"
         target="_blank"

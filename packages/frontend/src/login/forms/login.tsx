@@ -5,6 +5,7 @@ import {Form, IFormData} from '../../components/form'
 import {ErrorBar} from '../../components/error-bar/error-bar'
 import {LoadingBar} from '../../components/loading-bar/loading-bar'
 import {testIds} from '../../utils'
+import {BasicTextField} from '../../components/basic-text-field'
 
 export async function login(email: string, password: string): Promise<void> {
   const authResponse = await fetch('/api/v1/oauth/token', {
@@ -34,7 +35,7 @@ export interface ILoginFormState {
 }
 
 export class LoginForm extends Form<{}, ILoginFormState> {
-  state = {}
+  public state: ILoginFormState = {}
 
   protected async _handleSubmit(data: IFormData): Promise<void> {
     try {
@@ -52,8 +53,8 @@ export class LoginForm extends Form<{}, ILoginFormState> {
       <form name="login" onSubmit={this.handleSubmit} data-testid={testIds.loginForm}>
         <LoadingBar isLoading={this.state.isLoading} />
         <ErrorBar message={this.state.errorMessage} />
-        <TextField id="email-input" name="email" type="email" label="Email" autoFocus required />
-        <TextField id="password-input" name="password" type="password" label="Password" required />
+        <BasicTextField name="email" type="email" autoFocus />
+        <BasicTextField name="password" type="password" />
         <Button variant="raised" color="primary" type="submit">
           Login
         </Button>

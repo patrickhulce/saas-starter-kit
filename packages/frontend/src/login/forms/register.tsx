@@ -10,6 +10,7 @@ import {login} from './login'
 import conf from '../../../../shared/lib/conf'
 import {ErrorBar} from '../../components/error-bar/error-bar'
 import {LoadingBar} from '../../components/loading-bar/loading-bar'
+import {BasicTextField} from '../../components/basic-text-field'
 import {testIds} from '../../utils'
 
 async function createAccount(
@@ -41,19 +42,11 @@ export interface IRegisterFormState {
   errorMessage?: string
 }
 
-const formInputs = {
-  firstName: {id: 'first-name', name: 'first', label: 'First Name'},
-  lastName: {id: 'last-name', name: 'last', label: 'Last Name'},
-  email: {id: 'email', name: 'email', type: 'email', label: 'Email'},
-  password: {id: 'pass', name: 'password', type: 'password', label: 'Password'},
-  confirmPassword: {id: 'cpass', name: 'cpassword', type: 'password', label: 'Confirm Password'},
-}
-
 export class RegisterForm extends Form<{}, IRegisterFormState> {
-  state = {}
+  state: IRegisterFormState = {}
 
   protected async _handleSubmit(data: any): Promise<void> {
-    if (data.cpassword !== data.password) {
+    if (data.confirmPassword !== data.password) {
       this.setState({errorMessage: 'Passwords did not match'})
       return
     }
@@ -87,12 +80,12 @@ export class RegisterForm extends Form<{}, IRegisterFormState> {
         <LoadingBar isLoading={this.state.isLoading} />
         <ErrorBar message={this.state.errorMessage} />
         <div>
-          <TextField {...formInputs.firstName} className={styles.halfText} required />
-          <TextField {...formInputs.lastName} className={styles.halfText} required />
+          <BasicTextField name="firstName" className={styles.halfText} autoFocus />
+          <BasicTextField name="lastName" className={styles.halfText} />
         </div>
-        <TextField {...formInputs.email} required />
-        <TextField {...formInputs.password} required />
-        <TextField {...formInputs.confirmPassword} required />
+        <BasicTextField name="email" type="email" />
+        <BasicTextField name="password" type="password" />
+        <BasicTextField name="confirmPassword" type="password" />
         <FormControlLabel
           control={<Checkbox name="newsletter" value="newsletter" color="primary" />}
           label={newsletterLabel}

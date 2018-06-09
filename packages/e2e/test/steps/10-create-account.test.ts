@@ -30,11 +30,11 @@ module.exports = (state: IState) => {
 
     it('should fill in form', async () => {
       await state.page.waitFor(state.waitFor)
-      await typeIn('input[name=first]', 'John')
-      await typeIn('input[name=last]', 'User')
+      await typeIn('input[name=firstName]', 'John')
+      await typeIn('input[name=lastName]', 'User')
       await typeIn('input[name=email]', state.userMailbox.address)
       await typeIn('input[name=password]', 'test_password')
-      await typeIn('input[name=cpassword]', 'test_password')
+      await typeIn('input[name=confirmPassword]', 'test_password')
       await state.page.waitFor(state.waitFor)
 
       ;(await state.page.$(`[data-testid=${testIds.createAccountSubmit}]`)).click()
