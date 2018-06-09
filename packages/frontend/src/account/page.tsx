@@ -11,6 +11,9 @@ import ListItemText from '@material-ui/core/ListItemText'
 import PersonIcon from '@material-ui/icons/Person'
 import LockIcon from '@material-ui/icons/Lock'
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
+import {PersonalForm} from './forms/personal'
+import {PasswordForm} from './forms/password'
+import {BillingForm} from './forms/billing'
 
 export interface IPageProps {
   user: IUser
@@ -26,17 +29,33 @@ export interface IPageState {
   activeForm: FormType
 }
 
+const forms = [
+  {id: FormType.Personal, Icon: PersonIcon, Form: PersonalForm},
+  {id: FormType.Password, Icon: LockIcon, Form: PasswordForm},
+  {id: FormType.Billing, Icon: AttachMoneyIcon, Form: BillingForm},
+]
+
 export class AccountPage extends React.Component<IPageProps, IPageState> {
   public state: IPageState = {activeForm: FormType.Personal}
 
-  private _formNavItem(icon: JSX.Element, type: FormType): JSX.Element {
-    const classes = type === this.state.activeForm ? styles.active : ''
-    return (
-      <ListItem button className={classes}>
-        <ListItemIcon>{icon}</ListItemIcon>
-        <ListItemText primary={type} />
-      </ListItem>
-    )
+  private _renderFormNavItems(): JSX.Element[] {
+    return forms.map(({id, Icon}) => {
+      const classes = id === this.state.activeForm ? styles.active : ''
+      const onClick = () => this.setState({activeForm: id})
+      return (
+        <ListItem key={id} button className={classes} onClick={onClick}>
+          <ListItemIcon>
+            <Icon />
+          </ListItemIcon>
+          <ListItemText primary={id} />
+        </ListItem>
+      )
+    })
+  }
+
+  private _renderActiveContent(): JSX.Element {
+    const {Form} = forms.find(form => this.state.activeForm === form.id)!
+    return <Form user={this.props.user} />
   }
 
   public render(): JSX.Element[] {
@@ -46,13 +65,9 @@ export class AccountPage extends React.Component<IPageProps, IPageState> {
       </Helmet>,
       <Paper key="form" className={styles.accountForms}>
         <List component="nav" className={styles.sidenav}>
-          {this._formNavItem(<PersonIcon />, FormType.Personal)}
-          {this._formNavItem(<LockIcon />, FormType.Password)}
-          {this._formNavItem(<AttachMoneyIcon />, FormType.Billing)}
+          {this._renderFormNavItems()}
         </List>
-        <div className={styles.primaryContent}>
-        <h2>Personal Information</h2>
-        </div>
+        <div className={styles.primaryContent}>{this._renderActiveContent()}</div>
       </Paper>,
     ]
   }
