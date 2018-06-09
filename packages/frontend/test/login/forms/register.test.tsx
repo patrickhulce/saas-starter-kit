@@ -1,7 +1,8 @@
 import * as React from 'react'
-import {render, fireEvent, wait, RenderResult} from 'react-testing-library'
-import {createFetchMock} from '../../utils'
+import {RenderResult, fireEvent, render, wait} from 'react-testing-library'
+
 import {RegisterForm} from '../../../src/login/forms/register'
+import {createFetchMock} from '../../utils'
 
 describe('register/forms/register.tsx', () => {
   let fetchMock: jest.Mock

@@ -1,5 +1,6 @@
 import * as React from 'react'
-import {Simulate, render, wait, renderIntoDocument, cleanup} from 'react-testing-library'
+import {Simulate, render, wait} from 'react-testing-library'
+
 import {LoginPage} from '../../src/login/page'
 
 describe('login/page.tsx', () => {

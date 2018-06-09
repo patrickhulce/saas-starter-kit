@@ -1,3 +1,5 @@
+// tslint:disable
+
 export interface IFetchMockInput {
   status?: number
   body?: string

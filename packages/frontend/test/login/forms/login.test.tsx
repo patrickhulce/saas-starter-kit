@@ -1,5 +1,6 @@
 import * as React from 'react'
-import {render, fireEvent, wait, RenderResult} from 'react-testing-library'
+import {RenderResult, fireEvent, render, wait} from 'react-testing-library'
+
 import {LoginForm} from '../../../src/login/forms/login'
 import {createFetchMock} from '../../utils'
 
