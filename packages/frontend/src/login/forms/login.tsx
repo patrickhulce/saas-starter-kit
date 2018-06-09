@@ -33,8 +33,10 @@ export interface ILoginFormState {
   errorMessage?: string
 }
 
-export class LoginForm extends Form<ILoginFormState> {
-  public async _handleSubmit(data: IFormData): Promise<void> {
+export class LoginForm extends Form<{}, ILoginFormState> {
+  state = {}
+
+  protected async _handleSubmit(data: IFormData): Promise<void> {
     try {
       this.setState({isLoading: true})
       await login(data.email, data.password)

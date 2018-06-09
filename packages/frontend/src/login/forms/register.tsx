@@ -49,8 +49,10 @@ const formInputs = {
   confirmPassword: {id: 'cpass', name: 'cpassword', type: 'password', label: 'Confirm Password'},
 }
 
-export class RegisterForm extends Form<IRegisterFormState> {
-  public async _handleSubmit(data: any): Promise<void> {
+export class RegisterForm extends Form<{}, IRegisterFormState> {
+  state = {}
+
+  protected async _handleSubmit(data: any): Promise<void> {
     if (data.cpassword !== data.password) {
       this.setState({errorMessage: 'Passwords did not match'})
       return

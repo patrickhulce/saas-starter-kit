@@ -4,7 +4,7 @@ import {IUser} from '../../../../shared/lib/typedefs'
 export class PasswordForm extends React.Component<{user: IUser}> {
   public render(): JSX.Element[] {
     return [
-      <h2>Password</h2>,
+      <h2 key="password">Password</h2>,
     ]
   }
 }

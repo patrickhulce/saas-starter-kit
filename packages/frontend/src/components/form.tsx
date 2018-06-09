@@ -4,10 +4,9 @@ export interface IFormData {
   [key: string]: any
 }
 
-export class Form<TState extends object> extends React.Component<{}, Partial<TState>> {
-  public constructor(props: {}) {
+export class Form<TProps = {}, TState = {}> extends React.Component<TProps, TState> {
+  public constructor(props: TProps) {
     super(props)
-    this.state = {} as Partial<TState> // tslint:disable-line
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -22,7 +21,7 @@ export class Form<TState extends object> extends React.Component<{}, Partial<TSt
     this._handleSubmit(data)
   }
 
-  public _handleSubmit(data: IFormData): void {
+  protected _handleSubmit(data: IFormData): void {
     throw new Error('Unimplemented')
   }
 }
