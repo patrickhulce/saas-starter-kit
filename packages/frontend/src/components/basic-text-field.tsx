@@ -6,6 +6,7 @@ export interface IBasicTextFieldProps {
   name: string
   label?: string
   type?: string
+  defaultValue?: string
   autoFocus?: boolean
   required?: boolean
   className?: string

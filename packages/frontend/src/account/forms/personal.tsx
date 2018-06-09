@@ -3,6 +3,7 @@ import TextField from '@material-ui/core/TextField'
 import * as React from 'react'
 
 import {IUser} from '../../../../shared/lib/typedefs'
+import {BasicTextField} from '../../components/basic-text-field'
 import {ErrorBar} from '../../components/error-bar/error-bar'
 import {Form, IFormData} from '../../components/form'
 import {LoadingBar} from '../../components/loading-bar/loading-bar'
@@ -36,25 +37,10 @@ class NamesForm extends Form<{user: IUser}, INamesFormState> {
   public render(): JSX.Element {
     return (
       <form onSubmit={this.handleSubmit}>
-        <LoadingBar isLoading={this.state.isLoading} />
-        <ErrorBar message={this.state.errorMessage} />
-        <TextField
-          id="first-name"
-          name="first"
-          label="First Name"
-          defaultValue={this.props.user.firstName}
-          required
-        />
-        <TextField
-          id="last-name"
-          name="last"
-          label="Last Name"
-          defaultValue={this.props.user.lastName}
-          required
-        />
-        <Button variant="raised" color="primary" type="submit">
-          Update
-        </Button>
+        {this.renderLoadingUI()}
+        <BasicTextField name="firstName" defaultValue={this.props.user.firstName} />
+        <BasicTextField name="lastName" defaultValue={this.props.user.lastName} />
+        {this.renderSubmitUI({label: 'Update'})}
       </form>
     )
   }

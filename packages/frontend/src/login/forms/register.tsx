@@ -7,8 +7,7 @@ import * as React from 'react'
 import conf from '../../../../shared/lib/conf'
 import {BasicTextField} from '../../components/basic-text-field'
 import {ErrorBar} from '../../components/error-bar/error-bar'
-import {Form} from '../../components/form'
-import {LoadingBar} from '../../components/loading-bar/loading-bar'
+import {Form, IFormState} from '../../components/form'
 import {testIds} from '../../utils'
 import * as styles from '../login.scss'
 
@@ -38,13 +37,8 @@ async function createAccount(
   await login(email, password)
 }
 
-export interface IRegisterFormState {
-  isLoading?: boolean
-  errorMessage?: string
-}
-
-export class RegisterForm extends Form<{}, IRegisterFormState> {
-  public state: IRegisterFormState = {}
+export class RegisterForm extends Form {
+  public state: IFormState = {}
 
   protected async _handleSubmit(data: any): Promise<void> {
     if (data.confirmPassword !== data.password) {
@@ -78,8 +72,7 @@ export class RegisterForm extends Form<{}, IRegisterFormState> {
 
     return (
       <form name="register" onSubmit={this.handleSubmit} data-testid={testIds.registerForm}>
-        <LoadingBar isLoading={this.state.isLoading} />
-        <ErrorBar message={this.state.errorMessage} />
+        {this.renderLoadingUI()}
         <div>
           <BasicTextField name="firstName" className={styles.halfText} autoFocus />
           <BasicTextField name="lastName" className={styles.halfText} />
@@ -97,14 +90,7 @@ export class RegisterForm extends Form<{}, IRegisterFormState> {
             terms of service
           </a>
         </FormHelperText>
-        <Button
-          data-testid={testIds.createAccountSubmit}
-          variant="raised"
-          color="primary"
-          type="submit"
-        >
-          Register
-        </Button>
+        {this.renderSubmitUI({label: 'Register', testId: testIds.createAccountSubmit})}
       </form>
     )
   }

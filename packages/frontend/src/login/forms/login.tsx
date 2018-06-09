@@ -3,7 +3,7 @@ import * as React from 'react'
 
 import {BasicTextField} from '../../components/basic-text-field'
 import {ErrorBar} from '../../components/error-bar/error-bar'
-import {Form, IFormData} from '../../components/form'
+import {Form, IFormData, IFormState} from '../../components/form'
 import {LoadingBar} from '../../components/loading-bar/loading-bar'
 import {testIds} from '../../utils'
 
@@ -29,13 +29,8 @@ export async function login(email: string, password: string): Promise<void> {
   window.location.href = '/'
 }
 
-export interface ILoginFormState {
-  isLoading?: boolean
-  errorMessage?: string
-}
-
-export class LoginForm extends Form<{}, ILoginFormState> {
-  public state: ILoginFormState = {}
+export class LoginForm extends Form {
+  public state: IFormState = {}
 
   protected async _handleSubmit(data: IFormData): Promise<void> {
     try {
@@ -51,13 +46,10 @@ export class LoginForm extends Form<{}, ILoginFormState> {
   public render(): JSX.Element {
     return (
       <form name="login" onSubmit={this.handleSubmit} data-testid={testIds.loginForm}>
-        <LoadingBar isLoading={this.state.isLoading} />
-        <ErrorBar message={this.state.errorMessage} />
+        {this.renderLoadingUI()}
         <BasicTextField name="email" type="email" autoFocus />
         <BasicTextField name="password" type="password" />
-        <Button variant="raised" color="primary" type="submit">
-          Login
-        </Button>
+        {this.renderSubmitUI({label: 'Login'})}
       </form>
     )
   }
