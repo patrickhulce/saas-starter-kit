@@ -1,4 +1,5 @@
 import {IAuthConfiguration} from 'klay'
+
 import conf from './conf'
 import {AuthRole, Permission} from './typedefs'
 

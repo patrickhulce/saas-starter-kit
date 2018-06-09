@@ -1,11 +1,11 @@
-import * as React from 'react'
-import TextField from '@material-ui/core/TextField/TextField'
 import Button from '@material-ui/core/Button/Button'
-import {Form, IFormData} from '../../components/form'
+import * as React from 'react'
+
+import {BasicTextField} from '../../components/basic-text-field'
 import {ErrorBar} from '../../components/error-bar/error-bar'
+import {Form, IFormData} from '../../components/form'
 import {LoadingBar} from '../../components/loading-bar/loading-bar'
 import {testIds} from '../../utils'
-import {BasicTextField} from '../../components/basic-text-field'
 
 export async function login(email: string, password: string): Promise<void> {
   const authResponse = await fetch('/api/v1/oauth/token', {

@@ -1,5 +1,6 @@
 /* tslint:disable no-unsafe-any */
 import * as fetch from 'isomorphic-fetch'
+
 import {IMailbox, IMessage} from './typedefs'
 
 const URL = 'https://api.mailslurp.com'

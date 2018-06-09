@@ -1,7 +1,8 @@
-import '../typedefs' // tslint:disable-line
 import * as React from 'react'
+
 import {IUser} from '../../../shared/lib/typedefs'
-import {createRenderFn, findUserOrRedirect, HMR} from '../utils'
+import '../typedefs' // tslint:disable-line
+import {HMR, createRenderFn, findUserOrRedirect} from '../utils'
 
 let user: IUser
 

@@ -1,17 +1,18 @@
-import * as styles from '../login.scss'
-import * as React from 'react'
-import TextField from '@material-ui/core/TextField/TextField'
 import Button from '@material-ui/core/Button/Button'
 import Checkbox from '@material-ui/core/Checkbox/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormHelperText from '@material-ui/core/FormHelperText'
-import {Form} from '../../components/form'
-import {login} from './login'
+import * as React from 'react'
+
 import conf from '../../../../shared/lib/conf'
-import {ErrorBar} from '../../components/error-bar/error-bar'
-import {LoadingBar} from '../../components/loading-bar/loading-bar'
 import {BasicTextField} from '../../components/basic-text-field'
+import {ErrorBar} from '../../components/error-bar/error-bar'
+import {Form} from '../../components/form'
+import {LoadingBar} from '../../components/loading-bar/loading-bar'
 import {testIds} from '../../utils'
+import * as styles from '../login.scss'
+
+import {login} from './login'
 
 async function createAccount(
   accountName: string,
@@ -43,7 +44,7 @@ export interface IRegisterFormState {
 }
 
 export class RegisterForm extends Form<{}, IRegisterFormState> {
-  state: IRegisterFormState = {}
+  public state: IRegisterFormState = {}
 
   protected async _handleSubmit(data: any): Promise<void> {
     if (data.confirmPassword !== data.password) {
@@ -54,9 +55,9 @@ export class RegisterForm extends Form<{}, IRegisterFormState> {
     try {
       this.setState({isLoading: true})
       await createAccount(
-        `${data.first} ${data.last}'s Account`,
-        data.first,
-        data.last,
+        `${data.firstName} ${data.lastName}'s Account`,
+        data.firstName,
+        data.lastName,
         data.email,
         data.password,
       )

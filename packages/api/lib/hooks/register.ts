@@ -1,5 +1,6 @@
 import {template} from 'lodash'
 import * as Sparkpost from 'sparkpost'
+
 import conf from '../../../shared/lib/conf'
 import {IAccount, IUser} from '../../../shared/lib/typedefs'
 

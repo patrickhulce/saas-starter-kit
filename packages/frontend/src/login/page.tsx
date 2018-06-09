@@ -1,12 +1,14 @@
-import * as styles from './login.scss'
+import Tab from '@material-ui/core/Tab'
+import Tabs from '@material-ui/core/Tabs'
 import * as React from 'react'
 import {Helmet} from 'react-helmet'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import {LoginForm} from './forms/login'
-import {RegisterForm} from './forms/register'
+
 import conf from '../../../shared/lib/conf'
 import {testIds} from '../utils'
+
+import {LoginForm} from './forms/login'
+import {RegisterForm} from './forms/register'
+import * as styles from './login.scss'
 
 export interface ILoginPageState {
   selectedTab: number

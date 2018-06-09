@@ -1,10 +1,11 @@
-import * as React from 'react'
-import {IUser} from '../../../../shared/lib/typedefs'
-import {Form, IFormData} from '../../components/form'
-import TextField from '@material-ui/core/TextField'
-import {LoadingBar} from '../../components/loading-bar/loading-bar'
-import {ErrorBar} from '../../components/error-bar/error-bar'
 import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import * as React from 'react'
+
+import {IUser} from '../../../../shared/lib/typedefs'
+import {ErrorBar} from '../../components/error-bar/error-bar'
+import {Form, IFormData} from '../../components/form'
+import {LoadingBar} from '../../components/loading-bar/loading-bar'
 
 async function updateAccount(user: IUser): Promise<void> {
   const response = await fetch(`/api/v1/users/${user.id}`, {

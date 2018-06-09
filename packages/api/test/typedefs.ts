@@ -1,6 +1,8 @@
+// tslint:disable
 import * as express from 'express'
-import {SQLExtension, IDatabaseExecutor} from 'klay'
+import {IDatabaseExecutor, SQLExtension} from 'klay'
 import {Server} from 'net'
+
 import {IAccount, IUser} from '../../shared/lib/typedefs'
 
 export interface IState {
@@ -12,7 +14,7 @@ export interface IState {
   baseURL?: string
   apiURL?: string
 
-  login?: {email: string, password: string}
+  login?: {email: string; password: string}
   account?: IAccount
   user?: IUser
   token?: string

@@ -1,6 +1,8 @@
-import * as styles from './error-bar.scss'
 import * as React from 'react'
+
 import {testIds} from '../../utils'
+
+import * as styles from './error-bar.scss'
 
 export interface IErrorBarProps {
   message?: string

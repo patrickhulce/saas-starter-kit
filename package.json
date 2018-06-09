@@ -1,15 +1,13 @@
 {
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "scripts": {
     "deploy-all": "cd packages/aws && yarn deploy",
     "migrate": "klay-kiln-sql migrate",
     "bump-klay": "lerna exec --concurrency 1 'yarn add --exact --force klay@next'",
     "build": "tsc --diagnostics",
     "test": "npm run build && npm run test:lint && npm run test:unit && npm run test:e2e",
-    "test:lint": "lerna run test:lint --concurrency 1",
+    "test:lint": "tslint --project .",
     "test:unit": "jest",
     "test:e2e": "cd packages/e2e && yarn start"
   },

@@ -1,6 +1,7 @@
 import * as express from 'express'
 import {IDatabaseExecutor, IRouterOptions} from 'klay'
-import {IUser, kiln, ModelID, sqlExtension, userModel} from '../../../shared/lib'
+
+import {IUser, ModelID, kiln, sqlExtension, userModel} from '../../../shared/lib'
 
 const userExecutor = kiln.build(ModelID.User, sqlExtension) as IDatabaseExecutor<IUser>
 

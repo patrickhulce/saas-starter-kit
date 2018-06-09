@@ -1,9 +1,10 @@
 import {
-  createOAuthTokenHandler,
   IRouterOptions,
+  createOAuthTokenHandler,
   oauthTokenRequestModel,
   oauthTokenResponseModel,
 } from 'klay'
+
 import {conf, kiln} from '../../../shared/lib'
 
 export const oauthRouterOptions: IRouterOptions = {

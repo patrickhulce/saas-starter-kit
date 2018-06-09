@@ -1,19 +1,21 @@
-import * as styles from './account.scss'
-import * as React from 'react'
-import {Helmet} from 'react-helmet'
-import conf from '../../../shared/lib/conf'
-import {IUser} from '../../../shared/lib/typedefs'
-import Paper from '@material-ui/core/Paper'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import PersonIcon from '@material-ui/icons/Person'
-import LockIcon from '@material-ui/icons/Lock'
+import Paper from '@material-ui/core/Paper'
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
-import {PersonalForm} from './forms/personal'
-import {PasswordForm} from './forms/password'
+import LockIcon from '@material-ui/icons/Lock'
+import PersonIcon from '@material-ui/icons/Person'
+import * as React from 'react'
+import {Helmet} from 'react-helmet'
+
+import conf from '../../../shared/lib/conf'
+import {IUser} from '../../../shared/lib/typedefs'
+
+import * as styles from './account.scss'
 import {BillingForm} from './forms/billing'
+import {PasswordForm} from './forms/password'
+import {PersonalForm} from './forms/personal'
 
 export interface IPageProps {
   user: IUser

@@ -1,6 +1,8 @@
-import '../typedefs' // tslint:disable-line
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+
+import '../typedefs' // tslint:disable-line
+
 import {LoginPage} from './page'
 
 // HACK: let the CSS kick-in before rendering

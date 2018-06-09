@@ -1,6 +1,8 @@
-import * as styles from './loading-bar.scss'
 import * as React from 'react'
+
 import {testIds} from '../../utils'
+
+import * as styles from './loading-bar.scss'
 
 export interface ILoadingBarProps {
   isLoading?: boolean

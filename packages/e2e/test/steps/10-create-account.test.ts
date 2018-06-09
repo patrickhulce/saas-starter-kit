@@ -6,6 +6,7 @@ import {testIds} from '../../../frontend/src/utils'
 module.exports = (state: IState) => {
   const mailslurp = new Mailslurp(conf.mailslurp.apiKey)
 
+  // tslint:disable-next-line
   async function typeIn(formEl, text) {
     const $el = await state.page.$(formEl)
     await $el.type(text)

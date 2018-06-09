@@ -1,14 +1,15 @@
 import * as express from 'express'
 import {IDatabaseExecutor, IRouterOptions} from 'klay'
+
 import {
-  accountModel,
   AccountPlan,
   AuthRole,
   IAccount,
   IUser,
+  ModelID,
+  accountModel,
   kiln,
   modelContext,
-  ModelID,
   sqlExtension,
   userModel,
 } from '../../../shared/lib'

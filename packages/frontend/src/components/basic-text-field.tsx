@@ -1,6 +1,6 @@
-import * as React from 'react'
-import {kebabCase, startCase} from 'lodash'
 import TextField from '@material-ui/core/TextField'
+import {kebabCase, startCase} from 'lodash'
+import * as React from 'react'
 
 export interface IBasicTextFieldProps {
   name: string
