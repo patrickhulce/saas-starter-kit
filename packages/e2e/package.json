@@ -3,10 +3,11 @@
   "name": "@the-product/e2e",
   "version": "0.1.0",
   "scripts": {
-    "start": "./scripts/run-until-success.sh",
-    "test": "npm run test:lint && npm run test:unit",
-    "test:lint": "lint",
-    "test:unit": "jest --verbose --forceExit --runInBand"
+    "start": "jest --verbose --forceExit --runInBand",
+    "start:local": "./scripts/run-local-tests.js",
+    "start:ci": "./scripts/run-until-success.sh",
+    "test": "npm run test:lint",
+    "test:lint": "lint"
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",

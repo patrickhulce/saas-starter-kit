@@ -9,7 +9,8 @@
     "test": "npm run build && npm run test:lint && npm run test:unit && npm run test:e2e",
     "test:lint": "tslint --project .",
     "test:unit": "jest",
-    "test:e2e": "cd packages/e2e && yarn start"
+    "test:e2e": "cd packages/e2e && yarn start:local",
+    "test:e2e:ci": "cd packages/e2e && yarn start:ci"
   },
   "devDependencies": {
     "lerna": "^2.9.1",
