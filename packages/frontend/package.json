@@ -7,7 +7,7 @@
     "clean": "rm -rf dist/",
     "build": "NODE_ENV=production webpack --mode production",
     "test": "npm run test:lint && npm run test:unit",
-    "test:lint": "tslint './src/**/*.tsx'",
+    "test:lint": "tslint --project . --config ../../tslint.json './src/**/*.tsx'",
     "test:unit": "jest"
   },
   "dependencies": {

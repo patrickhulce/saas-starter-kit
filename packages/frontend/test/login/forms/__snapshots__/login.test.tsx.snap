@@ -4,7 +4,6 @@ exports[`login/forms/login.tsx should render form 1`] = `
 <div>
   <form
     data-testid="login-form"
-    name="login"
   >
     <div
       class="MuiFormControl-root-1"

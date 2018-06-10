@@ -26,7 +26,7 @@ module.exports = (state: IState) => {
       await state.page.waitFor(state.waitFor)
       const $createAccountTab = await state.page.$(`[data-testid=${testIds.createAccountTab}]`)
       await $createAccountTab.click()
-      await state.page.waitFor('form[name=register]')
+      await state.page.waitFor(`[data-testid=${testIds.registerForm}`)
     })
 
     it('should fill in form', async () => {
@@ -37,7 +37,6 @@ module.exports = (state: IState) => {
       await typeIn('input[name=password]', 'test_password')
       await typeIn('input[name=confirmPassword]', 'test_password')
       await state.page.waitFor(state.waitFor)
-
       ;(await state.page.$(`[data-testid=${testIds.createAccountSubmit}]`)).click()
       await state.page.waitForNavigation()
     })

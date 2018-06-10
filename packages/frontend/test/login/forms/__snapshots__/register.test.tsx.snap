@@ -6,7 +6,6 @@ exports[`register/forms/register.tsx should render form 1`] = `
 <div>
   <form
     data-testid="register-form"
-    name="register"
   >
     <div>
       <div

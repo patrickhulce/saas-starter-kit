@@ -1,10 +1,7 @@
-import Button from '@material-ui/core/Button/Button'
 import * as React from 'react'
 
 import {BasicTextField} from '../../components/basic-text-field'
-import {ErrorBar} from '../../components/error-bar/error-bar'
-import {Form, IFormData, IFormState} from '../../components/form'
-import {LoadingBar} from '../../components/loading-bar/loading-bar'
+import {Form, IFormData, IFormState, ISubmitOptions} from '../../components/form'
 import {testIds} from '../../utils'
 
 export async function login(email: string, password: string): Promise<void> {
@@ -31,6 +28,8 @@ export async function login(email: string, password: string): Promise<void> {
 
 export class LoginForm extends Form {
   public state: IFormState = {}
+  public testId: string = testIds.loginForm
+  public submitUIOptions: ISubmitOptions = {label: 'Login'}
 
   protected async _handleSubmit(data: IFormData): Promise<void> {
     try {
@@ -43,14 +42,12 @@ export class LoginForm extends Form {
     }
   }
 
-  public render(): JSX.Element {
+  public renderInputUI(): JSX.Element {
     return (
-      <form name="login" onSubmit={this.handleSubmit} data-testid={testIds.loginForm}>
-        {this.renderLoadingUI()}
+      <React.Fragment>
         <BasicTextField name="email" type="email" autoFocus />
         <BasicTextField name="password" type="password" />
-        {this.renderSubmitUI({label: 'Login'})}
-      </form>
+      </React.Fragment>
     )
   }
 }

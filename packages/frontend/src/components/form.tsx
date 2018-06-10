@@ -22,38 +22,60 @@ export class Form<TProps = {}, TState extends IFormState = IFormState> extends R
   TProps,
   TState
 > {
+  public testId: string | undefined = undefined
+  public submitUIOptions: ISubmitOptions | undefined = undefined
+
   public constructor(props: TProps) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  public renderLoadingUI(): JSX.Element[] {
-    return [
-      <LoadingBar key="loading" isLoading={this.state.isLoading} />,
-      <ErrorBar key="error" message={this.state.errorMessage} />,
-    ]
+  public renderLoadingUI(): JSX.Element {
+    return (
+      <React.Fragment>
+        <LoadingBar isLoading={this.state.isLoading} />
+        <ErrorBar message={this.state.errorMessage} />
+      </React.Fragment>
+    )
   }
 
-  public renderSubmitUI(options: ISubmitOptions = {}): JSX.Element[] {
-    return [
-      <Button
-        key="submit"
-        variant="raised"
-        color="primary"
-        type="submit"
-        data-testid={options.testId}
-        disabled={!!this.state.isLoading}
-      >
-        {options.label || 'Submit'}
-      </Button>,
-    ]
+  public renderInputUI(): JSX.Element {
+    return <React.Fragment />
   }
 
-  public handleSubmit(evt: any): void {
+  public renderSubmitUI(options?: ISubmitOptions): JSX.Element {
+    options = options || this.submitUIOptions || {}
+
+    return (
+      <React.Fragment>
+        <Button
+          variant="raised"
+          color="primary"
+          type="submit"
+          data-testid={options.testId}
+          disabled={!!this.state.isLoading}
+        >
+          {options.label || 'Submit'}
+        </Button>
+      </React.Fragment>
+    )
+  }
+
+  public render(): JSX.Element {
+    return (
+      <form data-testid={this.testId} onSubmit={this.handleSubmit}>
+        {this.renderLoadingUI()}
+        {this.renderInputUI()}
+        {this.renderSubmitUI()}
+      </form>
+    )
+  }
+
+  public handleSubmit(evt: React.FormEvent<any>): void {
     evt.preventDefault()
 
     const data: IFormData = {}
-    for (const [prop, val] of new FormData(evt.target).entries()) {
+    for (const [prop, val] of new FormData(evt.target as HTMLFormElement).entries()) {
       data[prop] = val
     }
 

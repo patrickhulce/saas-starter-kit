@@ -1,4 +1,3 @@
-import Button from '@material-ui/core/Button/Button'
 import Checkbox from '@material-ui/core/Checkbox/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormHelperText from '@material-ui/core/FormHelperText'
@@ -6,8 +5,7 @@ import * as React from 'react'
 
 import conf from '../../../../shared/lib/conf'
 import {BasicTextField} from '../../components/basic-text-field'
-import {ErrorBar} from '../../components/error-bar/error-bar'
-import {Form, IFormState} from '../../components/form'
+import {Form, IFormState, ISubmitOptions} from '../../components/form'
 import {testIds} from '../../utils'
 import * as styles from '../login.scss'
 
@@ -39,6 +37,8 @@ async function createAccount(
 
 export class RegisterForm extends Form {
   public state: IFormState = {}
+  public testId: string = testIds.registerForm
+  public submitUIOptions: ISubmitOptions = {label: 'Register', testId: testIds.createAccountSubmit}
 
   protected async _handleSubmit(data: any): Promise<void> {
     if (data.confirmPassword !== data.password) {
@@ -62,7 +62,7 @@ export class RegisterForm extends Form {
     }
   }
 
-  public render(): JSX.Element {
+  public renderInputUI(): JSX.Element {
     const newsletterLabel = (
       <span className={styles.newsletter}>
         Send me email tips and updates
@@ -71,8 +71,7 @@ export class RegisterForm extends Form {
     )
 
     return (
-      <form name="register" onSubmit={this.handleSubmit} data-testid={testIds.registerForm}>
-        {this.renderLoadingUI()}
+      <React.Fragment>
         <div>
           <BasicTextField name="firstName" className={styles.halfText} autoFocus />
           <BasicTextField name="lastName" className={styles.halfText} />
@@ -90,8 +89,7 @@ export class RegisterForm extends Form {
             terms of service
           </a>
         </FormHelperText>
-        {this.renderSubmitUI({label: 'Register', testId: testIds.createAccountSubmit})}
-      </form>
+      </React.Fragment>
     )
   }
 }

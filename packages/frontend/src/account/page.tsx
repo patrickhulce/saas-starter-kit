@@ -60,17 +60,19 @@ export class AccountPage extends React.Component<IPageProps, IPageState> {
     return <Form user={this.props.user} />
   }
 
-  public render(): JSX.Element[] {
-    return [
-      <Helmet key="head">
-        <title>Account Settings - {conf.displayName}</title>
-      </Helmet>,
-      <Paper key="form" className={styles.accountForms}>
-        <List component="nav" className={styles.sidenav}>
-          {this._renderFormNavItems()}
-        </List>
-        <div className={styles.primaryContent}>{this._renderActiveContent()}</div>
-      </Paper>,
-    ]
+  public render(): JSX.Element {
+    return (
+      <React.Fragment>
+        <Helmet>
+          <title>Account Settings - {conf.displayName}</title>
+        </Helmet>
+        <Paper className={styles.accountForms}>
+          <List component="nav" className={styles.sidenav}>
+            {this._renderFormNavItems()}
+          </List>
+          <div className={styles.primaryContent}>{this._renderActiveContent()}</div>
+        </Paper>
+      </React.Fragment>
+    )
   }
 }

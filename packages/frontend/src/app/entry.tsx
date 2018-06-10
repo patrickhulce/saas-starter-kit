@@ -9,13 +9,15 @@ import {HMR, createRenderFn, findUserOrRedirect} from '../utils'
 let user: IUser
 
 class Application extends React.Component {
-  public render(): JSX.Element[] {
-    return [
-      <Helmet key="head">
-        <title>{conf.displayName}</title>
-      </Helmet>,
-      <h1 key="header">Hello, {user.firstName}</h1>,
-    ]
+  public render(): JSX.Element {
+    return (
+      <React.Fragment>
+        <Helmet>
+          <title>{conf.displayName}</title>
+        </Helmet>
+        <h1>Hello, {user.firstName}</h1>
+      </React.Fragment>
+    )
   }
 }
 

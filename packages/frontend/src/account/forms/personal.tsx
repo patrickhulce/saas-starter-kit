@@ -1,12 +1,8 @@
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
 import * as React from 'react'
 
 import {IUser} from '../../../../shared/lib/typedefs'
 import {BasicTextField} from '../../components/basic-text-field'
-import {ErrorBar} from '../../components/error-bar/error-bar'
 import {Form, IFormData} from '../../components/form'
-import {LoadingBar} from '../../components/loading-bar/loading-bar'
 
 async function updateAccount(user: IUser): Promise<void> {
   const response = await fetch(`/api/v1/users/${user.id}`, {
@@ -47,10 +43,12 @@ class NamesForm extends Form<{user: IUser}, INamesFormState> {
 }
 
 export class PersonalForm extends React.Component<{user: IUser}> {
-  public render(): JSX.Element[] {
-    return [
-      <h2 key="header">Personal Information</h2>,
-      <NamesForm key="names-form" user={this.props.user} />,
-    ]
+  public render(): JSX.Element {
+    return (
+      <React.Fragment>
+        <h2>Personal Information</h2>
+        <NamesForm user={this.props.user} />
+      </React.Fragment>
+    )
   }
 }
