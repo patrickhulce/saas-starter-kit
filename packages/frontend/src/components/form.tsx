@@ -89,7 +89,7 @@ export class Form<TProps = {}, TState extends IFormState = IFormState> extends R
     }
   }
 
-  protected _handleSubmit(data: IFormData): void {
+  protected async _handleSubmit(data: IFormData): Promise<void> {
     throw new Error('Unimplemented')
   }
 }

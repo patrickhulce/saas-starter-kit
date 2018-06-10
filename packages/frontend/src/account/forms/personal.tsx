@@ -3,19 +3,7 @@ import * as React from 'react'
 import {IUser} from '../../../../shared/lib/typedefs'
 import {BasicTextField} from '../../components/basic-text-field'
 import {Form, IFormData} from '../../components/form'
-
-async function updateAccount(user: IUser): Promise<void> {
-  const response = await fetch(`/api/v1/users/${user.id}`, {
-    method: 'PUT',
-    body: JSON.stringify(user),
-    headers: {'content-type': 'application/json'},
-  })
-
-  if (response.status !== 200) {
-    // TODO: Provide more specific error message
-    throw new Error('Error updating account')
-  }
-}
+import {updateAccount} from '../../services/user-service'
 
 interface INamesFormState {
   isLoading?: boolean
@@ -30,14 +18,12 @@ class NamesForm extends Form<{user: IUser}, INamesFormState> {
     await updateAccount(user)
   }
 
-  public render(): JSX.Element {
+  public renderInputUI(): JSX.Element {
     return (
-      <form onSubmit={this.handleSubmit}>
-        {this.renderLoadingUI()}
+      <React.Fragment>
         <BasicTextField name="firstName" defaultValue={this.props.user.firstName} />
         <BasicTextField name="lastName" defaultValue={this.props.user.lastName} />
-        {this.renderSubmitUI({label: 'Update'})}
-      </form>
+      </React.Fragment>
     )
   }
 }

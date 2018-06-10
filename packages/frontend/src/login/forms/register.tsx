@@ -6,34 +6,9 @@ import * as React from 'react'
 import conf from '../../../../shared/lib/conf'
 import {BasicTextField} from '../../components/basic-text-field'
 import {Form, IFormState, ISubmitOptions} from '../../components/form'
+import {createAccount} from '../../services/user-service'
 import {testIds} from '../../utils'
 import * as styles from '../login.scss'
-
-import {login} from './login'
-
-async function createAccount(
-  accountName: string,
-  firstName: string,
-  lastName: string,
-  email: string,
-  password: string,
-): Promise<any> {
-  const response = await fetch('/api/v1/accounts/register', {
-    method: 'POST',
-    body: JSON.stringify({
-      account: {name: accountName},
-      user: {firstName, lastName, email, password},
-    }),
-    headers: {'content-type': 'application/json'},
-  })
-
-  if (response.status !== 200) {
-    // TODO: Provide more specific error message
-    throw new Error('Error creating account')
-  }
-
-  await login(email, password)
-}
 
 export class RegisterForm extends Form {
   public state: IFormState = {}
