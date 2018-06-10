@@ -33,12 +33,9 @@ export class LoginForm extends Form {
 
   protected async _handleSubmit(data: IFormData): Promise<void> {
     try {
-      this.setState({isLoading: true})
       await login(data.email, data.password)
     } catch (err) {
-      this.setState({errorMessage: 'Invalid login'})
-    } finally {
-      this.setState({isLoading: false})
+      throw new Error('Invalid login')
     }
   }
 

@@ -71,7 +71,7 @@ export class Form<TProps = {}, TState extends IFormState = IFormState> extends R
     )
   }
 
-  public handleSubmit(evt: React.FormEvent<any>): void {
+  public async handleSubmit(evt: React.FormEvent<any>): Promise<void> {
     evt.preventDefault()
 
     const data: IFormData = {}
@@ -79,7 +79,14 @@ export class Form<TProps = {}, TState extends IFormState = IFormState> extends R
       data[prop] = val
     }
 
-    this._handleSubmit(data)
+    try {
+      this.setState({isLoading: true})
+      await this._handleSubmit(data)
+    } catch (err) {
+      this.setState({errorMessage: err.message})
+    } finally {
+      this.setState({isLoading: false})
+    }
   }
 
   protected _handleSubmit(data: IFormData): void {

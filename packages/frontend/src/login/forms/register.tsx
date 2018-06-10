@@ -42,24 +42,16 @@ export class RegisterForm extends Form {
 
   protected async _handleSubmit(data: any): Promise<void> {
     if (data.confirmPassword !== data.password) {
-      this.setState({errorMessage: 'Passwords did not match'})
-      return
+      throw new Error('Passwords did not match')
     }
 
-    try {
-      this.setState({isLoading: true})
-      await createAccount(
-        `${data.firstName} ${data.lastName}'s Account`,
-        data.firstName,
-        data.lastName,
-        data.email,
-        data.password,
-      )
-    } catch (err) {
-      this.setState({errorMessage: 'Error creating account'})
-    } finally {
-      this.setState({isLoading: false})
-    }
+    await createAccount(
+      `${data.firstName} ${data.lastName}'s Account`,
+      data.firstName,
+      data.lastName,
+      data.email,
+      data.password,
+    )
   }
 
   public renderInputUI(): JSX.Element {
