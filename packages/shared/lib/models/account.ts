@@ -1,9 +1,4 @@
-import {
-  IModel,
-  READ_ACTIONS,
-  SortDirection,
-  WRITE_ACTIONS,
-} from 'klay'
+import {IModel, READ_ACTIONS, SortDirection, WRITE_ACTIONS} from 'klay'
 import {values} from 'lodash'
 
 import {modelContext} from '../model-context'
@@ -19,9 +14,5 @@ export const accountModel: IModel = modelContext
     updatedAt: modelContext.updatedAt(),
   })
   .index([{property: ['updatedAt'], direction: SortDirection.Descending}])
-  .authorization({actions: READ_ACTIONS, permission: Permission.AccountView, criteria: [['id']]})
-  .authorization({
-    actions: WRITE_ACTIONS,
-    permission: Permission.AccountManage,
-    criteria: [['id']],
-  })
+  .authorization({actions: READ_ACTIONS, permission: Permission.AccountView})
+  .authorization({actions: WRITE_ACTIONS, permission: Permission.AccountManage})

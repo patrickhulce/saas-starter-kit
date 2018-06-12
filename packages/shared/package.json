@@ -19,7 +19,7 @@
     }
   },
   "dependencies": {
-    "klay": "2.5.0-alpha.84196bee",
+    "klay": "2.5.0-alpha.ac3497e5",
     "lodash": "^4.17.5"
   },
   "devDependencies": {

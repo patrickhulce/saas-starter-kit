@@ -17,13 +17,13 @@ export const configuration: IAuthConfiguration = {
       {permission: Permission.UserManage, criteria: '*'},
     ],
     [AuthRole.Admin]: [
-      {permission: Permission.AccountManage, criteria: 'id=<%= accountId %>'},
-      {permission: Permission.UserManage, criteria: 'accountId=<%= accountId %>'},
+      {permission: Permission.AccountManage, criteria: {id: '<%= accountId %>'}},
+      {permission: Permission.UserManage, criteria: {accountId: '<%= accountId %>'}},
     ],
     [AuthRole.User]: [
-      {permission: Permission.AccountView, criteria: 'id=<%= accountId %>'},
-      {permission: Permission.UserManage, criteria: 'id=<%= id %>'},
-      {permission: Permission.UserView, criteria: 'accountId=<%= accountId %>'},
+      {permission: Permission.AccountView, criteria: {id: '<%= accountId %>'}},
+      {permission: Permission.UserManage, criteria: {id: '<%= id %>'}},
+      {permission: Permission.UserView, criteria: {accountId: '<%= accountId %>'}},
     ],
     [AuthRole.Anonymous]: [],
   },

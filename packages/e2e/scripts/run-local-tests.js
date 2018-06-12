@@ -38,13 +38,15 @@ async function run() {
   await waitForPatternInOutput(/webpack built [a-f0-9]+ in \d+ms/, 5000)
   await waitForPatternInOutput(/API is available/, 1000)
 
-  const port = Number(DEVSERVER_OUT.find(l => DEVSERVER_PATTERN.test(l)).match(DEVSERVER_PATTERN)[1])
+  const port = Number(
+    DEVSERVER_OUT.find(l => DEVSERVER_PATTERN.test(l)).match(DEVSERVER_PATTERN)[1],
+  )
 
   console.log(`Ready for testing! Will run on port ${port}`)
 
   let success
   try {
-    childProcess.execSync(`PORT=${port} npm run test:unit`, {stdio: 'inherit', cwd: E2E_DIR})
+    childProcess.execSync(`PORT=${port} npm run start`, {stdio: 'inherit', cwd: E2E_DIR})
     success = true
   } catch (err) {
     success = false

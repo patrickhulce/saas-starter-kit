@@ -41,13 +41,5 @@ export const userModel: IModel = modelContext
   })
   .index([['email'], ['password']])
   .index([{property: ['updatedAt'], direction: SortDirection.Descending}])
-  .authorization({
-    actions: READ_ACTIONS,
-    permission: Permission.UserView,
-    criteria: [['accountId']],
-  })
-  .authorization({
-    actions: WRITE_ACTIONS,
-    permission: Permission.UserManage,
-    criteria: [['id'], ['accountId']],
-  })
+  .authorization({actions: READ_ACTIONS, permission: Permission.UserView})
+  .authorization({actions: WRITE_ACTIONS, permission: Permission.UserManage})
