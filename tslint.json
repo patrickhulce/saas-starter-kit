@@ -1,6 +1,9 @@
 {
   "extends": "tslint:all",
   "autoFixOnSave": true,
+  "linterOptions": {
+    "exclude": ["**/*.test.ts", "node_modules"]
+  },
   "rules": {
     // Personal configuration from eslint
     "max-line-length": [true, {"limit": 100, "ignore-pattern": "^import |//"}],

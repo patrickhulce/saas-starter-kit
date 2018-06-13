@@ -1,7 +1,7 @@
 import * as express from 'express'
-import {IDatabaseExecutor, IRouterOptions} from 'klay'
+import {ActionType, IDatabaseExecutor, IRouterOptions} from 'klay'
 
-import {IUser, ModelID, kiln, sqlExtension, userModel} from '../../../shared/lib'
+import {IUser, ModelID, Permission, kiln, sqlExtension, userModel} from '../../../shared/lib'
 
 const userExecutor = kiln.build(ModelID.User, sqlExtension) as IDatabaseExecutor<IUser>
 
@@ -30,6 +30,16 @@ export const usersRouterOptions: IRouterOptions = {
         await userExecutor.update(user)
         res.redirect('/?verification=success')
       },
+    },
+    'PUT /:id/password': {
+      type: ActionType.Patch,
+      patchProperties: ['password'],
+      authorization: {permission: Permission.UserPassword},
+    },
+    'PUT /:id/profile': {
+      type: ActionType.Patch,
+      patchProperties: ['firstName', 'lastName'],
+      authorization: {permission: Permission.UserPassword},
     },
   },
 }

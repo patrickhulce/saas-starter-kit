@@ -1,5 +1,3 @@
-import * as uuid from 'uuid'
-
 import {IState} from '../typedefs'
 
 module.exports = (state: IState) => {

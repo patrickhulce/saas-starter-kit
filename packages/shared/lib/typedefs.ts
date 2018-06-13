@@ -35,9 +35,11 @@ export enum AuthRole {
 }
 
 export enum Permission {
+  RootAccess = '_root_',
   AccountManage = 'account:manage',
   AccountView = 'account:view',
-  UserManage = 'user:manage',
+  UserPassword = 'user:password',
+  UserProfile = 'user:profile',
   UserView = 'user:view',
 }
 
