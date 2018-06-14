@@ -35,3 +35,10 @@ The THE_PRODUCT_DISPLAY_NAME Team",
   ],
 }
 `;
+
+exports[`lib/app.ts change password should reject password changes that do not confirm existing password 1`] = `
+Object {
+  "message": "did not send current password",
+  "name": "AssertionError",
+}
+`;

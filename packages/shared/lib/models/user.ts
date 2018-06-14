@@ -18,6 +18,15 @@ const passwordBase = modelContext
   .min(6)
   .max(32)
 
+export const passwordModel: IModel = modelContext.password({
+  secret: conf.secret,
+  model: passwordBase,
+  algorithm: PasswordAlgorithm.SHA2,
+  saltLength: 16,
+  hashedPasswordLength: 56,
+  iterations: 1000,
+})
+
 export const userModel: IModel = modelContext
   .object()
   .children({
@@ -37,14 +46,7 @@ export const userModel: IModel = modelContext
       .uuid()
       .constrain({type: ConstraintType.Immutable})
       .automanage({event: DatabaseEvent.Create, supplyWith: SupplyWithPreset.UUID}),
-    password: modelContext.password({
-      secret: conf.secret,
-      model: passwordBase,
-      algorithm: PasswordAlgorithm.SHA2,
-      saltLength: 16,
-      hashedPasswordLength: 56,
-      iterations: 1000,
-    }),
+    password: passwordModel,
     firstName: modelContext.string().max(100),
     lastName: modelContext.string().max(100),
     createdAt: modelContext.createdAt(),
@@ -53,4 +55,4 @@ export const userModel: IModel = modelContext
   .index([['email'], ['password']])
   .index([{property: ['updatedAt'], direction: SortDirection.Descending}])
   .authorization({actions: READ_ACTIONS, permission: Permission.UserView})
-  .authorization({actions: WRITE_ACTIONS, permission: Permission.UserManage})
+  .authorization({actions: WRITE_ACTIONS, permission: Permission.RootAccess})

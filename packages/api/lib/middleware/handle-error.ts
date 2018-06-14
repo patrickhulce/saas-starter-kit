@@ -12,6 +12,10 @@ export function handleError(
   let body
 
   switch (err.name) {
+    case 'AssertionError':
+      status = 400
+      body = pick(err, ['name', 'message'])
+      break
     case 'ValidationError':
       status = 400
       body = ((err as any) as IValidationError).toJSON()
