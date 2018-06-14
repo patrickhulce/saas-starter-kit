@@ -13,7 +13,7 @@
   "dependencies": {
     "@material-ui/core": "^1.2.0",
     "@material-ui/icons": "^1.1.0",
-    "klay": "2.5.0-alpha.ac3497e5",
+    "klay": "2.5.0-alpha.f914d21c",
     "loading-page": "^1.0.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",

@@ -3,7 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const shelljs = require('shelljs')
-shell.config.fatal = true
+shelljs.config.fatal = true
 
 const DIST_DIR = path.join(__dirname, '../dist')
 
@@ -21,7 +21,6 @@ async function run() {
   await sqlExtension.sequelize.close()
   console.log('Done')
 }
-
 
 run().catch(err => {
   console.error(err)

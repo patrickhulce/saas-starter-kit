@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "aws-serverless-express": "^3.2.0",
-    "klay": "2.5.0-alpha.ac3497e5"
+    "klay": "2.5.0-alpha.f914d21c"
   },
   "devDependencies": {
     "@types/aws-serverless-express": "^3.0.1"

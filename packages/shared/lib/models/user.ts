@@ -2,6 +2,7 @@ import {
   ConstraintType,
   DatabaseEvent,
   IModel,
+  PasswordAlgorithm,
   READ_ACTIONS,
   SortDirection,
   SupplyWithPreset,
@@ -12,7 +13,10 @@ import conf from '../conf'
 import {modelContext} from '../model-context'
 import {AuthRole, ModelID, Permission} from '../typedefs'
 
-const passwordBase = modelContext.string().max(32)
+const passwordBase = modelContext
+  .string()
+  .min(6)
+  .max(32)
 
 export const userModel: IModel = modelContext
   .object()
@@ -33,7 +37,14 @@ export const userModel: IModel = modelContext
       .uuid()
       .constrain({type: ConstraintType.Immutable})
       .automanage({event: DatabaseEvent.Create, supplyWith: SupplyWithPreset.UUID}),
-    password: modelContext.password({salt: conf.secret, model: passwordBase}),
+    password: modelContext.password({
+      secret: conf.secret,
+      model: passwordBase,
+      algorithm: PasswordAlgorithm.SHA2,
+      saltLength: 16,
+      hashedPasswordLength: 56,
+      iterations: 1000,
+    }),
     firstName: modelContext.string().max(100),
     lastName: modelContext.string().max(100),
     createdAt: modelContext.createdAt(),
