@@ -24,7 +24,7 @@
     "debug": "^3.1.0",
     "express": "^4.16.3",
     "isomorphic-fetch": "^2.2.1",
-    "klay": "2.5.0-alpha.f914d21c",
+    "klay": "2.5.0-alpha.0c051183",
     "lodash": "^4.17.5",
     "morgan": "^1.9.0",
     "mysql2": "^1.5.3",
