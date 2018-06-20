@@ -6,9 +6,9 @@ import {
   createPasswordValidationMiddleware,
 } from 'klay'
 
-import {IUser, ModelID, Permission, kiln, sqlExtension, userModel} from '../../../shared/lib'
+import {IUserInput, ModelID, Permission, kiln, sqlExtension, userModel} from '../../../shared/lib'
 
-const userExecutor = kiln.build(ModelID.User, sqlExtension) as IDatabaseExecutor<IUser>
+const userExecutor = kiln.build(ModelID.User, sqlExtension) as IDatabaseExecutor<IUserInput>
 
 export const usersRouterOptions: IRouterOptions = {
   modelName: ModelID.User,

@@ -5,7 +5,7 @@ export enum ModelID {
   User = 'user',
 }
 
-export interface IAccount {
+export interface IAccountInput {
   id?: number
   name: string
   plan: AccountPlan
@@ -13,7 +13,9 @@ export interface IAccount {
   updatedAt?: Date
 }
 
-export interface IUser {
+export type IAccount = Required<IAccountInput>
+
+export interface IUserInput {
   id?: number
   accountId: number
   role: AuthRole
@@ -26,6 +28,8 @@ export interface IUser {
   createdAt?: Date
   updatedAt?: Date
 }
+
+export type IUser = Required<IUserInput>
 
 export enum AuthRole {
   Root = 'root',

@@ -2,7 +2,7 @@ import {template} from 'lodash'
 import * as Sparkpost from 'sparkpost'
 
 import conf from '../../../shared/lib/conf'
-import {IAccount, IUser} from '../../../shared/lib/typedefs'
+import {IAccountInput, IUserInput} from '../../../shared/lib/typedefs'
 
 // tslint:disable-next-line
 const debug = require('debug')('the-product:hooks')
@@ -52,6 +52,6 @@ export async function sendWelcomeEmail(
   })
 }
 
-export async function runRegisterHooks(account: IAccount, user: IUser): Promise<void> {
+export async function runRegisterHooks(account: IAccountInput, user: IUserInput): Promise<void> {
   await sendWelcomeEmail(user.email, `${user.firstName} ${user.lastName}`, user.verificationKey!)
 }

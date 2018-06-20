@@ -5,7 +5,9 @@ import {
   AccountPlan,
   AuthRole,
   IAccount,
+  IAccountInput,
   IUser,
+  IUserInput,
   ModelID,
   accountModel,
   kiln,
@@ -15,8 +17,10 @@ import {
 } from '../../../shared/lib'
 import {runRegisterHooks} from '../hooks/register'
 
-const accountExecutor = kiln.build(ModelID.Account, sqlExtension) as IDatabaseExecutor<IAccount>
-const userExecutor = kiln.build(ModelID.User, sqlExtension) as IDatabaseExecutor<IUser>
+const accountExecutor = kiln.build(ModelID.Account, sqlExtension) as IDatabaseExecutor<
+  IAccountInput
+>
+const userExecutor = kiln.build(ModelID.User, sqlExtension) as IDatabaseExecutor<IUserInput>
 
 const registerModel = modelContext.object().children({
   account: accountModel.clone().pick(['name']),
