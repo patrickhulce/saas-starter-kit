@@ -3,6 +3,7 @@ import {RenderResult, fireEvent, render, wait} from 'react-testing-library'
 
 import {LoginForm} from '../../../src/login/forms/login'
 import {createFetchMock} from '../../utils'
+import {testIds} from '../../../src/utils'
 
 describe('login/forms/login.tsx', () => {
   let fetchMock: jest.Mock
@@ -31,10 +32,10 @@ describe('login/forms/login.tsx', () => {
     const mockFetch = createFetchMock()
     fetchMock.mockImplementation(mockFetch.fn)
 
-    fireEvent.submit(getByTestId('login-form'))
-    await wait(() => getByTestId('loading-bar'))
+    fireEvent.submit(getByTestId(testIds.loginForm))
+    await wait(() => getByTestId(testIds.loadingBar))
 
-    expect(queryByTestId('error-bar')).toBeNull()
+    expect(queryByTestId(testIds.errorBar)).toBeNull()
 
     mockFetch.reject(new Error('short-circuit'))
   })
@@ -44,8 +45,8 @@ describe('login/forms/login.tsx', () => {
     const mockFetch = createFetchMock()
     fetchMock.mockImplementation(mockFetch.fn)
 
-    fireEvent.submit(getByTestId('login-form'))
-    await wait(() => getByTestId('loading-bar'))
+    fireEvent.submit(getByTestId(testIds.loginForm))
+    await wait(() => getByTestId(testIds.loadingBar))
 
     expect(fetchMock).toHaveBeenCalled()
     expect(fetchMock.mock.calls[0]).toMatchSnapshot()
@@ -56,15 +57,15 @@ describe('login/forms/login.tsx', () => {
     const mockFetch = createFetchMock({status: 400})
     fetchMock.mockImplementation(mockFetch.fn)
 
-    fireEvent.submit(getByTestId('login-form'))
-    await wait(() => getByTestId('loading-bar'))
+    fireEvent.submit(getByTestId(testIds.loginForm))
+    await wait(() => getByTestId(testIds.loadingBar))
 
-    expect(queryByTestId('error-bar')).toBeNull()
+    expect(queryByTestId(testIds.errorBar)).toBeNull()
 
     mockFetch.resolve()
-    await wait(() => getByTestId('error-bar'))
+    await wait(() => getByTestId(testIds.errorBar))
 
-    expect(queryByTestId('loading-bar')).toBeNull()
-    expect(getByTestId('error-bar').textContent).toMatchSnapshot()
+    expect(queryByTestId(testIds.loadingBar)).toBeNull()
+    expect(getByTestId(testIds.errorBar).textContent).toMatchSnapshot()
   })
 })

@@ -3,6 +3,7 @@ import {RenderResult, fireEvent, render, wait} from 'react-testing-library'
 
 import {RegisterForm} from '../../../src/login/forms/register'
 import {createFetchMock} from '../../utils'
+import {testIds} from '../../../src/utils'
 
 describe('register/forms/register.tsx', () => {
   let fetchMock: jest.Mock
@@ -37,10 +38,10 @@ describe('register/forms/register.tsx', () => {
     const confirmPassword = getByLabelText(/Confirm Password/) as HTMLInputElement
     confirmPassword.value = 'other'
 
-    fireEvent.submit(getByTestId('register-form'))
-    await wait(() => getByTestId('error-bar'))
+    fireEvent.submit(getByTestId(testIds.registerForm))
+    await wait(() => getByTestId(testIds.errorBar))
 
-    expect(getByTestId('error-bar').textContent).toMatchSnapshot()
+    expect(getByTestId(testIds.errorBar).textContent).toMatchSnapshot()
   })
 
   it('should show a loading UI', async () => {
@@ -48,10 +49,10 @@ describe('register/forms/register.tsx', () => {
     const mockFetch = createFetchMock()
     fetchMock.mockImplementation(mockFetch.fn)
 
-    fireEvent.submit(getByTestId('register-form'))
-    await wait(() => getByTestId('loading-bar'))
+    fireEvent.submit(getByTestId(testIds.registerForm))
+    await wait(() => getByTestId(testIds.loadingBar))
 
-    expect(queryByTestId('error-bar')).toBeNull()
+    expect(queryByTestId(testIds.errorBar)).toBeNull()
 
     mockFetch.reject(new Error('short-circuit'))
   })
@@ -61,8 +62,8 @@ describe('register/forms/register.tsx', () => {
     const mockFetch = createFetchMock()
     fetchMock.mockImplementation(mockFetch.fn)
 
-    fireEvent.submit(getByTestId('register-form'))
-    await wait(() => getByTestId('loading-bar'))
+    fireEvent.submit(getByTestId(testIds.registerForm))
+    await wait(() => getByTestId(testIds.loadingBar))
 
     expect(fetchMock).toHaveBeenCalled()
     expect(fetchMock.mock.calls[0]).toMatchSnapshot()
@@ -73,15 +74,15 @@ describe('register/forms/register.tsx', () => {
     const mockFetch = createFetchMock({status: 400})
     fetchMock.mockImplementation(mockFetch.fn)
 
-    fireEvent.submit(getByTestId('register-form'))
-    await wait(() => getByTestId('loading-bar'))
+    fireEvent.submit(getByTestId(testIds.registerForm))
+    await wait(() => getByTestId(testIds.loadingBar))
 
-    expect(queryByTestId('error-bar')).toBeNull()
+    expect(queryByTestId(testIds.errorBar)).toBeNull()
 
     mockFetch.resolve()
-    await wait(() => getByTestId('error-bar'))
+    await wait(() => getByTestId(testIds.errorBar))
 
-    expect(queryByTestId('loading-bar')).toBeNull()
-    expect(getByTestId('error-bar').textContent).toMatchSnapshot()
+    expect(queryByTestId(testIds.loadingBar)).toBeNull()
+    expect(getByTestId(testIds.errorBar).textContent).toMatchSnapshot()
   })
 })
