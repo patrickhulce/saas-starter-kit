@@ -4,9 +4,7 @@ import {IDatabaseExecutor, IRouterOptions} from 'klay'
 import {
   AccountPlan,
   AuthRole,
-  IAccount,
   IAccountInput,
-  IUser,
   IUserInput,
   ModelID,
   accountModel,
