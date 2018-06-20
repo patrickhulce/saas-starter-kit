@@ -2,47 +2,13 @@ import * as express from 'express'
 import {
   ActionType,
   IDatabaseExecutor,
-  IGrants,
   IRouterOptions,
-  assert,
-  doPasswordsMatch,
+  createPasswordValidationMiddleware,
 } from 'klay'
 
-import {
-  IUser,
-  ModelID,
-  Permission,
-  kiln,
-  passwordModel,
-  sqlExtension,
-  userModel,
-} from '../../../shared/lib'
+import {IUser, ModelID, Permission, kiln, sqlExtension, userModel} from '../../../shared/lib'
 
 const userExecutor = kiln.build(ModelID.User, sqlExtension) as IDatabaseExecutor<IUser>
-
-// TODO: extract this to klay libraries
-async function assertXCurrentPasswordMatches(
-  req: express.Request,
-  res: express.Response,
-  next: express.NextFunction,
-): Promise<void> {
-  try {
-    const currentPassword = req.get('x-current-password')
-    assert.ok(currentPassword, 'did not send current password')
-
-    const existingPassword = (req.grants as IGrants<IUser>).userContext!.password
-    const isValid = await doPasswordsMatch(
-      currentPassword!,
-      existingPassword,
-      passwordModel.spec.db!.password!,
-    )
-
-    assert.ok(isValid, 'current password invalid')
-    next()
-  } catch (err) {
-    next(err)
-  }
-}
 
 export const usersRouterOptions: IRouterOptions = {
   modelName: ModelID.User,
@@ -74,7 +40,7 @@ export const usersRouterOptions: IRouterOptions = {
       type: ActionType.Patch,
       patchProperties: ['password'],
       authorization: {permission: Permission.UserPassword},
-      middleware: {preResponse: assertXCurrentPasswordMatches},
+      middleware: {preResponse: createPasswordValidationMiddleware({kiln})},
     },
     'PUT /:id/profile': {
       type: ActionType.Patch,
