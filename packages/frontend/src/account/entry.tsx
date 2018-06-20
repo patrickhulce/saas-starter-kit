@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import {IUser} from '../../../shared/lib/typedefs'
 import '../typedefs' // tslint:disable-line
-import {HMR, createRenderFn, findUserOrRedirect} from '../utils'
+import {HMR, createRenderFn, findUserOnStartupOrBail} from '../utils'
 
 let user: IUser
 
@@ -13,7 +13,7 @@ const render = createRenderFn(() => {
 })
 
 async function init(): Promise<void> {
-  user = await findUserOrRedirect()
+  user = await findUserOnStartupOrBail()
   render()
 }
 

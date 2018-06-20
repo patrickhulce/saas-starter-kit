@@ -2,7 +2,7 @@
   "extends": "tslint:all",
   "autoFixOnSave": true,
   "linterOptions": {
-    "exclude": ["**/*.test.ts", "node_modules"]
+    "exclude": ["**/*.test.ts", "**/*.test.tsx", "node_modules"]
   },
   "rules": {
     // Personal configuration from eslint

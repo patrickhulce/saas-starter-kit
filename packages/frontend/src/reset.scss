@@ -1,0 +1,28 @@
+@import './colors';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background: $primary-brand;
+  color: $darker-gray;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+:global {
+  #app-root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}

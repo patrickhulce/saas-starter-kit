@@ -15,14 +15,14 @@ import {IUser} from '../../../shared/lib/typedefs'
 import * as styles from './account.scss'
 import {BillingForm} from './forms/billing'
 import {PasswordForm} from './forms/password'
-import {PersonalForm} from './forms/personal'
+import {ProfileForm} from './forms/profile'
 
 export interface IPageProps {
   user: IUser
 }
 
 export enum FormType {
-  Personal = 'Personal',
+  Profile = 'Profile',
   Password = 'Password',
   Billing = 'Billing',
 }
@@ -32,13 +32,13 @@ export interface IPageState {
 }
 
 const forms = [
-  {id: FormType.Personal, Icon: PersonIcon, Form: PersonalForm},
+  {id: FormType.Profile, Icon: PersonIcon, Form: ProfileForm},
   {id: FormType.Password, Icon: LockIcon, Form: PasswordForm},
   {id: FormType.Billing, Icon: AttachMoneyIcon, Form: BillingForm},
 ]
 
 export class AccountPage extends React.Component<IPageProps, IPageState> {
-  public state: IPageState = {activeForm: FormType.Personal}
+  public state: IPageState = {activeForm: FormType.Profile}
 
   private _renderFormNavItems(): JSX.Element[] {
     return forms.map(({id, Icon}) => {

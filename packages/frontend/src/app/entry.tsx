@@ -4,7 +4,7 @@ import {Helmet} from 'react-helmet'
 import conf from '../../../shared/lib/conf'
 import {IUser} from '../../../shared/lib/typedefs'
 import '../typedefs' // tslint:disable-line
-import {HMR, createRenderFn, findUserOrRedirect} from '../utils'
+import {HMR, createRenderFn, findUserOnStartupOrBail} from '../utils'
 
 let user: IUser
 
@@ -24,7 +24,7 @@ class Application extends React.Component {
 const render = createRenderFn(() => <Application />)
 
 async function init(): Promise<void> {
-  user = await findUserOrRedirect()
+  user = await findUserOnStartupOrBail()
   render()
 }
 

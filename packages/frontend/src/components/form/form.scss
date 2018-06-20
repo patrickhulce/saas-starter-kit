@@ -1,0 +1,25 @@
+form.columnar-form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  > div {
+    margin-bottom: 10px;
+  }
+
+  > button[type='submit'] {
+    margin-top: 10px;
+  }
+}
+
+.half-text {
+  width: 50%;
+}
+
+form.fixed-width {
+  max-width: 400px;
+
+  > button[type='submit'] {
+    max-width: 200px;
+  }
+}

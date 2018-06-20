@@ -4,6 +4,7 @@ import * as React from 'react'
 import {Helmet} from 'react-helmet'
 
 import conf from '../../../shared/lib/conf'
+import * as formStyles from '../components/form/form.scss'
 import {testIds} from '../utils'
 
 import {LoginForm} from './forms/login'
@@ -41,8 +42,8 @@ export class LoginPage extends React.Component<{}, ILoginPageState> {
             <Tab label="Login" />
             <Tab data-testid={testIds.createAccountTab} label="Create an Account" />
           </Tabs>
-          {this.state.selectedTab === 0 && <LoginForm />}
-          {this.state.selectedTab === 1 && <RegisterForm />}
+          {this.state.selectedTab === 0 && <LoginForm className={formStyles.columnarForm} />}
+          {this.state.selectedTab === 1 && <RegisterForm className={formStyles.columnarForm} />}
         </div>
       </React.Fragment>
     )

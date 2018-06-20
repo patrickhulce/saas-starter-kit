@@ -1,27 +1,5 @@
 @import '../colors';
-
-:global {
-  html {
-    height: 100%;
-  }
-
-  body {
-    background: $primary-brand;
-    color: $darker-gray;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-
-  #app-root {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-}
+@import '../reset';
 
 .header {
   margin-top: calc(50vh - 360px);
@@ -51,24 +29,6 @@ h1.app-name {
   border-radius: 10px;
   width: 375px;
   min-height: 200px;
-
-  form {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-
-    > div {
-      margin-bottom: 10px;
-    }
-
-    > button {
-      margin-top: 10px;
-    }
-
-    .half-text {
-      width: 50%;
-    }
-  }
 }
 
 .newsletter {

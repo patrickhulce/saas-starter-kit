@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`account/forms/profile.tsx should render form 1`] = `
+<div>
+  <h2>
+    Personal Information
+  </h2>
+  <form
+    class="columnarForm fixedWidth"
+    data-testid="profile-names-form"
+  >
+    <div
+      class="MuiFormControl-root-1"
+    >
+      <label
+        class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9 MuiInputLabel-shrink-8"
+        data-shrink="true"
+        for="first-name-input"
+      >
+        First Name
+        <span
+          class="MuiFormLabel-asterisk-14"
+        >
+           *
+        </span>
+      </label>
+      <div
+        class="MuiInput-root-15 MuiInput-formControl-16 MuiInput-underline-19"
+      >
+        <input
+          aria-invalid="false"
+          aria-required="true"
+          class="MuiInput-input-23"
+          id="first-name-input"
+          name="firstName"
+          required=""
+          type="text"
+          value="Klay"
+        />
+      </div>
+    </div>
+    <div
+      class="MuiFormControl-root-1"
+    >
+      <label
+        class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9 MuiInputLabel-shrink-8"
+        data-shrink="true"
+        for="last-name-input"
+      >
+        Last Name
+        <span
+          class="MuiFormLabel-asterisk-14"
+        >
+           *
+        </span>
+      </label>
+      <div
+        class="MuiInput-root-15 MuiInput-formControl-16 MuiInput-underline-19"
+      >
+        <input
+          aria-invalid="false"
+          aria-required="true"
+          class="MuiInput-input-23"
+          id="last-name-input"
+          name="lastName"
+          required=""
+          type="text"
+          value="Thompson"
+        />
+      </div>
+    </div>
+    <button
+      class="MuiButtonBase-root-50 MuiButton-root-28 MuiButton-contained-37 MuiButton-containedPrimary-38 MuiButton-raised-40 MuiButton-raisedPrimary-41"
+      tabindex="0"
+      type="submit"
+    >
+      <span
+        class="MuiButton-label-29"
+      >
+        Submit
+      </span>
+      <span
+        class="MuiTouchRipple-root-53"
+      />
+    </button>
+  </form>
+</div>
+`;
+
+exports[`account/forms/profile.tsx should send update names request to server 1`] = `
+Array [
+  "/api/v1/users/1/profile",
+  Object {
+    "body": "{\\"firstName\\":\\"Klay\\",\\"lastName\\":\\"Thompson\\"}",
+    "credentials": "same-origin",
+    "headers": Object {
+      "content-type": "application/json",
+    },
+    "method": "PUT",
+  },
+]
+`;

@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import {BasicTextField} from '../../components/basic-text-field'
-import {Form, IFormData, IFormState, ISubmitOptions} from '../../components/form'
+import {Form, IFormData, IFormState, ISubmitOptions} from '../../components/form/form'
 import {login} from '../../services/user-service'
 import {testIds} from '../../utils'
 

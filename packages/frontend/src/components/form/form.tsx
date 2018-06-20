@@ -1,8 +1,8 @@
 import Button from '@material-ui/core/Button/Button'
 import * as React from 'react'
 
-import {ErrorBar} from './error-bar/error-bar'
-import {LoadingBar} from './loading-bar/loading-bar'
+import {ErrorBar} from '../error-bar/error-bar'
+import {LoadingBar} from '../loading-bar/loading-bar'
 
 export interface IFormData {
   [key: string]: any
@@ -18,14 +18,18 @@ export interface ISubmitOptions {
   testId?: string
 }
 
+export interface IDefaultFormProps {
+  className?: string
+}
+
 export class Form<TProps = {}, TState extends IFormState = IFormState> extends React.Component<
-  TProps,
+  TProps & IDefaultFormProps,
   TState
 > {
   public testId: string | undefined = undefined
   public submitUIOptions: ISubmitOptions | undefined = undefined
 
-  public constructor(props: TProps) {
+  public constructor(props: TProps & IDefaultFormProps) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -63,7 +67,7 @@ export class Form<TProps = {}, TState extends IFormState = IFormState> extends R
 
   public render(): JSX.Element {
     return (
-      <form data-testid={this.testId} onSubmit={this.handleSubmit}>
+      <form data-testid={this.testId} onSubmit={this.handleSubmit} className={this.props.className}>
         {this.renderLoadingUI()}
         {this.renderInputUI()}
         {this.renderSubmitUI()}

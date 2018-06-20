@@ -2,20 +2,17 @@ import * as React from 'react'
 
 import {IUser} from '../../../../shared/lib/typedefs'
 import {BasicTextField} from '../../components/basic-text-field'
-import {Form, IFormData} from '../../components/form'
+import {Form, IFormData, IFormState} from '../../components/form/form'
+import * as formStyles from '../../components/form/form.scss'
 import {updateAccount} from '../../services/user-service'
+import {testIds} from '../../utils'
 
-interface INamesFormState {
-  isLoading?: boolean
-  errorMessage?: string
-}
-
-class NamesForm extends Form<{user: IUser}, INamesFormState> {
-  public state: INamesFormState = {}
+class NamesForm extends Form<{user: IUser}> {
+  public state: IFormState = {}
+  public testId: string = testIds.profileNamesForm
 
   protected async _handleSubmit(data: IFormData): Promise<void> {
-    const user: IUser = {...this.props.user, firstName: data.first, lastName: data.last}
-    await updateAccount(user)
+    await updateAccount(this.props.user.id, {firstName: data.firstName, lastName: data.lastName})
   }
 
   public renderInputUI(): JSX.Element {
@@ -28,12 +25,13 @@ class NamesForm extends Form<{user: IUser}, INamesFormState> {
   }
 }
 
-export class PersonalForm extends React.Component<{user: IUser}> {
+export class ProfileForm extends React.Component<{user: IUser}> {
   public render(): JSX.Element {
+    const formClasses = `${formStyles.columnarForm} ${formStyles.fixedWidth}`
     return (
       <React.Fragment>
         <h2>Personal Information</h2>
-        <NamesForm user={this.props.user} />
+        <NamesForm user={this.props.user} className={formClasses} />
       </React.Fragment>
     )
   }

@@ -1,5 +1,12 @@
 import {IUser} from '../../../shared/lib/typedefs'
 
+export async function getLoggedInUser(): Promise<IUser | undefined> {
+  try {
+    const localUser = JSON.parse(localStorage.getItem('loggedInUser') || '')
+    if (localUser && typeof localUser === 'object' && localUser.id) return localUser
+  } catch (e) {}
+}
+
 export async function login(email: string, password: string): Promise<void> {
   const authResponse = await fetch('/api/v1/oauth/token', {
     method: 'POST',
@@ -12,13 +19,7 @@ export async function login(email: string, password: string): Promise<void> {
     throw new Error('Unauthorized')
   }
 
-  const userResponse = await fetch('/api/v1/users/me', {credentials: 'same-origin'})
-  if (userResponse.status !== 200) {
-    throw new Error('Invalid User')
-  }
-
-  const user = await userResponse.json()
-  localStorage.setItem('loggedInUser', JSON.stringify(user))
+  await refreshLoggedInUser()
   window.location.href = '/'
 }
 
@@ -46,10 +47,14 @@ export async function createAccount(
   await login(email, password)
 }
 
-export async function updateAccount(user: IUser): Promise<void> {
-  const response = await fetch(`/api/v1/users/${user.id}`, {
+export async function updateAccount(
+  userId: IUser['id'],
+  user: Pick<IUser, 'firstName' | 'lastName'>,
+): Promise<void> {
+  const response = await fetch(`/api/v1/users/${userId}/profile`, {
     method: 'PUT',
     body: JSON.stringify(user),
+    credentials: 'same-origin',
     headers: {'content-type': 'application/json'},
   })
 
@@ -57,4 +62,17 @@ export async function updateAccount(user: IUser): Promise<void> {
     // TODO: Provide more specific error message
     throw new Error('Error updating account')
   }
+
+  await refreshLoggedInUser()
+}
+
+export async function refreshLoggedInUser(): Promise<void> {
+  const userResponse = await fetch('/api/v1/users/me', {credentials: 'same-origin'})
+  if (userResponse.status !== 200) {
+    localStorage.removeItem('loggedInUser')
+    throw new Error('Invalid User')
+  }
+
+  const user = await userResponse.json()
+  localStorage.setItem('loggedInUser', JSON.stringify(user))
 }

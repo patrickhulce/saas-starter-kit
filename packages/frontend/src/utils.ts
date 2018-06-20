@@ -3,29 +3,27 @@ import * as ReactDOM from 'react-dom'
 
 import {IUser} from '../../shared/lib/typedefs'
 
+import {getLoggedInUser, refreshLoggedInUser} from './services/user-service'
+
 export async function redirectToLogin(): Promise<void> {
   window.location.href = '/login'
   return new Promise(resolve => setTimeout(resolve, 10000)) as Promise<void>
 }
 
-export function getLocalUser(): IUser | undefined {
-  try {
-    const localUser = JSON.parse(localStorage.getItem('loggedInUser') || '')
-    if (localUser && typeof localUser === 'object' && localUser.id) return localUser
-  } catch (e) {}
-}
-
 export async function redirectIfNotAuthorized(): Promise<void> {
-  const localUser = getLocalUser()
-  if (!localUser) await redirectToLogin()
-  const response = await fetch('/api/v1/users/me', {credentials: 'same-origin'})
-  if (response.status !== 200) await redirectToLogin()
-  const remoteUser: IUser = await response.json()
-  if (localUser!.id !== remoteUser.id) await redirectToLogin()
+  try {
+    const localUser = await getLoggedInUser()
+    if (!localUser) await redirectToLogin()
+    await refreshLoggedInUser()
+    const remoteUser = await getLoggedInUser()
+    if (!remoteUser || localUser!.id !== remoteUser.id) await redirectToLogin()
+  } catch (err) {
+    await redirectToLogin()
+  }
 }
 
-export async function findUserOrRedirect(): Promise<IUser> {
-  const localUser = getLocalUser()
+export async function findUserOnStartupOrBail(): Promise<IUser> {
+  const localUser = await getLoggedInUser()
   if (!localUser) await redirectToLogin()
   setTimeout(redirectIfNotAuthorized, 0)
   return localUser!
@@ -49,4 +47,5 @@ export const testIds = {
   createAccountSubmit: 'create-account-submit',
   loginForm: 'login-form',
   registerForm: 'register-form',
+  profileNamesForm: 'profile-names-form',
 }
