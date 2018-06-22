@@ -1,6 +1,11 @@
-import {IState} from '../typedefs'
+import {IState} from './typedefs'
 
-module.exports = (state: IState) => {
+describe('change password', () => {
+  const state: IState = {}
+
+  require('./steps/initialize.test')(state)
+  require('./steps/account-setup.test')(state)
+
   describe('change password', () => {
     it('should reject unauthenticated password changes', async () => {
       const response = await fetch(`${state.apiURL}/v1/users/${state.user.id}/password`, {
@@ -70,4 +75,6 @@ module.exports = (state: IState) => {
       state.login.password = 'new-password1'
     })
   })
-}
+
+  require('./steps/teardown.test')(state)
+})

@@ -14,7 +14,7 @@ module.exports = {
   },
   testPathIgnorePatterns: [
     '/node_modules/',
-    '/test/integration/',
+    '/test/steps/',
     '/e2e/test/',
     '/dist/',
   ],

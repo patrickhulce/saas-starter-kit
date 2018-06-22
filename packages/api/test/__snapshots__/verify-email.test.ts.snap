@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`lib/app.ts account setup should have sent a welcome email 1`] = `
+exports[`change password verify email should have sent a welcome email 1`] = `
 Object {
   "content": Object {
     "from": "noreply@THE_DOMAIN",
@@ -33,12 +33,5 @@ The THE_PRODUCT_DISPLAY_NAME Team",
       ],
     },
   ],
-}
-`;
-
-exports[`lib/app.ts change password should reject password changes that do not confirm existing password 1`] = `
-Object {
-  "message": "current password invalid",
-  "name": "AssertionError",
 }
 `;

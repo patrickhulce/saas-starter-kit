@@ -6,9 +6,9 @@ import {Server} from 'net'
 import {IAccount, IUser} from '../../shared/lib/typedefs'
 
 export interface IState {
-  app: express.Application
-  sqlExtension: SQLExtension
-  userExecutor: IDatabaseExecutor<IUser>
+  app?: express.Application
+  sqlExtension?: SQLExtension
+  userExecutor?: IDatabaseExecutor<IUser>
   server?: Server
   port?: number
   baseURL?: string

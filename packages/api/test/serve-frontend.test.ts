@@ -1,6 +1,11 @@
-import {IState} from '../typedefs'
+import {IState} from './typedefs'
 
-module.exports = (state: IState) => {
+describe('change password', () => {
+  const state: IState = {}
+
+  require('./steps/initialize.test')(state)
+  require('./steps/account-setup.test')(state)
+
   describe('serve frontend', () => {
     let requestApi, requestPipeFn, fetchResponse, fetchTextFn
 
@@ -54,4 +59,6 @@ module.exports = (state: IState) => {
       expect(__requestGet.mock.calls[0][0]).toContain('<hash>/account.html')
     })
   })
-}
+
+  require('./steps/teardown.test')(state)
+})

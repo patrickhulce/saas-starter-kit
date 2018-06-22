@@ -1,6 +1,11 @@
-import {IState} from '../typedefs'
+import {IState} from './typedefs'
 
-module.exports = (state: IState) => {
+describe('change password', () => {
+  const state: IState = {}
+
+  require('./steps/initialize.test')(state)
+  require('./steps/account-setup.test')(state)
+
   describe('change profile', () => {
     it('should accept name changes', async () => {
       const payload = {firstName: 'First', lastName: 'Last'}
@@ -23,4 +28,6 @@ module.exports = (state: IState) => {
       expect(await response.json()).toMatchObject({firstName: 'First', lastName: 'Last'})
     })
   })
-}
+
+  require('./steps/teardown.test')(state)
+})
