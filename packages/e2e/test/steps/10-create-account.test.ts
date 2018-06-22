@@ -49,7 +49,7 @@ module.exports = (state: IState) => {
       state.user = {password: 'test_password'}
     })
 
-    it('should send welcome email', async () => {
+    it.skip('should send welcome email', async () => {
       expect(state.user).toBeDefined()
       const messages = await mailslurp.readMail(state.userMailbox, 1)
 
@@ -59,7 +59,7 @@ module.exports = (state: IState) => {
       state.emailVerificationLink = messages[0].body.match(/>http[^\s<]+/)[0].slice(1)
     })
 
-    it('should visit verification link', async () => {
+    it.skip('should visit verification link', async () => {
       expect(state.emailVerificationLink).toBeDefined()
       await state.page.goto(state.emailVerificationLink)
 
