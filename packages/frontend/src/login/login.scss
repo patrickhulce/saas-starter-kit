@@ -46,3 +46,9 @@ p.tos {
   text-align: center;
   margin-top: 20px;
 }
+
+@media (max-height: 800px) {
+  .logo {
+    display: none;
+  }
+}
