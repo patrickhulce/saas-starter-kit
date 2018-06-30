@@ -3,6 +3,7 @@ import * as Sparkpost from 'sparkpost'
 
 import conf from '../../../shared/lib/conf'
 import {IAccountInput, IUserInput} from '../../../shared/lib/typedefs'
+import {_sendToTestMailbox} from '../routes/_test'
 
 // tslint:disable-next-line
 const debug = require('debug')('the-product:hooks')
@@ -26,26 +27,30 @@ export async function sendWelcomeEmail(
 ): Promise<void> {
   const publicPath = `${conf.origin}/api`
   const sparkpost = new Sparkpost(conf.sparkpost.apiKey)
-  const emailToVerify = conf.sparkpost.sendToSink ? `${email}.sink.sparkpostmail.com` : email
   const verifyLink = `${publicPath}/v1/users/verifications?key=${verificationKey}`
 
-  debug('sending welcome email to', emailToVerify, 'from', conf.sparkpost.fromAddress)
+  debug('sending welcome email to', email, 'from', conf.sparkpost.fromAddress)
+
+  const content: Sparkpost.CreateTransmission['content'] = {
+    from: conf.sparkpost.fromAddress,
+    subject: `Welcome to ${conf.displayName}! - Verify your email`,
+    html: WELCOME_TEMPLATE({name, link: `<a href="${verifyLink}">${verifyLink}</a>`})
+      .split('\n')
+      .join('<br>'),
+    text: WELCOME_TEMPLATE({name, link: verifyLink}),
+  }
+
+  _sendToTestMailbox(email, content)
+  if (conf.sparkpost.sendToTestMailboxOnly) return
 
   await sparkpost.transmissions.send({
     options: {
       transactional: true,
     },
-    content: {
-      from: conf.sparkpost.fromAddress,
-      subject: `Welcome to ${conf.displayName}! - Verify your email`,
-      html: WELCOME_TEMPLATE({name, link: `<a href="${verifyLink}">${verifyLink}</a>`})
-        .split('\n')
-        .join('<br>'),
-      text: WELCOME_TEMPLATE({name, link: verifyLink}),
-    },
+    content,
     recipients: [
       {
-        address: {email: emailToVerify, name},
+        address: {email, name},
         tags: ['welcome', 'email-verification'],
       },
     ],

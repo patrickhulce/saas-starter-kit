@@ -1,14 +1,10 @@
 import 'pptr-testing-library/extend'
 import {ElementHandle} from 'puppeteer'
 import {IState} from '../../lib/typedefs'
-import {Mailslurp} from '../../lib/mailslurp'
-import conf from '../../../shared/lib/conf'
 import {testIds} from '../../../frontend/src/utils'
 
 module.exports = (state: IState) => {
   let $document: ElementHandle
-
-  const mailslurp = new Mailslurp(conf.mailslurp.apiKey)
 
   // tslint:disable-next-line
   async function typeInByLabel(label, text) {
@@ -22,7 +18,7 @@ module.exports = (state: IState) => {
     })
 
     it('should prep a fake inbox', async () => {
-      state.userMailbox = await mailslurp.createInbox()
+      state.userMailbox = await state.mail.createInbox()
     })
 
     it('should navigate to login page', async () => {
@@ -58,9 +54,9 @@ module.exports = (state: IState) => {
       state.user = {password: 'test_password'}
     })
 
-    it.skip('should send welcome email', async () => {
+    it('should send welcome email', async () => {
       expect(state.user).toBeDefined()
-      const messages = await mailslurp.readMail(state.userMailbox, 1)
+      const messages = await state.mail.readMail(state.userMailbox, 1)
 
       expect(messages).toHaveLength(1)
       expect(messages[0].subject).toContain('Welcome')
@@ -68,7 +64,7 @@ module.exports = (state: IState) => {
       state.emailVerificationLink = messages[0].body.match(/>http[^\s<]+/)[0].slice(1)
     })
 
-    it.skip('should visit verification link', async () => {
+    it('should visit verification link', async () => {
       expect(state.emailVerificationLink).toBeDefined()
       await state.page.goto(state.emailVerificationLink)
 

@@ -1,11 +1,11 @@
 /* tslint:disable no-unsafe-any */
 import * as fetch from 'isomorphic-fetch'
 
-import {IMailbox, IMessage} from './typedefs'
+import {IMailService, IMailbox, IMessage} from './typedefs'
 
 const URL = 'https://api.mailslurp.com'
 
-export class Mailslurp {
+export class Mailslurp implements IMailService {
   public key: string
 
   public constructor(key: string) {

@@ -5,6 +5,7 @@ export interface IState {
   page: Page
   rootURL: string
   waitFor: number
+  mail: IMailService
   user?: {password: string}
   userMailbox?: IMailbox
   emailVerificationLink?: string
@@ -20,4 +21,9 @@ export interface IMessage {
   from: string
   subject: string
   body: string
+}
+
+export interface IMailService {
+  createInbox(): Promise<IMailbox>
+  readMail(inbox: IMailbox, waitFor?: number): Promise<IMessage[]>
 }

@@ -13,7 +13,7 @@ import {
   sqlExtension,
   userModel,
 } from '../../../shared/lib'
-import {runRegisterHooks} from '../hooks/register'
+import {runRegisterHooks} from '../hooks/register-hooks'
 
 const accountExecutor = kiln.build(ModelID.Account, sqlExtension) as IDatabaseExecutor<
   IAccountInput

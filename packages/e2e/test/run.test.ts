@@ -1,14 +1,21 @@
 import {IState} from '../lib/typedefs'
-import {conf} from '../../shared/lib'
 import {Page, Browser} from 'puppeteer'
+import {Mailslurp} from '../lib/mailslurp'
+import {TestMailbox} from '../lib/test-mailbox'
+import conf from '../../shared/lib/conf'
 
 jest.setTimeout(15000)
 
 describe('End-to-End Application', () => {
+  const rootURL = `http://localhost:${process.env.PORT || 8080}`
+
   const state: IState = {
     browser: undefined as Browser,
     page: undefined as Page,
-    rootURL: `http://localhost:${process.env.PORT || 8080}`,
+    rootURL,
+    mail: process.env.TEST_REAL_MAIL
+      ? new Mailslurp(conf.mailslurp.apiKey)
+      : new TestMailbox(rootURL),
     waitFor: 500,
   }
 

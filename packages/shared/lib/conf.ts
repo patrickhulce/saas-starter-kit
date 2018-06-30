@@ -20,24 +20,20 @@ const conf: IConf = {
   },
 
   sparkpost: {
-    sendToSink: true,
+    sendToTestMailboxOnly: true,
     apiKey: process.env.SPARKPOST_API_KEY || '',
     fromAddress: process.env.SPARKPOST_FROM || '',
   },
 }
 
-if (process.env.APP_ENV === 'development') {
-  conf.sparkpost.sendToSink = false
-}
-
 if (process.env.APP_ENV === 'aws-development') {
-  conf.sparkpost.sendToSink = false
+  conf.sparkpost.sendToTestMailboxOnly = false
 }
 
 if (process.env.APP_ENV === 'aws-production') {
   conf.debug = false
   conf.production = true
-  conf.sparkpost.sendToSink = false
+  conf.sparkpost.sendToTestMailboxOnly = false
 }
 
 if (!conf.sparkpost.fromAddress || conf.isUnderTest) {

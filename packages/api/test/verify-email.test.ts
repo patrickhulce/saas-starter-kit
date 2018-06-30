@@ -1,7 +1,16 @@
 import {IState} from './typedefs'
+import conf from '../../shared/lib/conf'
 
 describe('change password', () => {
   const state: IState = {}
+
+  beforeAll(() => {
+    conf.sparkpost.sendToTestMailboxOnly = false
+  })
+
+  afterAll(() => {
+    conf.sparkpost.sendToTestMailboxOnly = true
+  })
 
   require('./steps/initialize.test')(state)
   require('./steps/account-setup.test')(state)

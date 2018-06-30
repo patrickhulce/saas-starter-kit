@@ -68,5 +68,5 @@ export interface IConf {
   database: ISQLOptions
 
   mailslurp: {apiKey: string}
-  sparkpost: {fromAddress: string; apiKey: string; sendToSink: boolean}
+  sparkpost: {fromAddress: string; apiKey: string; sendToTestMailboxOnly: boolean}
 }

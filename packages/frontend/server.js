@@ -17,6 +17,7 @@ const compiler = webpack(config)
 const API_PORT = _.random(49152, 65535)
 
 app.use('/api', proxy({target: `http://localhost:${API_PORT}/`, changeOrigin: true}))
+app.use('/_test', proxy({target: `http://localhost:${API_PORT}/`, changeOrigin: true}))
 app.get('/login', (req, res) => res.redirect('/login.html'))
 app.use(middleware(compiler, {}))
 app.use(hot(compiler))
