@@ -28,6 +28,7 @@ h1.app-name {
   background: white;
   border-radius: 10px;
   width: 375px;
+  max-width: calc(100% - 20px);
   min-height: 200px;
 }
 
@@ -50,5 +51,15 @@ p.tos {
 @media (max-height: 800px) {
   .logo {
     display: none;
+  }
+}
+
+@media (max-height: 660px) {
+  .header {
+    margin-top: 0;
+  }
+
+  h1.app-name {
+    font-size: 32px;
   }
 }
