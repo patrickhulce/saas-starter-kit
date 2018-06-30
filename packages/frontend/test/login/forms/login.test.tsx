@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {RenderResult, fireEvent, render, wait} from 'react-testing-library'
+import {RenderResult, Simulate, fireEvent, render, wait} from 'react-testing-library'
 
 import {LoginForm} from '../../../src/login/forms/login'
 import {createFetchMock} from '../../utils'
@@ -67,5 +67,20 @@ describe('login/forms/login.tsx', () => {
 
     expect(queryByTestId(testIds.loadingBar)).toBeNull()
     expect(getByTestId(testIds.errorBar).textContent).toMatchSnapshot()
+  })
+
+  it('should trigger forgot password UI', async () => {
+    const {getByText, getByTestId} = renderAndFill()
+    const mockFetch = createFetchMock()
+    fetchMock.mockImplementation(mockFetch.fn)
+
+    // TODO: move this back to getByText once figure out how to make it pick the button
+    Simulate.click(getByTestId(testIds.loginFormSecondaryBtn))
+    await wait(() => getByText(/reset/i))
+    fireEvent.submit(getByTestId(testIds.loginForm))
+
+    mockFetch.resolve()
+    expect(fetchMock).toHaveBeenCalled()
+    expect(fetchMock.mock.calls[0]).toMatchSnapshot()
   })
 })

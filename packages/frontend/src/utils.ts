@@ -45,6 +45,8 @@ export const testIds = {
   // Login IDs
   createAccountTab: 'create-account-tab',
   createAccountSubmit: 'create-account-submit',
+  loginFormPrimaryBtn: 'login-form-primary-btn',
+  loginFormSecondaryBtn: 'login-form-secondary-btn',
   loginForm: 'login-form',
   registerForm: 'register-form',
   profileNamesForm: 'profile-names-form',

@@ -67,6 +67,7 @@ exports[`login/forms/login.tsx should render form 1`] = `
     </div>
     <button
       class="MuiButtonBase-root-50 MuiButton-root-28 MuiButton-contained-37 MuiButton-containedPrimary-38 MuiButton-raised-40 MuiButton-raisedPrimary-41"
+      data-testid="login-form-primary-btn"
       tabindex="0"
       type="submit"
     >
@@ -74,6 +75,21 @@ exports[`login/forms/login.tsx should render form 1`] = `
         class="MuiButton-label-29"
       >
         Login
+      </span>
+      <span
+        class="MuiTouchRipple-root-53"
+      />
+    </button>
+    <button
+      class="MuiButtonBase-root-50 MuiButton-root-28 MuiButton-contained-37 MuiButton-raised-40 forgotPassword"
+      data-testid="login-form-secondary-btn"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="MuiButton-label-29"
+      >
+        Forgot password?
       </span>
       <span
         class="MuiTouchRipple-root-53"
@@ -98,3 +114,17 @@ Array [
 `;
 
 exports[`login/forms/login.tsx should show an error UI 1`] = `"Invalid login"`;
+
+exports[`login/forms/login.tsx should trigger forgot password UI 1`] = `
+Array [
+  "/api/v1/users/forgot-password",
+  Object {
+    "body": "{\\"email\\":\\"test@example.com\\"}",
+    "credentials": "same-origin",
+    "headers": Object {
+      "content-type": "application/json",
+    },
+    "method": "POST",
+  },
+]
+`;

@@ -23,6 +23,16 @@ export async function login(email: string, password: string): Promise<void> {
   window.location.href = '/'
 }
 
+export async function forgotPassword(email: string): Promise<void> {
+  // TODO: actually implement the API to make this work
+  await fetch('/api/v1/users/forgot-password', {
+    method: 'POST',
+    body: JSON.stringify({email}),
+    headers: {'content-type': 'application/json'},
+    credentials: 'same-origin',
+  })
+}
+
 export async function createAccount(
   accountName: string,
   firstName: string,

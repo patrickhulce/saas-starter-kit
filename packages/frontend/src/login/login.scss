@@ -32,6 +32,16 @@ h1.app-name {
   min-height: 200px;
 }
 
+button.forgot-password {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.75;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 .newsletter {
   font-size: 0.9em;
 
