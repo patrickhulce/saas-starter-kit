@@ -1,3 +1,4 @@
+const _ = require('lodash')
 const promisify = require('util').promisify
 const path = require('path')
 const webpack = require('webpack')
@@ -13,7 +14,9 @@ const killTree = promisify(killTreeNodeback)
 const app = express()
 const compiler = webpack(config)
 
-app.use('/api', proxy({target: 'http://localhost:5000/', changeOrigin: true}))
+const API_PORT = _.random(49152, 65535)
+
+app.use('/api', proxy({target: `http://localhost:${API_PORT}/`, changeOrigin: true}))
 app.get('/login', (req, res) => res.redirect('/login.html'))
 app.use(middleware(compiler, {}))
 app.use(hot(compiler))
@@ -25,7 +28,7 @@ const server = app.listen(process.env.PORT || 8080, () => {
 
   if (process.env.START_API) {
     const cwd = path.join(__dirname, '../api')
-    const env = `DEBUG=the-product:* APP_ENV=development PORT=5000 APP_ORIGIN=http://localhost:${port}`
+    const env = `DEBUG=the-product:* APP_ENV=development PORT=${API_PORT} APP_ORIGIN=http://localhost:${port}`
     const server = exec(`${env} yarn start`, {cwd, async: true})
 
     let shutdown
