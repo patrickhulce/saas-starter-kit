@@ -1,18 +1,26 @@
+import 'pptr-testing-library/extend'
+import {ElementHandle} from 'puppeteer'
 import {IState} from '../../lib/typedefs'
 import {Mailslurp} from '../../lib/mailslurp'
 import conf from '../../../shared/lib/conf'
 import {testIds} from '../../../frontend/src/utils'
 
 module.exports = (state: IState) => {
+  let $document: ElementHandle
+
   const mailslurp = new Mailslurp(conf.mailslurp.apiKey)
 
   // tslint:disable-next-line
-  async function typeIn(formEl, text) {
-    const $el = await state.page.$(formEl)
+  async function typeInByLabel(label, text) {
+    const $el = await $document.getByLabelText(label)
     await $el.type(text)
   }
 
   describe('create account', () => {
+    beforeEach(async () => {
+      $document = await state.page.getDocument()
+    })
+
     it('should prep a fake inbox', async () => {
       state.userMailbox = await mailslurp.createInbox()
     })
@@ -24,20 +32,21 @@ module.exports = (state: IState) => {
 
     it('should switch to create account tab', async () => {
       await state.page.waitFor(state.waitFor)
-      const $createAccountTab = await state.page.$(`[data-testid=${testIds.createAccountTab}]`)
+      const $createAccountTab = await $document.getByTestId(testIds.createAccountTab)
       await $createAccountTab.click()
       await state.page.waitFor(`[data-testid=${testIds.registerForm}`)
     })
 
     it('should fill in form', async () => {
       await state.page.waitFor(state.waitFor)
-      await typeIn('input[name=firstName]', 'John')
-      await typeIn('input[name=lastName]', 'User')
-      await typeIn('input[name=email]', state.userMailbox.address)
-      await typeIn('input[name=password]', 'test_password')
-      await typeIn('input[name=confirmPassword]', 'test_password')
+      await typeInByLabel(/First Name/, 'John')
+      await typeInByLabel(/Last Name/, 'User')
+      await typeInByLabel(/Email/, state.userMailbox.address)
+      await typeInByLabel(/^Password/, 'test_password')
+      await typeInByLabel(/Confirm Password/, 'test_password')
       await state.page.waitFor(state.waitFor)
-      ;(await state.page.$(`[data-testid=${testIds.createAccountSubmit}]`)).click()
+      const $submit = await $document.getByTestId(testIds.createAccountSubmit)
+      $submit.click()
       await state.page.waitForNavigation()
     })
 
