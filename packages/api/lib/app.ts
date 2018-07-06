@@ -7,7 +7,6 @@ import {
   createHandleErrorMiddleware,
   createHandlePromiseMiddleware,
 } from 'klay'
-import {omit, pick} from 'lodash'
 
 import {authConfiguration, conf, kiln, sqlExtension} from '../../shared/lib'
 
