@@ -6,7 +6,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
   // tslint:disable-next-line
   console.log('API is available on port', port)
 
-  if (conf.origin.startsWith('http://localhost')) {
+  if (conf.origin === 'http://localhost') {
     conf.origin = `http://localhost:${port}`
   }
 })

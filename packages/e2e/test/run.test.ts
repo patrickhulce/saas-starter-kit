@@ -4,7 +4,9 @@ import {Mailslurp} from '../lib/mailslurp'
 import {TestMailbox} from '../lib/test-mailbox'
 import conf from '../../shared/lib/conf'
 
-jest.setTimeout(15000)
+if (process.env.TEST_REAL_MAIL) {
+  jest.setTimeout(15000)
+}
 
 describe('End-to-End Application', () => {
   const rootURL = `http://localhost:${process.env.PORT || 3000}`
