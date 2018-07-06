@@ -7,7 +7,7 @@ import conf from '../../shared/lib/conf'
 jest.setTimeout(15000)
 
 describe('End-to-End Application', () => {
-  const rootURL = `http://localhost:${process.env.PORT || 8080}`
+  const rootURL = `http://localhost:${process.env.PORT || 3000}`
 
   const state: IState = {
     browser: undefined as Browser,

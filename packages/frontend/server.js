@@ -22,7 +22,7 @@ app.get('/login', (req, res) => res.redirect('/login.html'))
 app.use(middleware(compiler, {}))
 app.use(hot(compiler))
 
-const server = app.listen(process.env.PORT || 8080, () => {
+const server = app.listen(process.env.PORT || 3000, () => {
   const port = server.address().port
   // eslint-disable-next-line no-console
   console.log(`webpackdev listening on ${port}`)
