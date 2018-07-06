@@ -33,8 +33,7 @@ module.exports = {
       role: Sequelize.TEXT,
       email: Sequelize.STRING(250),
       isVerified: Sequelize.BOOLEAN,
-      verificationKey: Sequelize.UUID,
-      password: Sequelize.STRING(40),
+      password: Sequelize.STRING(73),
       firstName: Sequelize.STRING(100),
       lastName: Sequelize.STRING(100),
       createdAt: Sequelize.DATE(6),
@@ -53,8 +52,39 @@ module.exports = {
       name: 'users_updatedat_desc',
       fields: [{attribute: 'updatedAt', order: 'DESC'}],
     })
+    await queryInterface.createTable('verifications', {
+      id: {
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true,
+        type: Sequelize.BIGINT,
+      },
+      userId: {
+        references: {
+          key: 'id',
+          model: 'users',
+        },
+        type: Sequelize.BIGINT,
+      },
+      key: Sequelize.STRING(40),
+      type: Sequelize.TEXT,
+      consumed: Sequelize.BOOLEAN,
+      meta__ip: Sequelize.TEXT,
+      createdAt: Sequelize.DATE(6),
+      updatedAt: Sequelize.DATE(6),
+    })
+    await queryInterface.addIndex('verifications', {
+      name: 'verifications_unique_key',
+      unique: true,
+      fields: ['key'],
+    })
+    await queryInterface.addIndex('verifications', {
+      name: 'verifications_consumed__key_asc',
+      fields: [{attribute: 'consumed__key', order: 'ASC'}],
+    })
   },
   down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('verifications')
     await queryInterface.dropTable('users')
     await queryInterface.dropTable('accounts')
   },

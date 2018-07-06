@@ -4,6 +4,7 @@ module.exports = (state: IState) => {
   describe('teardown', () => {
     it('should cleanup the account', async () => {
       const query = q => state.sqlExtension.sequelize.query(q)
+      await query(`DELETE FROM verifications where userId = ${state.user.id}`)
       await query(`DELETE FROM users where id = ${state.user.id}`)
       await query(`DELETE FROM accounts where id = ${state.account.id}`)
     })

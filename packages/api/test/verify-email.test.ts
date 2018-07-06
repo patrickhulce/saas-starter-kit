@@ -16,10 +16,13 @@ describe('change password', () => {
   require('./steps/account-setup.test')(state)
 
   describe('verify email', () => {
+    let verificationKey
+
     it('should have sent a welcome email', () => {
       expect(__sparkpostSend).toHaveBeenCalled()
       const payload = __sparkpostSend.mock.calls[0][0]
       const address = payload.recipients[0].address
+      verificationKey = payload.content.text.match(/key=([\w-]+)/)[1]
       payload.content.text = payload.content.text.replace(/key=[\w-]+/g, 'key=<key>')
       payload.content.html = payload.content.html.replace(/key=[\w-]+/g, 'key=<key>')
       address.email = address.email.replace(/.*@/, '<uuid>@')
@@ -36,13 +39,13 @@ describe('change password', () => {
     })
 
     it('should verify email address', async () => {
-      let dbUser = await state.userExecutor.findById(state.user.id)
       const fetchOpts = {headers: {cookie: `token=${state.token}`}}
-      const query = `key=${dbUser.verificationKey}`
+      const query = `key=${verificationKey}`
       const response = await fetch(`${state.apiURL}/v1/users/verifications?${query}`, fetchOpts)
+      console.log(await response.text())
       expect(response.url).toMatch(/verification=success/)
 
-      dbUser = await state.userExecutor.findById(state.user.id)
+      const dbUser = await state.userExecutor.findById(state.user.id)
       expect(dbUser.isVerified).toBe(true)
     })
   })

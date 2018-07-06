@@ -1,11 +1,9 @@
 import {
   ConstraintType,
-  DatabaseEvent,
   IModel,
   PasswordAlgorithm,
   READ_ACTIONS,
   SortDirection,
-  SupplyWithPreset,
   WRITE_ACTIONS,
 } from 'klay'
 
@@ -41,11 +39,6 @@ export const userModel: IModel = modelContext
       .max(250)
       .constrain({type: ConstraintType.Unique}),
     isVerified: modelContext.boolean(),
-    // TODO: add a "api-hidden" property
-    verificationKey: modelContext
-      .uuid()
-      .constrain({type: ConstraintType.Immutable})
-      .automanage({event: DatabaseEvent.Create, supplyWith: SupplyWithPreset.UUID}),
     password: passwordModel,
     firstName: modelContext.string().max(100),
     lastName: modelContext.string().max(100),

@@ -1,14 +1,17 @@
 import * as express from 'express'
+import {ActionType, IRouterOptions, createPasswordValidationMiddleware} from 'klay'
+
 import {
-  ActionType,
-  IDatabaseExecutor,
-  IRouterOptions,
-  createPasswordValidationMiddleware,
-} from 'klay'
+  ModelID,
+  Permission,
+  kiln,
+  userExecutor,
+  userModel,
+  verificationExecutor,
+} from '../../../shared/lib'
 
-import {IUserInput, ModelID, Permission, kiln, sqlExtension, userModel} from '../../../shared/lib'
-
-const userExecutor = kiln.build(ModelID.User, sqlExtension) as IDatabaseExecutor<IUserInput>
+// tslint:disable-next-line
+const log = require('debug')('the-product:api:users')
 
 export const usersRouterOptions: IRouterOptions = {
   modelName: ModelID.User,
@@ -20,19 +23,30 @@ export const usersRouterOptions: IRouterOptions = {
         const id = req.grants.userContext.id
         const user = await userExecutor.findById(id)
         if (!user) throw new Error('No such user')
-        user.verificationKey = undefined
         res.json(user)
       },
     },
     'GET /verifications': {
       async handler(req: express.Request, res: express.Response): Promise<void> {
-        const verificationKey = req.query && req.query.key
-        if (!verificationKey) return res.redirect('/')
-        const user = await userExecutor.findOne({where: {verificationKey}})
+        const key = req.query && req.query.key
+        if (!key) return res.redirect('/')
+
+        log('attempting verification of', key)
+        const verification = await verificationExecutor.findOne({where: {key}})
+        if (!verification || verification.consumed) return res.redirect('/')
+
+        log('attempting verification for', verification.userId)
+        const user = await userExecutor.findById(verification.userId)
         if (!user) return res.redirect('/')
 
+        verification.consumed = true
         user.isVerified = true
-        await userExecutor.update(user)
+
+        await userExecutor.transaction(async transaction => {
+          await verificationExecutor.update(verification, {transaction})
+          await userExecutor.update(user, {transaction})
+        })
+
         res.redirect('/?verification=success')
       },
     },

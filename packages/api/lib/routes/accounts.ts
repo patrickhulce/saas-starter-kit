@@ -4,7 +4,9 @@ import {IDatabaseExecutor, IRouterOptions} from 'klay'
 import {
   AccountPlan,
   AuthRole,
+  IAccount,
   IAccountInput,
+  IUser,
   IUserInput,
   ModelID,
   accountModel,
@@ -14,6 +16,9 @@ import {
   userModel,
 } from '../../../shared/lib'
 import {runRegisterHooks} from '../hooks/register-hooks'
+
+// tslint:disable-next-line
+const log = require('debug')('the-product:api:accounts')
 
 const accountExecutor = kiln.build(ModelID.Account, sqlExtension) as IDatabaseExecutor<
   IAccountInput
@@ -38,15 +43,17 @@ export const accountsRouterOptions: IRouterOptions = {
       async handler(req: express.Request, res: express.Response): Promise<void> {
         const response = await accountExecutor.transaction(async transaction => {
           const payload = req.validated!.body
-          const account = await accountExecutor.create(
+          log('creating account', payload.account.name)
+          const account = (await accountExecutor.create(
             {
               name: payload.account.name,
               plan: AccountPlan.Gold,
             },
             {transaction},
-          )
+          )) as IAccount
 
-          const user = await userExecutor.create(
+          log('creating user', payload.user.email)
+          const user = (await userExecutor.create(
             {
               accountId: account.id!,
               email: payload.user.email,
@@ -57,11 +64,11 @@ export const accountsRouterOptions: IRouterOptions = {
               isVerified: false,
             },
             {transaction},
-          )
+          )) as IUser
 
-          await runRegisterHooks(account, user)
+          log('running register hooks', user.email)
+          await runRegisterHooks(account, user, transaction)
 
-          user.verificationKey = undefined
           return {account, user}
         })
 

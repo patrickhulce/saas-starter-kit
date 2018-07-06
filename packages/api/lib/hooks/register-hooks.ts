@@ -1,12 +1,14 @@
+import {IQueryTransaction} from 'klay'
 import {template} from 'lodash'
 import * as Sparkpost from 'sparkpost'
 
+import {verificationExecutor} from '../../../shared/lib'
 import conf from '../../../shared/lib/conf'
-import {IAccountInput, IUserInput} from '../../../shared/lib/typedefs'
+import {IAccount, IUser, VerificationType} from '../../../shared/lib/typedefs'
 import {_sendToTestMailbox} from '../routes/_test'
 
 // tslint:disable-next-line
-const debug = require('debug')('the-product:hooks')
+const log = require('debug')('the-product:hooks')
 
 const WELCOME_TEMPLATE = template(
   [
@@ -29,7 +31,7 @@ export async function sendWelcomeEmail(
   const sparkpost = new Sparkpost(conf.sparkpost.apiKey)
   const verifyLink = `${publicPath}/v1/users/verifications?key=${verificationKey}`
 
-  debug('sending welcome email to', email, 'from', conf.sparkpost.fromAddress)
+  log('sending welcome email to', email, 'from', conf.sparkpost.fromAddress)
 
   const content: Sparkpost.CreateTransmission['content'] = {
     from: conf.sparkpost.fromAddress,
@@ -57,6 +59,20 @@ export async function sendWelcomeEmail(
   })
 }
 
-export async function runRegisterHooks(account: IAccountInput, user: IUserInput): Promise<void> {
-  await sendWelcomeEmail(user.email, `${user.firstName} ${user.lastName}`, user.verificationKey!)
+export async function runRegisterHooks(
+  account: IAccount,
+  user: IUser,
+  transaction: IQueryTransaction,
+): Promise<void> {
+  const verification = await verificationExecutor.create(
+    {
+      userId: user.id,
+      type: VerificationType.Email,
+      consumed: false,
+      meta: {},
+    },
+    {transaction},
+  )
+
+  await sendWelcomeEmail(user.email, `${user.firstName} ${user.lastName}`, verification.key!)
 }

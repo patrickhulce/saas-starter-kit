@@ -3,6 +3,7 @@ import {ISQLOptions} from 'klay'
 export enum ModelID {
   Account = 'account',
   User = 'user',
+  Verification = 'verification',
 }
 
 export interface IAccountInput {
@@ -31,6 +32,23 @@ export interface IUserInput {
 
 export type IUser = Required<IUserInput>
 
+export interface IVerificationMeta {
+  ip?: string
+}
+
+export interface IVerificationInput {
+  id?: number
+  userId: number
+  key?: string
+  type: VerificationType
+  consumed: boolean
+  meta: IVerificationMeta
+  createdAt?: Date
+  updatedAt?: Date
+}
+
+export type IVerification = Required<IVerificationInput>
+
 export enum AuthRole {
   Root = 'root',
   Admin = 'admin',
@@ -52,6 +70,11 @@ export enum AccountPlan {
   Bronze = 'bronze',
   Silver = 'silver',
   Gold = 'gold',
+}
+
+export enum VerificationType {
+  Email = 'email',
+  ResetPassword = 'reset-password',
 }
 
 export interface IConf {
