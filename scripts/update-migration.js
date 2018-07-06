@@ -4,7 +4,6 @@ const _ = require('lodash')
 const fs = require('fs')
 const path = require('path')
 const shelljs = require('shelljs')
-shell.config.fatal = true
 
 const KLAY_EXECUTABLE = path.join(__dirname, '../node_modules/.bin/klay-kiln-sql')
 const LINT_EXECTUABLE = path.join(__dirname, '../node_modules/.bin/lint')
@@ -23,7 +22,6 @@ async function run() {
   shelljs.exec(`${LINT_EXECTUABLE} --fix --ignore '*.ts' --prettify ${createdFile}`, {silent: true})
   shelljs.mv(createdFile, bootstrapFile)
 }
-
 
 run().catch(err => {
   console.error(err)
