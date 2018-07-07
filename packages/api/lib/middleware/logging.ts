@@ -2,9 +2,9 @@ import * as express from 'express'
 import * as morgan from 'morgan'
 
 import {conf} from '../../../shared/lib'
+import {logger} from '../../../shared/lib/logger'
 
-// tslint:disable-next-line
-const debug = require('debug')('the-product:api')
+const debug = logger('api')
 
 export const loggers: express.RequestHandler[] = []
 

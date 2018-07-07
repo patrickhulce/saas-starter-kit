@@ -11,6 +11,7 @@ import {
   ModelID,
   accountModel,
   kiln,
+  logger,
   modelContext,
   sqlExtension,
   userModel,
@@ -18,7 +19,7 @@ import {
 import {runRegisterHooks} from '../hooks/register-hooks'
 
 // tslint:disable-next-line
-const log = require('debug')('the-product:api:accounts')
+const log = logger('api:accounts')
 
 const accountExecutor = kiln.build(ModelID.Account, sqlExtension) as IDatabaseExecutor<
   IAccountInput

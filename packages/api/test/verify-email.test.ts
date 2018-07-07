@@ -42,7 +42,6 @@ describe('change password', () => {
       const fetchOpts = {headers: {cookie: `token=${state.token}`}}
       const query = `key=${verificationKey}`
       const response = await fetch(`${state.apiURL}/v1/users/verifications?${query}`, fetchOpts)
-      console.log(await response.text())
       expect(response.url).toMatch(/verification=success/)
 
       const dbUser = await state.userExecutor.findById(state.user.id)

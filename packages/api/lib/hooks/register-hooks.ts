@@ -2,13 +2,13 @@ import {IQueryTransaction} from 'klay'
 import {template} from 'lodash'
 import * as Sparkpost from 'sparkpost'
 
-import {verificationExecutor} from '../../../shared/lib'
+import {logger, verificationExecutor} from '../../../shared/lib'
 import conf from '../../../shared/lib/conf'
 import {IAccount, IUser, VerificationType} from '../../../shared/lib/typedefs'
 import {_sendToTestMailbox} from '../routes/_test'
 
 // tslint:disable-next-line
-const log = require('debug')('the-product:hooks')
+const log = logger('hooks')
 
 const WELCOME_TEMPLATE = template(
   [

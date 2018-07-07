@@ -5,13 +5,13 @@ import {
   ModelID,
   Permission,
   kiln,
+  logger,
   userExecutor,
   userModel,
   verificationExecutor,
 } from '../../../shared/lib'
 
-// tslint:disable-next-line
-const log = require('debug')('the-product:api:users')
+const log = logger('api:users')
 
 export const usersRouterOptions: IRouterOptions = {
   modelName: ModelID.User,

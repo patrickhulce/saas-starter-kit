@@ -4,14 +4,11 @@ import {join} from 'path'
 import * as request from 'request'
 
 import conf from '../../../shared/lib/conf'
+import {logger} from '../../../shared/lib/logger'
 
-const debug = require('debug')('the-product:api') // tslint:disable-line
+const log = logger('api')
 
-export const pageRoutes = [
-  '/',
-  '/login',
-  '/account',
-]
+export const pageRoutes = ['/', '/login', '/account']
 
 const routeFilesWithPathPrefixes = [
   {file: 'login.html', prefix: '/login'},
@@ -36,14 +33,14 @@ export async function handlePageRequest(
   try {
     // TODO: support tags other than stable
     const tagFileURL = join(conf.cdnAppURL, 'stable.txt').replace(':/', '://')
-    debug('attempting to resolve tag at', tagFileURL)
+    log('attempting to resolve tag at', tagFileURL)
 
     const tagResponse = await fetch(tagFileURL)
     if (tagResponse.status !== 200) return next(new Error('Could not resolve tag stable'))
 
     const hash = (await tagResponse.text()).trim()
     const pageURL = join(conf.cdnAppURL, hash, matchingRoute.file).replace(':/', '://')
-    debug('piping response for', pageURL)
+    log('piping response for', pageURL)
 
     request.get(pageURL).pipe(res)
   } catch (err) {
