@@ -79,8 +79,8 @@ module.exports = {
       fields: ['key'],
     })
     await queryInterface.addIndex('verifications', {
-      name: 'verifications_consumed__key_asc',
-      fields: [{attribute: 'consumed__key', order: 'ASC'}],
+      name: 'verifications_consumed_asc__key_asc',
+      fields: [{attribute: 'consumed', order: 'ASC'}, {attribute: 'key', order: 'ASC'}],
     })
   },
   down: async (queryInterface, Sequelize) => {

@@ -40,6 +40,9 @@ export const verificationModel: IModel = modelContext
     createdAt: modelContext.createdAt(),
     updatedAt: modelContext.updatedAt(),
   })
-  .index([{property: ['consumed', 'key'], direction: SortDirection.Ascending}])
+  .index([
+    {property: ['consumed'], direction: SortDirection.Ascending},
+    {property: ['key'], direction: SortDirection.Ascending},
+  ])
   .authorization({actions: READ_ACTIONS, permission: Permission.RootAccess})
   .authorization({actions: WRITE_ACTIONS, permission: Permission.RootAccess})
