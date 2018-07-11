@@ -1,5 +1,6 @@
 import {IState} from '../lib/typedefs'
 import {Page, Browser} from 'puppeteer'
+import {configureToMatchImageSnapshot} from 'jest-image-snapshot'
 import {Mailslurp} from '../lib/mailslurp'
 import {TestMailbox} from '../lib/test-mailbox'
 import conf from '../../shared/lib/conf'
@@ -7,6 +8,13 @@ import conf from '../../shared/lib/conf'
 if (process.env.TEST_REAL_MAIL) {
   jest.setTimeout(15000)
 }
+
+const toMatchImageSnapshot = configureToMatchImageSnapshot({
+  failureThreshold: 0.01,
+  failureThresholdType: 'percent',
+} as any)
+
+expect.extend({toMatchImageSnapshot})
 
 describe('End-to-End Application', () => {
   const rootURL = `http://localhost:${process.env.PORT || 3000}`

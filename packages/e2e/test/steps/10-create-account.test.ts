@@ -27,11 +27,19 @@ module.exports = (state: IState) => {
       await state.page.waitFor('#app-root')
     })
 
+    it('should render the login page', async () => {
+      expect(await state.page.screenshot()).toMatchImageSnapshot()
+    })
+
     it('should switch to create account tab', async () => {
       await state.page.waitFor(state.waitFor)
       const $createAccountTab = await $document.getByTestId(testIds.createAccountTab)
       await $createAccountTab.click()
       await wait(() => $document.getByTestId(testIds.registerForm))
+    })
+
+    it('should render the account page', async () => {
+      expect(await state.page.screenshot()).toMatchImageSnapshot()
     })
 
     it('should fill in form', async () => {
@@ -71,6 +79,10 @@ module.exports = (state: IState) => {
 
       const pageURL = await state.page.evaluate(() => window.location.href)
       expect(pageURL).toContain('verification=success')
+    })
+
+    it('should render the app', async () => {
+      expect(await state.page.screenshot()).toMatchImageSnapshot()
     })
   })
 }
