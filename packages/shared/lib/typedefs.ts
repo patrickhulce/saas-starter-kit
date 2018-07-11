@@ -25,7 +25,6 @@ export interface IUserInput {
   firstName: string
   lastName: string
   isVerified: boolean
-  verificationKey?: string
   createdAt?: Date
   updatedAt?: Date
 }

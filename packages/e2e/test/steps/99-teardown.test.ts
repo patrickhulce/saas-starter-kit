@@ -1,4 +1,3 @@
-import * as puppeteer from 'puppeteer'
 import {IState} from '../../lib/typedefs'
 
 module.exports = (state: IState) => {

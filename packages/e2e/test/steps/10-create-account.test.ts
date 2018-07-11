@@ -60,11 +60,11 @@ module.exports = (state: IState) => {
 
       const text = await state.page.evaluate(() => document.querySelector('h1').textContent)
       expect(text).toContain('Hello, John')
-      state.user = {password: 'test_password'}
+      state.login = {email: state.userMailbox.address, password: 'test_password'}
     })
 
     it('should send welcome email', async () => {
-      expect(state.user).toBeDefined()
+      expect(state.login).toBeDefined()
       const messages = await state.mail.readMail(state.userMailbox, 1)
 
       expect(messages).toHaveLength(1)

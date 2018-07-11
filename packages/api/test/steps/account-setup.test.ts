@@ -34,7 +34,6 @@ module.exports = (state: IState) => {
       expect(account).toHaveProperty('id')
       expect(user).toHaveProperty('id')
       expect(user).toHaveProperty('isVerified', false)
-      expect(user).not.toHaveProperty('verificationKey')
     })
 
     it('should login', async () => {

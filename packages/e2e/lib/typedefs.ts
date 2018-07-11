@@ -1,12 +1,12 @@
 import {Browser, Page} from 'puppeteer'
 
 export interface IState {
-  browser: Browser
-  page: Page
-  rootURL: string
-  waitFor: number
-  mail: IMailService
-  user?: {password: string}
+  browser?: Browser
+  page?: Page
+  rootURL?: string
+  waitFor?: number
+  mail?: IMailService
+  login?: {email: string; password: string}
   userMailbox?: IMailbox
   emailVerificationLink?: string
 }
