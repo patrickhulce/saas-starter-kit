@@ -1,4 +1,5 @@
 import 'pptr-testing-library/extend'
+import {wait} from 'pptr-testing-library'
 import {ElementHandle} from 'puppeteer'
 import {IState} from '../../lib/typedefs'
 import {testIds} from '../../../frontend/src/utils'
@@ -30,7 +31,7 @@ module.exports = (state: IState) => {
       await state.page.waitFor(state.waitFor)
       const $createAccountTab = await $document.getByTestId(testIds.createAccountTab)
       await $createAccountTab.click()
-      await state.page.waitFor(`[data-testid=${testIds.registerForm}`)
+      await wait(() => $document.getByTestId(testIds.registerForm))
     })
 
     it('should fill in form', async () => {

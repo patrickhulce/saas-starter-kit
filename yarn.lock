@@ -7422,11 +7422,12 @@ postcss@^6.0.1:
     source-map "^0.6.1"
     supports-color "^5.3.0"
 
-pptr-testing-library@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/pptr-testing-library/-/pptr-testing-library-0.1.0.tgz#67231fa5f33c2cd6453fc973e3287c34f172aa6f"
+pptr-testing-library@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/pptr-testing-library/-/pptr-testing-library-0.2.0.tgz#b851050b808d7f19c77b3be5d1d2d13e4005fcc9"
   dependencies:
     dom-testing-library "^2.6.1"
+    wait-for-expect "^0.4.0"
 
 prelude-ls@~1.1.2:
   version "1.1.2"

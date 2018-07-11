@@ -12,7 +12,7 @@
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
     "klay": "2.5.0-alpha.0c051183",
-    "pptr-testing-library": "^0.1.0",
+    "pptr-testing-library": "^0.2.0",
     "puppeteer": "^1.3.0"
   },
   "devDependencies": {
