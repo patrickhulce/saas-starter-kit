@@ -13,8 +13,7 @@ const WELCOME_TEMPLATE = template(
     `You're receiving this message because you registered an account for ${conf.displayName}.`,
     'Please follow the link below to verify your email address.',
     '\n<%= link %>\n',
-    'If you did not register an account with us, you can ignore this email.',
-    '\nThanks,',
+    'Thanks,',
     `The ${conf.displayName} Team`,
   ].join('\n'),
 )
@@ -25,9 +24,7 @@ const PASSWORD_RESET_TEMPLATE = template(
     `You're receiving this message because you requested a password reset for ${conf.displayName}.`,
     'Please follow the link below to reset your password.',
     '\n<%= link %>\n',
-    'If you did not request a password reset, someone may be trying to access your account.',
-    '',
-    '\nBest,',
+    'Best,',
     `The ${conf.displayName} Team`,
   ].join('\n'),
 )
