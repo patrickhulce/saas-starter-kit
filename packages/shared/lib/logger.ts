@@ -8,7 +8,7 @@ export interface ILogger {
   (...args: any[]): void
 }
 
-export type LoggerScope = 'api' | 'hooks' | 'api:accounts' | 'api:users'
+export type LoggerScope = 'api' | 'email' | 'hooks' | 'api:accounts' | 'api:users'
 
 export function logger(scope: LoggerScope): ILogger {
   if (conf.isUnderTest && process.env.DEBUG) {

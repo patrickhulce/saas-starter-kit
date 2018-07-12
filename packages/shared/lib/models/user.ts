@@ -11,14 +11,14 @@ import conf from '../conf'
 import {modelContext} from '../model-context'
 import {AuthRole, ModelID, Permission} from '../typedefs'
 
-const passwordBase = modelContext
+export const underlyingPasswordModel = modelContext
   .string()
   .min(6)
   .max(32)
 
 export const passwordModel: IModel = modelContext.password({
   secret: conf.secret,
-  model: passwordBase,
+  model: underlyingPasswordModel,
   algorithm: PasswordAlgorithm.SHA2,
   saltLength: 16,
   hashedPasswordLength: 56,
