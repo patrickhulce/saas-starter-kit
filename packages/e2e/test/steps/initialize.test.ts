@@ -11,7 +11,7 @@ if (process.env.TEST_REAL_MAIL) {
 }
 
 const toMatchImageSnapshot = configureToMatchImageSnapshot({
-  failureThreshold: 0.01,
+  failureThreshold: 0.1, // very loose match, just for catching catastrophic failures
   failureThresholdType: 'percent',
 } as any)
 

@@ -1,10 +1,14 @@
 import 'pptr-testing-library/extend'
 import {wait} from 'pptr-testing-library'
 import {ElementHandle} from 'puppeteer'
-import {IState} from '../../lib/typedefs'
-import {testIds} from '../../../frontend/src/utils'
+import {IState} from '../lib/typedefs'
+import {testIds} from '../../frontend/src/utils'
 
-module.exports = (state: IState) => {
+describe('Create Account Flow', () => {
+  const state: IState = {}
+
+  require('./steps/initialize.test')(state)
+
   let $document: ElementHandle
 
   // tslint:disable-next-line
@@ -25,10 +29,6 @@ module.exports = (state: IState) => {
     it('should navigate to login page', async () => {
       await state.page.goto(`${state.rootURL}/login`)
       await state.page.waitFor('#app-root')
-    })
-
-    it('should render the login page', async () => {
-      expect(await state.page.screenshot()).toMatchImageSnapshot()
     })
 
     it('should switch to create account tab', async () => {
@@ -80,9 +80,7 @@ module.exports = (state: IState) => {
       const pageURL = await state.page.evaluate(() => window.location.href)
       expect(pageURL).toContain('verification=success')
     })
-
-    it('should render the app', async () => {
-      expect(await state.page.screenshot()).toMatchImageSnapshot()
-    })
   })
-}
+
+  require('./steps/teardown.test')(state)
+})
