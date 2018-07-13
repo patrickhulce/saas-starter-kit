@@ -7,6 +7,7 @@ import {testIds} from '../../../src/utils'
 
 describe('register/forms/register.tsx', () => {
   let fetchMock: jest.Mock
+  let locationAssignMock: jest.Mock
 
   function renderAndFill(): RenderResult {
     const form = render(<PasswordResetForm />)
@@ -22,6 +23,7 @@ describe('register/forms/register.tsx', () => {
     self.fetch = fetchMock
     // mock the URL, see https://www.ryandoll.com/post/2018/3/29/jest-and-url-mocking
     window.history.pushState({}, '', '/login?reset-password-key=1234key1234')
+    window.location.assign = locationAssignMock = jest.fn()
   })
 
   it('should render form', () => {
@@ -42,14 +44,16 @@ describe('register/forms/register.tsx', () => {
 
   it('should send password reset request to server', async () => {
     const {getByTestId} = renderAndFill()
-    const fetchPromise = createFetchPromise()
+    const fetchPromise = createFetchPromise({status: 204})
     fetchMock.mockImplementation(fetchPromise.fn)
 
     fireEvent.submit(getByTestId(testIds.passwordResetForm))
     await wait(() => getByTestId(testIds.loadingBar))
 
+    fetchPromise.resolve()
     expect(fetchMock).toHaveBeenCalled()
     expect(fetchMock.mock.calls[0]).toMatchSnapshot()
+    await wait(() => expect(locationAssignMock).toHaveBeenCalledWith('/login'))
   })
 
   it('should show an error UI', async () => {

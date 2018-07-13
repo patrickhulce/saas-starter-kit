@@ -18,6 +18,7 @@ export class PasswordResetForm extends Form {
     const key = new URLSearchParams(window.location.search).get('reset-password-key')
     if (!key) throw new Error('Password reset key expired')
     await resetPassword(key, data.password)
+    window.location.assign('/login')
   }
 
   public renderInputUI(): JSX.Element {
