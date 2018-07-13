@@ -23,7 +23,11 @@ export class TestMailbox implements IMailService {
     const response = await fetch(`${this.rootURL}/_test/mailboxes?${queryOpts}`)
     const body = await response.json()
     if (waitFor && body.messages.length < waitFor) {
-      throw new Error(`Did not have at least ${waitFor} messages`)
+      return new Promise<IMessage[]>(resolve => {
+        setTimeout(async () => {
+          resolve(await this.readMail(inbox, waitFor))
+        }, 500)
+      })
     }
 
     const messages = body.messages as any[]

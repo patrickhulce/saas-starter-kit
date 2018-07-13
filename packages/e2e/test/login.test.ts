@@ -9,14 +9,6 @@ describe('Login Flow', () => {
 
   require('./steps/initialize.test')(state)
 
-  let $document: ElementHandle
-
-  // tslint:disable-next-line
-  async function typeInByLabel(label, text) {
-    const $el = await $document.getByLabelText(label)
-    await $el.type(text)
-  }
-
   describe('login', () => {
     it('should navigate to login page', async () => {
       await state.page.goto(`${state.rootURL}/login`)

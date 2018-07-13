@@ -25,7 +25,7 @@ export class PasswordResetForm extends Form {
     return (
       <React.Fragment>
         <BasicTextField name="password" type="password" autoFocus />
-        <BasicTextField name="confirmPassword" type="password" autoFocus />
+        <BasicTextField name="confirmPassword" type="password" />
       </React.Fragment>
     )
   }
