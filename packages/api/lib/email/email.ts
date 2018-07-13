@@ -83,7 +83,7 @@ export async function sendPasswordResetEmail(
   name: string,
   verificationKey: string,
 ): Promise<void> {
-  const verifyLink = `${conf.origin}/login?forgot-password-key=${verificationKey}`
+  const verifyLink = `${conf.origin}/login?reset-password-key=${verificationKey}`
 
   await sendEmail(
     email,

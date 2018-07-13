@@ -23,14 +23,24 @@ export async function login(email: string, password: string): Promise<void> {
   window.location.href = '/'
 }
 
-export async function forgotPassword(email: string): Promise<void> {
-  // TODO: actually implement the API to make this work
-  await fetch('/api/v1/users/forgot-password', {
+export async function requestPasswordReset(email: string): Promise<void> {
+  const response = await fetch('/api/v1/users/password-reset', {
     method: 'POST',
     body: JSON.stringify({email}),
     headers: {'content-type': 'application/json'},
-    credentials: 'same-origin',
   })
+
+  if (response.status !== 204) throw new Error('Password reset request failed')
+}
+
+export async function resetPassword(key: string, password: string): Promise<void> {
+  const response = await fetch('/api/v1/users/password-reset', {
+    method: 'PUT',
+    body: JSON.stringify({key, password}),
+    headers: {'content-type': 'application/json'},
+  })
+
+  if (response.status !== 204) throw new Error('Password reset failed')
 }
 
 export async function createAccount(

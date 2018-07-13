@@ -117,10 +117,9 @@ exports[`login/forms/login.tsx should show an error UI 1`] = `"Invalid login"`;
 
 exports[`login/forms/login.tsx should trigger forgot password UI 1`] = `
 Array [
-  "/api/v1/users/forgot-password",
+  "/api/v1/users/password-reset",
   Object {
     "body": "{\\"email\\":\\"test@example.com\\"}",
-    "credentials": "same-origin",
     "headers": Object {
       "content-type": "application/json",
     },
