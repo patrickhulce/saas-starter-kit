@@ -39,9 +39,9 @@ describe('register/forms/register.tsx', () => {
     confirmPassword.value = 'other'
 
     fireEvent.submit(getByTestId(testIds.registerForm))
-    await wait(() => getByTestId(testIds.errorBar))
+    await wait(() => getByTestId(testIds.messageBar))
 
-    expect(getByTestId(testIds.errorBar).textContent).toMatchSnapshot()
+    expect(getByTestId(testIds.messageBar).textContent).toMatchSnapshot()
   })
 
   it('should show a loading UI', async () => {
@@ -52,7 +52,7 @@ describe('register/forms/register.tsx', () => {
     fireEvent.submit(getByTestId(testIds.registerForm))
     await wait(() => getByTestId(testIds.loadingBar))
 
-    expect(queryByTestId(testIds.errorBar)).toBeNull()
+    expect(queryByTestId(testIds.messageBar)).toBeNull()
 
     mockFetch.reject(new Error('short-circuit'))
   })
@@ -77,12 +77,12 @@ describe('register/forms/register.tsx', () => {
     fireEvent.submit(getByTestId(testIds.registerForm))
     await wait(() => getByTestId(testIds.loadingBar))
 
-    expect(queryByTestId(testIds.errorBar)).toBeNull()
+    expect(queryByTestId(testIds.messageBar)).toBeNull()
 
     mockFetch.resolve()
-    await wait(() => getByTestId(testIds.errorBar))
+    await wait(() => getByTestId(testIds.messageBar))
 
     expect(queryByTestId(testIds.loadingBar)).toBeNull()
-    expect(getByTestId(testIds.errorBar).textContent).toMatchSnapshot()
+    expect(getByTestId(testIds.messageBar).textContent).toMatchSnapshot()
   })
 })

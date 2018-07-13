@@ -3,7 +3,7 @@ import * as React from 'react'
 
 import {BasicTextField} from '../../components/basic-text-field'
 import {Form, IFormData, IFormState} from '../../components/form/form'
-import {forgotPassword, login} from '../../services/user-service'
+import {login, requestPasswordReset} from '../../services/user-service'
 import {testIds} from '../../utils'
 import * as styles from '../login.scss'
 
@@ -17,9 +17,9 @@ export class LoginForm extends Form<{}, ILoginFormState> {
 
   protected async _handleSubmit(data: IFormData): Promise<void> {
     if (this.state.showForgotPasswordUI) {
-      await forgotPassword(data.email)
+      await requestPasswordReset(data.email)
       this.setState({showForgotPasswordUI: false})
-      // TODO: show success message
+      this.setState({successMessage: 'Password reset email sent'})
       return
     }
 

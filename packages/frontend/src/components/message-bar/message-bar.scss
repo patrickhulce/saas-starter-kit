@@ -1,0 +1,20 @@
+@import '../../colors';
+
+.message-bar {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.success-bar {
+  @extend .message-bar;
+  color: $dark-green;
+  background: $lightest-green;
+  border: 1px solid $light-green;
+}
+
+.error-bar {
+  @extend .message-bar;
+  color: $dark-red;
+  background: $lightest-pink;
+  border: 1px solid $light-pink;
+}

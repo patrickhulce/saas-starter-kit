@@ -1,8 +1,8 @@
 import Button from '@material-ui/core/Button/Button'
 import * as React from 'react'
 
-import {ErrorBar} from '../error-bar/error-bar'
 import {LoadingBar} from '../loading-bar/loading-bar'
+import {MessageBar, MessageBarStyle} from '../message-bar/message-bar'
 
 export interface IFormData {
   [key: string]: any
@@ -11,6 +11,7 @@ export interface IFormData {
 export interface IFormState {
   isLoading?: boolean
   errorMessage?: string
+  successMessage?: string
 }
 
 export interface ISubmitOptions {
@@ -38,7 +39,8 @@ export class Form<TProps = {}, TState extends IFormState = IFormState> extends R
     return (
       <React.Fragment>
         <LoadingBar isLoading={this.state.isLoading} />
-        <ErrorBar message={this.state.errorMessage} />
+        <MessageBar message={this.state.successMessage} style={MessageBarStyle.Success} />
+        <MessageBar message={this.state.errorMessage} style={MessageBarStyle.Error} />
       </React.Fragment>
     )
   }

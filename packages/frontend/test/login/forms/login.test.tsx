@@ -35,7 +35,7 @@ describe('login/forms/login.tsx', () => {
     fireEvent.submit(getByTestId(testIds.loginForm))
     await wait(() => getByTestId(testIds.loadingBar))
 
-    expect(queryByTestId(testIds.errorBar)).toBeNull()
+    expect(queryByTestId(testIds.messageBar)).toBeNull()
 
     mockFetch.reject(new Error('short-circuit'))
   })
@@ -60,13 +60,13 @@ describe('login/forms/login.tsx', () => {
     fireEvent.submit(getByTestId(testIds.loginForm))
     await wait(() => getByTestId(testIds.loadingBar))
 
-    expect(queryByTestId(testIds.errorBar)).toBeNull()
+    expect(queryByTestId(testIds.messageBar)).toBeNull()
 
     mockFetch.resolve()
-    await wait(() => getByTestId(testIds.errorBar))
+    await wait(() => getByTestId(testIds.messageBar))
 
     expect(queryByTestId(testIds.loadingBar)).toBeNull()
-    expect(getByTestId(testIds.errorBar).textContent).toMatchSnapshot()
+    expect(getByTestId(testIds.messageBar).textContent).toMatchSnapshot()
   })
 
   it('should trigger forgot password UI', async () => {

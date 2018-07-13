@@ -41,7 +41,7 @@ export function HMR(nodeModule: any, handle: (nodeModule: any) => any): void {
 
 export const testIds = {
   loadingBar: 'loading-bar',
-  errorBar: 'error-bar',
+  messageBar: 'message-bar',
   // Login IDs
   createAccountTab: 'create-account-tab',
   createAccountSubmit: 'create-account-submit',
