@@ -2,7 +2,7 @@ import * as React from 'react'
 import {fireEvent, render, wait} from 'react-testing-library'
 
 import {ProfileForm} from '../../../src/account/forms/profile'
-import {createFetchMock} from '../../utils'
+import {createFetchPromise} from '../../utils'
 import {IUser} from '../../../../shared/lib/typedefs'
 import {testIds} from '../../../src/utils'
 
@@ -23,7 +23,7 @@ describe('account/forms/profile.tsx', () => {
 
   it('should send update names request to server', async () => {
     const {getByTestId} = render(<ProfileForm user={user} />)
-    const mockFetch = createFetchMock()
+    const mockFetch = createFetchPromise()
     fetchMock.mockImplementation(mockFetch.fn)
 
     fireEvent.submit(getByTestId(testIds.profileNamesForm))

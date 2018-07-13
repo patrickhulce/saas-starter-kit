@@ -12,7 +12,7 @@ export interface IFetchMock {
   reject(err?: Error): void
 }
 
-export function createFetchMock(input: IFetchMockInput = {}): IFetchMock {
+export function createFetchPromise(input: IFetchMockInput = {}): IFetchMock {
   const fetchMock: IFetchMock = {
     fn: async () => ({} as any),
     resolve: () => {},

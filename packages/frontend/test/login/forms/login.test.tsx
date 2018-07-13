@@ -2,7 +2,7 @@ import * as React from 'react'
 import {RenderResult, Simulate, fireEvent, render, wait} from 'react-testing-library'
 
 import {LoginForm} from '../../../src/login/forms/login'
-import {createFetchMock} from '../../utils'
+import {createFetchPromise} from '../../utils'
 import {testIds} from '../../../src/utils'
 
 describe('login/forms/login.tsx', () => {
@@ -29,21 +29,21 @@ describe('login/forms/login.tsx', () => {
 
   it('should show a loading UI', async () => {
     const {getByTestId, queryByTestId} = renderAndFill()
-    const mockFetch = createFetchMock()
-    fetchMock.mockImplementation(mockFetch.fn)
+    const fetchDeferred = createFetchPromise()
+    fetchMock.mockImplementation(fetchDeferred.fn)
 
     fireEvent.submit(getByTestId(testIds.loginForm))
     await wait(() => getByTestId(testIds.loadingBar))
 
     expect(queryByTestId(testIds.messageBar)).toBeNull()
 
-    mockFetch.reject(new Error('short-circuit'))
+    fetchDeferred.reject(new Error('short-circuit'))
   })
 
   it('should send login request to server', async () => {
     const {getByTestId} = renderAndFill()
-    const mockFetch = createFetchMock()
-    fetchMock.mockImplementation(mockFetch.fn)
+    const fetchDeferred = createFetchPromise()
+    fetchMock.mockImplementation(fetchDeferred.fn)
 
     fireEvent.submit(getByTestId(testIds.loginForm))
     await wait(() => getByTestId(testIds.loadingBar))
@@ -54,15 +54,15 @@ describe('login/forms/login.tsx', () => {
 
   it('should show an error UI', async () => {
     const {getByTestId, queryByTestId} = renderAndFill()
-    const mockFetch = createFetchMock({status: 400})
-    fetchMock.mockImplementation(mockFetch.fn)
+    const fetchPromise = createFetchPromise({status: 400})
+    fetchMock.mockImplementation(fetchPromise.fn)
 
     fireEvent.submit(getByTestId(testIds.loginForm))
     await wait(() => getByTestId(testIds.loadingBar))
 
     expect(queryByTestId(testIds.messageBar)).toBeNull()
 
-    mockFetch.resolve()
+    fetchPromise.resolve()
     await wait(() => getByTestId(testIds.messageBar))
 
     expect(queryByTestId(testIds.loadingBar)).toBeNull()
@@ -71,16 +71,17 @@ describe('login/forms/login.tsx', () => {
 
   it('should trigger forgot password UI', async () => {
     const {getByText, getByTestId} = renderAndFill()
-    const mockFetch = createFetchMock()
-    fetchMock.mockImplementation(mockFetch.fn)
+    const fetchDeferred = createFetchPromise({status: 204})
+    fetchMock.mockImplementation(fetchDeferred.fn)
 
     // TODO: move this back to getByText once figure out how to make it pick the button
     Simulate.click(getByTestId(testIds.loginFormSecondaryBtn))
     await wait(() => getByText(/reset/i))
     fireEvent.submit(getByTestId(testIds.loginForm))
 
-    mockFetch.resolve()
+    fetchDeferred.resolve()
     expect(fetchMock).toHaveBeenCalled()
     expect(fetchMock.mock.calls[0]).toMatchSnapshot()
+    await wait(() => getByText(/email sent/i))
   })
 })

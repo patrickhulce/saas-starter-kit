@@ -2,7 +2,7 @@ import * as React from 'react'
 import {RenderResult, fireEvent, render, wait} from 'react-testing-library'
 
 import {RegisterForm} from '../../../src/login/forms/register'
-import {createFetchMock} from '../../utils'
+import {createFetchPromise} from '../../utils'
 import {testIds} from '../../../src/utils'
 
 describe('register/forms/register.tsx', () => {
@@ -46,21 +46,21 @@ describe('register/forms/register.tsx', () => {
 
   it('should show a loading UI', async () => {
     const {getByTestId, queryByTestId} = renderAndFill()
-    const mockFetch = createFetchMock()
-    fetchMock.mockImplementation(mockFetch.fn)
+    const fetchPromise = createFetchPromise()
+    fetchMock.mockImplementation(fetchPromise.fn)
 
     fireEvent.submit(getByTestId(testIds.registerForm))
     await wait(() => getByTestId(testIds.loadingBar))
 
     expect(queryByTestId(testIds.messageBar)).toBeNull()
 
-    mockFetch.reject(new Error('short-circuit'))
+    fetchPromise.reject(new Error('short-circuit'))
   })
 
   it('should send register request to server', async () => {
     const {getByTestId} = renderAndFill()
-    const mockFetch = createFetchMock()
-    fetchMock.mockImplementation(mockFetch.fn)
+    const fetchPromise = createFetchPromise()
+    fetchMock.mockImplementation(fetchPromise.fn)
 
     fireEvent.submit(getByTestId(testIds.registerForm))
     await wait(() => getByTestId(testIds.loadingBar))
@@ -71,15 +71,15 @@ describe('register/forms/register.tsx', () => {
 
   it('should show an error UI', async () => {
     const {getByTestId, queryByTestId} = renderAndFill()
-    const mockFetch = createFetchMock({status: 400})
-    fetchMock.mockImplementation(mockFetch.fn)
+    const fetchPromise = createFetchPromise({status: 400})
+    fetchMock.mockImplementation(fetchPromise.fn)
 
     fireEvent.submit(getByTestId(testIds.registerForm))
     await wait(() => getByTestId(testIds.loadingBar))
 
     expect(queryByTestId(testIds.messageBar)).toBeNull()
 
-    mockFetch.resolve()
+    fetchPromise.resolve()
     await wait(() => getByTestId(testIds.messageBar))
 
     expect(queryByTestId(testIds.loadingBar)).toBeNull()
