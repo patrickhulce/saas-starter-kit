@@ -3,9 +3,11 @@ import * as React from 'react'
 import {BasicTextField} from '../../components/basic-text-field'
 import {Form, IFormData, IFormState, ISubmitOptions} from '../../components/form/form'
 import {resetPassword} from '../../services/user-service'
+import {testIds} from '../../utils'
 
 export class PasswordResetForm extends Form {
   public state: IFormState = {}
+  public testId: string = testIds.passwordResetForm
   public submitUIOptions: ISubmitOptions = {label: 'Reset Password'}
 
   protected async _handleSubmit(data: IFormData): Promise<void> {

@@ -49,5 +49,6 @@ export const testIds = {
   loginFormSecondaryBtn: 'login-form-secondary-btn',
   loginForm: 'login-form',
   registerForm: 'register-form',
+  passwordResetForm: 'password-reset-form',
   profileNamesForm: 'profile-names-form',
 }
