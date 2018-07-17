@@ -1,5 +1,7 @@
 import conf from './conf'
 
+// tslint:disable no-console
+
 // tslint:disable-next-line
 const debug = require('debug')
 

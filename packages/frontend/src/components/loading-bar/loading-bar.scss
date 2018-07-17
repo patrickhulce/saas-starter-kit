@@ -19,7 +19,10 @@
 }
 
 @keyframes moveAnimation {
-  from { left: 0%; }
-  to { left: 100%; }
+  from {
+    left: 0%;
+  }
+  to {
+    left: 100%;
+  }
 }
-

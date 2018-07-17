@@ -1,18 +1,103 @@
 {
-  "extends": "tslint:all",
-  "autoFixOnSave": true,
-  "linterOptions": {
-    "exclude": ["**/*.test.ts", "**/*.test.tsx", "node_modules"]
-  },
   "rules": {
-    // Personal configuration from eslint
-    "max-line-length": [true, {"limit": 100, "ignore-pattern": "^import |//"}],
-    "semicolon": [true, "never"],
-    "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
-    "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
-    "quotemark": [true, "single", "jsx-double", "avoid-escape"],
+    "adjacent-overload-signatures": true,
+    "ban-types": {
+      "options": [
+        ["Object", "Avoid using the `Object` type. Did you mean `object`?"],
+        [
+          "Function",
+          "Avoid using the `Function` type. Prefer a specific function type, like `() => void`."
+        ],
+        ["Boolean", "Avoid using the `Boolean` type. Did you mean `boolean`?"],
+        ["Number", "Avoid using the `Number` type. Did you mean `number`?"],
+        ["String", "Avoid using the `String` type. Did you mean `string`?"],
+        ["Symbol", "Avoid using the `Symbol` type. Did you mean `symbol`?"]
+      ]
+    },
+    "member-access": [true, "check-accessor", "check-constructor", "check-parameter-property"],
+    "no-empty-interface": true,
+    "no-internal-module": true,
+    "no-namespace": true,
+    "no-reference": true,
+    "no-this-assignment": true,
+    "no-var-requires": true,
+    "prefer-for-of": true,
+    "prefer-readonly": true,
+    "unified-signatures": true,
+
+    // Functionality
+    "ban-comma-operator": true,
+    "forin": true,
+    "label-position": true,
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-conditional-assignment": true,
+    "no-console": true,
+    "no-construct": true,
+    "no-debugger": true,
+    "no-duplicate-super": true,
+    "no-duplicate-switch-case": true,
+    "no-duplicate-variable": [true, "check-parameters"],
+    "no-dynamic-delete": true,
+    "no-eval": true,
+    "no-floating-promises": true,
+    "no-for-in-array": true,
+    "no-inferred-empty-object-type": true,
+    "no-invalid-template-strings": true,
+    "no-misused-new": true,
+    "no-object-literal-type-assertion": true,
+    "no-return-await": true,
+    "no-shadowed-variable": true,
+    "no-string-literal": true,
+    "no-string-throw": true,
+    "no-sparse-arrays": true,
+    "no-unnecessary-class": [true, "allow-empty-class"],
+    "no-unsafe-finally": true,
+    "no-unused-expression": true,
+    "no-use-before-declare": true,
+    "no-var-keyword": true,
+    "prefer-conditional-expression": true,
+    "radix": true,
+    "restrict-plus-operands": true,
+    "strict-type-predicates": true,
+    "switch-default": true,
+    "triple-equals": true,
+    "use-default-type-parameter": true,
+    "use-isnan": true,
+
+    // Maintainability
+    "cyclomatic-complexity": true,
+    "no-default-export": true,
+    "no-duplicate-imports": true,
+    "no-mergeable-namespace": true,
+    "no-require-imports": true,
+    "prefer-const": true,
+
+    "array-type": [true, "array-simple"],
+    "arrow-return-shorthand": [true, "multiline"],
+    "binary-expression-operand-order": true,
+    "callable-types": true,
+    "class-name": true,
+    "deprecation": true,
+    "encoding": true,
+    "interface-name": true,
+    "interface-over-type-literal": true,
+    "no-angle-bracket-type-assertion": true,
+    "no-boolean-literal-compare": true,
+    "no-consecutive-blank-lines": true,
+    "no-parameter-properties": true,
+    "no-redundant-jsdoc": true,
+    "no-reference-import": true,
+    "no-unnecessary-qualifier": true,
+    "object-literal-shorthand": true,
+    "prefer-method-signature": true,
+    "prefer-object-spread": true,
+    "prefer-template": true,
+    "prefer-while": true,
+    "switch-final-break": true,
 
     // Personal typescript options
+    "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
     "typedef": [
       true,
       "call-signature",
@@ -32,45 +117,6 @@
         ]
       }
     ],
-    "comment-format": [true, "check-space"],
-    "no-empty": [true, "allow-empty-catch"],
-
-    // Could conditionally enable
-    "max-classes-per-file": [false, 10],
-    "completed-docs": [false],
-    "no-magic-numbers": false,
-    "no-shadowed-variable": false,
-
-    // Disabled because it's incovenient
-    "arrow-parens": false,
-    "return-undefined": false,
-    "no-parameter-reassignment": false,
-    "prefer-switch": false,
-
-    // Disabled because it's unnecessarily limiting
-    "no-any": false,
-    "no-unsafe-any": false,
-    "strict-boolean-expressions": false,
-    "newline-before-return": false,
-    "no-non-null-assertion": false,
-    "no-void-expression": false,
-    "object-literal-sort-keys": false,
-    "prefer-function-over-method": false,
-    "one-variable-per-declaration": false,
-
-    // Disabled because they're broken or generate incompat code
-    "no-unnecessary-type-assertion": false,
-    "only-arrow-functions": false,
-    "promise-function-async": false,
-    "no-unbound-method": false,
-
-    // Disabled because they're managed by prettier
-    "curly": false,
-    "align": false,
-    "whitespace": false,
-    "newline-per-chained-call": false,
-
-    // Project-specific overrides
     "ordered-imports": [
       true,
       {
@@ -80,9 +126,31 @@
         "module-source-path": "full"
       }
     ],
-    "no-implicit-dependencies": false,
-    "no-null-keyword": false,
-    "match-default-export-name": false,
-    "no-submodule-imports": [true, "@material-ui/core", "@material-ui/icons"]
+    "comment-format": [true, "check-space"],
+    "no-empty": [true, "allow-empty-catch"],
+
+    // Could conditionally enable
+    "max-classes-per-file": [false, 10],
+    "completed-docs": [false],
+    "no-magic-numbers": false,
+    "no-unsafe-any": false,
+
+    // Annoyingly incovenient, disagree with these
+    "no-any": false,
+    "no-non-null-assertion": false,
+    "no-parameter-reassignment": false,
+    "no-void-expression": false,
+    "object-literal-sort-keys": false,
+    "one-variable-per-declaration": false,
+    "prefer-function-over-method": false,
+    "prefer-switch": false,
+    "return-undefined": false,
+    "strict-boolean-expressions": false,
+
+    // Disabled because they're broken or generate incompat code
+    "no-unnecessary-type-assertion": false,
+    "only-arrow-functions": false,
+    "promise-function-async": false,
+    "no-unbound-method": false
   }
 }
