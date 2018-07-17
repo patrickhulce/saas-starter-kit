@@ -1,10 +1,10 @@
 import * as React from 'react'
 import {fireEvent, render, wait} from 'react-testing-library'
 
-import {ProfileForm} from '../../../src/account/forms/profile'
-import {createFetchPromise} from '../../utils'
 import {IUser} from '../../../../shared/lib/typedefs'
+import {ProfileForm} from '../../../src/account/forms/profile'
 import {testIds} from '../../../src/utils'
+import {createFetchPromise} from '../../utils'
 
 describe('account/forms/profile.tsx', () => {
   let fetchMock: jest.Mock

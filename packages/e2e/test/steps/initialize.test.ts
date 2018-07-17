@@ -1,10 +1,11 @@
-import * as puppeteer from 'puppeteer'
 import * as fetch from 'isomorphic-fetch'
 import {configureToMatchImageSnapshot} from 'jest-image-snapshot'
-import {IState} from '../../lib/typedefs'
+import * as puppeteer from 'puppeteer'
+
+import conf from '../../../shared/lib/conf'
 import {Mailslurp} from '../../lib/mailslurp'
 import {TestMailbox} from '../../lib/test-mailbox'
-import conf from '../../../shared/lib/conf'
+import {IState} from '../../lib/typedefs'
 
 if (process.env.TEST_REAL_MAIL) {
   jest.setTimeout(15000)

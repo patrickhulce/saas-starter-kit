@@ -1,8 +1,9 @@
-import 'pptr-testing-library/extend'
 import {wait} from 'pptr-testing-library'
+import 'pptr-testing-library/extend'
 import {ElementHandle} from 'puppeteer'
-import {IState} from '../lib/typedefs'
+
 import {testIds} from '../../frontend/src/utils'
+import {IState} from '../lib/typedefs'
 
 describe('Forgot Password Flow', () => {
   const state: IState = {}
