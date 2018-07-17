@@ -40,6 +40,7 @@ export function HMR(nodeModule: any, handle: (nodeModule: any) => any): void {
 }
 
 export const testIds = {
+  defaultForm: 'default-form',
   loadingBar: 'loading-bar',
   messageBar: 'message-bar',
   // Login IDs

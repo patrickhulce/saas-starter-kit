@@ -1,6 +1,7 @@
 import Button from '@material-ui/core/Button/Button'
 import * as React from 'react'
 
+import {testIds} from '../../utils'
 import {LoadingBar} from '../loading-bar/loading-bar'
 import {MessageBar, MessageBarStyle} from '../message-bar/message-bar'
 
@@ -69,7 +70,11 @@ export class Form<TProps = {}, TState extends IFormState = IFormState> extends R
 
   public render(): JSX.Element {
     return (
-      <form data-testid={this.testId} onSubmit={this.handleSubmit} className={this.props.className}>
+      <form
+        data-testid={this.testId || testIds.defaultForm}
+        onSubmit={this.handleSubmit}
+        className={this.props.className}
+      >
         {this.renderLoadingUI()}
         {this.renderInputUI()}
         {this.renderSubmitUI()}

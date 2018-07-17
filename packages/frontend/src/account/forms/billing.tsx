@@ -7,6 +7,7 @@ export class BillingForm extends React.Component<{user: IUser}> {
     return (
       <React.Fragment>
         <h2>Billing</h2>
+        <p>Coming soon</p>
       </React.Fragment>
     )
   }
