@@ -7,9 +7,9 @@ Everything you need to get your next Unicorn-for-x startup off the ground.
 ## Getting Started
 
 1.  Replace all the strings
-    * sed -i s/saas-starter-kit/your-real-product-name/
-    * sed -i s/the-product/your-real-product-name/
-    * sed -i s/the_product_db/your_database_name/
+    - sed -i s/saas-starter-kit/your-real-product-name/
+    - sed -i s/the-product/your-real-product-name/
+    - sed -i s/the_product_db/your_database_name/
 1.  Replace values in `.envrc`
 1.  Replace values in `packages/shared/lib/conf.ts`
 

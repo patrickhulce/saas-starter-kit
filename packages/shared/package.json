@@ -22,11 +22,5 @@
     "klay": "2.5.0-alpha.0c051183",
     "lodash": "^4.17.5"
   },
-  "devDependencies": {
-    "@types/jest": "^22.2.2",
-    "jest": "^22.4.3",
-    "ts-jest": "^22.4.2",
-    "tslint": "^5.9.1",
-    "typescript": "^2.9.2"
-  }
+  "devDependencies": {}
 }
