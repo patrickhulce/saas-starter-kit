@@ -2,8 +2,8 @@ import * as React from 'react'
 import {RenderResult, Simulate, fireEvent, render, wait} from 'react-testing-library'
 
 import {LoginForm} from '../../../src/login/forms/login'
-import {createFetchPromise} from '../../utils'
 import {testIds} from '../../../src/utils'
+import {createFetchPromise} from '../../utils'
 
 describe('login/forms/login.tsx', () => {
   let fetchMock: jest.Mock

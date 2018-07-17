@@ -3,7 +3,7 @@
   "name": "@the-product/e2e",
   "version": "0.1.0",
   "scripts": {
-    "start": "jest --verbose --forceExit",
+    "start": "jest --verbose",
     "start:local": "./scripts/run-local-tests.js",
     "start:ci": "./scripts/run-until-success.sh",
     "test": "npm run test:lint",
