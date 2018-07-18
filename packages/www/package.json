@@ -1,0 +1,16 @@
+{
+  "name": "www",
+  "version": "0.0.0",
+  "description": "Marketing and landing page",
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve"
+  },
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "gatsby": "^2.0.0-beta.43",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  }
+}
