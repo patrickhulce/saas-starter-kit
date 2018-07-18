@@ -2,8 +2,8 @@ import * as React from 'react'
 import {RenderResult, fireEvent, render, wait} from 'react-testing-library'
 
 import {PasswordResetForm} from '../../../src/login/forms/password-reset'
-import {createFetchPromise} from '../../utils'
 import {testIds} from '../../../src/utils'
+import {createFetchPromise} from '../../utils'
 
 describe('register/forms/register.tsx', () => {
   let fetchMock: jest.Mock
