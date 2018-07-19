@@ -43,6 +43,8 @@ jobs:
       - run: sudo pip install awscli==1.15.32
       - restore_cache:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - run: yarn build
       - run: yarn deploy-all
 workflows:
   version: 2
