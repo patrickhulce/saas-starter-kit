@@ -39,16 +39,10 @@ pip install awscli --user
 
 It's nice to automatically setup your shell environment when you enter the project directory
 
-Options: [ondir](https://swapoff.org/ondir.html), [zsh chpwd](http://www.refining-linux.org/archives/42/ZSH-Gem-8-Hook-function-chpwd/)
+Options: [direnv](https://direnv.net/), [ondir](https://swapoff.org/ondir.html), [zsh chpwd](http://www.refining-linux.org/archives/42/ZSH-Gem-8-Hook-function-chpwd/)
 
 ```bash
-cat >> ~/.zshrc <<EOF
-# Execute .envrc files
-function chpwd() {
-  if [ -r .envrc ]; then
-    source .envrc
-  fi
-}
-
-EOF
+brew install direnv
+echo '\n# automatically load .envrc files\neval "$(direnv hook zsh)"' >> ~/.zshrc
+source ~/.zshrc
 ```
