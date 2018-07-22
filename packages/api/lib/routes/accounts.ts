@@ -7,6 +7,7 @@ import {
   AuthRole,
   IAccount,
   IAccountInput,
+  IStripeBillingAddress,
   IUser,
   IUserInput,
   ModelID,
@@ -83,8 +84,19 @@ export const accountsRouterOptions: IRouterOptions = {
     },
     'PUT /:id/payment-method': {
       bodyModel: modelContext.object().children({
-        stripeSourceId: modelContext.string(),
         plan: modelContext.string().enum(values(AccountPlan)),
+        stripeSourceId: modelContext.string(),
+        stripeBillingAddress: modelContext
+          .object()
+          .optional()
+          .children({
+            line1: modelContext.string(),
+            line2: modelContext.string().optional(),
+            city: modelContext.string(),
+            state: modelContext.string(),
+            postal_code: modelContext.string(),
+            country: modelContext.string(),
+          }),
       }),
       authorization: {
         permission: Permission.AccountManage,
@@ -95,7 +107,8 @@ export const accountsRouterOptions: IRouterOptions = {
       async handler(req: express.Request, res: express.Response): Promise<void> {
         const user = req.grants!.userContext! as IUser
         log('updating account', user.accountId, 'to', req.body.plan)
-        await createOrUpdateStripe(user, req.body.plan, req.body.stripeSourceId)
+        await createOrUpdateStripe(user, req.body.plan, req.body.stripeSourceId, req.body
+          .stripeBillingAddress as IStripeBillingAddress)
         res.sendStatus(204)
       },
     },

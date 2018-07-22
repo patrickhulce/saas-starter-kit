@@ -10,6 +10,7 @@ export interface IBasicTextFieldProps {
   autoFocus?: boolean
   required?: boolean
   className?: string
+  style?: React.CSSProperties
 }
 
 export class BasicTextField extends React.Component<IBasicTextFieldProps> {

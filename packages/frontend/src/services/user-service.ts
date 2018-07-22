@@ -1,4 +1,4 @@
-import {IUser} from '../../../shared/lib/typedefs'
+import {AccountPlan, IStripeBillingAddress, IUser} from '../../../shared/lib/typedefs'
 
 export async function getLoggedInUser(): Promise<IUser | undefined> {
   try {
@@ -84,6 +84,24 @@ export async function updateAccount(
   }
 
   await refreshLoggedInUser()
+}
+
+export async function updatePaymentMethod(
+  accountId: number,
+  stripeSourceId: string,
+  plan: AccountPlan,
+  stripeBillingAddress: IStripeBillingAddress,
+): Promise<void> {
+  const response = await fetch(`/api/v1/accounts/${accountId}/payment-method`, {
+    method: 'PUT',
+    body: JSON.stringify({stripeSourceId, plan, stripeBillingAddress}),
+    credentials: 'same-origin',
+    headers: {'content-type': 'application/json'},
+  })
+
+  if (response.status !== 204) {
+    throw new Error('Error saving payment method')
+  }
 }
 
 export async function refreshLoggedInUser(): Promise<void> {

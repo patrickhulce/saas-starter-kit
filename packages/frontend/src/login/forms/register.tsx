@@ -6,7 +6,6 @@ import * as React from 'react'
 import conf from '../../../../shared/lib/conf'
 import {BasicTextField} from '../../components/basic-text-field'
 import {Form, IFormState, ISubmitOptions} from '../../components/form/form'
-import * as formStyles from '../../components/form/form.scss'
 import {createAccount} from '../../services/user-service'
 import {testIds} from '../../utils'
 import * as styles from '../login.scss'
@@ -38,11 +37,13 @@ export class RegisterForm extends Form {
       </span>
     )
 
+    // TODO: add company name field
+
     return (
       <React.Fragment>
         <div>
-          <BasicTextField name="firstName" className={formStyles.halfText} autoFocus />
-          <BasicTextField name="lastName" className={formStyles.halfText} />
+          <BasicTextField name="firstName" style={{width: '50%'}} autoFocus />
+          <BasicTextField name="lastName" style={{width: '50%'}} />
         </div>
         <BasicTextField name="email" type="email" />
         <BasicTextField name="password" type="password" />

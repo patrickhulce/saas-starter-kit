@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 import {IUser} from '../../../shared/lib/typedefs'
-import '../typedefs' // tslint:disable-line
-import {HMR, createRenderFn, findUserOnStartupOrBail} from '../utils'
+import '../typedefs'
+import {HMR, addScript, createRenderFn, findUserOnStartupOrBail} from '../utils'
 
 let user: IUser
 
@@ -14,8 +14,9 @@ const render = createRenderFn(() => {
 
 async function init(): Promise<void> {
   user = await findUserOnStartupOrBail()
+  addScript('https://js.stripe.com/v3/')
   render()
 }
 
-init() // tslint:disable-line
+init()
 HMR(module, module => module.hot.accept(render))

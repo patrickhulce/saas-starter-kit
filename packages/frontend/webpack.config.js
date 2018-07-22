@@ -39,6 +39,8 @@ module.exports = {
       'process.env.APP_MYSQL_URL': JSON.stringify('NONE'),
       'process.env.MAILSLURP_API_KEY': JSON.stringify('NONE'),
       'process.env.SPARKPOST_API_KEY': JSON.stringify('NONE'),
+      'process.env.STRIPE_SECRET_KEY': JSON.stringify('NONE'),
+      'process.env.STRIPE_PUBLIC_KEY': JSON.stringify(process.env.STRIPE_PUBLIC_KEY),
     }),
     new HtmlWebpackPlugin({
       chunks: ['login'],
@@ -87,17 +89,11 @@ if (process.env.NODE_ENV === 'production') {
     }),
   ]
 
-  config.module.rules[1].use = [
-    ExtractCssPlugin.loader,
-    ...cssLoader,
-  ]
+  config.module.rules[1].use = [ExtractCssPlugin.loader, ...cssLoader]
 } else {
   for (const files of Object.values(config.entry)) {
     files.unshift('webpack-hot-middleware/client')
   }
 
-  config.plugins = [
-    ...config.plugins,
-    new webpack.HotModuleReplacementPlugin(),
-  ]
+  config.plugins = [...config.plugins, new webpack.HotModuleReplacementPlugin()]
 }

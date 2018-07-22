@@ -36,3 +36,19 @@ nav.sidenav {
   margin-left: $sidenav-width;
   padding: 0 20px;
 }
+
+.billing {
+  > * {
+    margin-bottom: 10px;
+  }
+
+  :global {
+    .StripeElement {
+      padding: 15px 10px;
+      background: $lightest-gray;
+      border-radius: 10px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+  }
+}

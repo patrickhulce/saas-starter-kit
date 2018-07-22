@@ -39,6 +39,15 @@ export function HMR(nodeModule: any, handle: (nodeModule: any) => any): void {
   }
 }
 
+export function addScript(url: string): void {
+  if (document.querySelector(`script[src="${url}"]`)) return
+
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  document.body.appendChild(script)
+}
+
 export const testIds = {
   defaultForm: 'default-form',
   loadingBar: 'loading-bar',

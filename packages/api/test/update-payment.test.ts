@@ -63,7 +63,7 @@ describe('update payment', () => {
 
     it('should have updated stripe data', () => {
       expect(createCustomerFn).toHaveBeenCalled()
-      expect(createCustomerFn.mock.calls[0]).toMatchSnapshot()
+      expect(createCustomerFn.mock.calls[0]).toMatchObject({plan: AccountPlan.Silver})
     })
 
     it('should have updated plan', async () => {

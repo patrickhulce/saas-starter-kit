@@ -47,6 +47,15 @@ export interface IVerificationInput {
   updatedAt?: Date
 }
 
+export interface IStripeBillingAddress {
+  line1: string
+  line2?: string
+  city: string
+  state: string
+  postal_code: string
+  country: 'US'
+}
+
 export type IVerification = Required<IVerificationInput>
 
 export enum AuthRole {
