@@ -12,7 +12,8 @@ export const accountModel: IModel = modelContext
     plan: modelContext.string().enum(values(AccountPlan)),
     stripeId: modelContext
       .string()
-      .constrain({type: ConstraintType.Unique})
+      // TODO: uncomment when https://github.com/patrickhulce/klay/issues/105 is fixed
+      // .constrain({type: ConstraintType.Unique})
       .nullable()
       .max(40),
     createdAt: modelContext.createdAt(),
