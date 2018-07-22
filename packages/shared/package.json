@@ -20,7 +20,10 @@
   },
   "dependencies": {
     "klay": "2.5.0-alpha.0c051183",
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.5",
+    "stripe": "^6.3.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/stripe": "^5.0.18"
+  }
 }

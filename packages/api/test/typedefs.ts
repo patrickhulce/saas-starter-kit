@@ -23,5 +23,6 @@ export interface IState {
 declare global {
   var __sparkpostSend: jest.Mock
   var __fetch: jest.Mock
+  var __stripe: any
   var __requestGet: jest.Mock
 }

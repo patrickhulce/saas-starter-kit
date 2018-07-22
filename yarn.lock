@@ -1010,6 +1010,12 @@
     "@types/node" "*"
     "@types/request" "*"
 
+"@types/stripe@^5.0.18":
+  version "5.0.18"
+  resolved "https://registry.yarnpkg.com/@types/stripe/-/stripe-5.0.18.tgz#5647a64488a4b95ee1e2bdb9b77c6713c3b25b6f"
+  dependencies:
+    "@types/node" "*"
+
 "@types/swagger-schema-official@^2.0.9":
   version "2.0.9"
   resolved "https://registry.yarnpkg.com/@types/swagger-schema-official/-/swagger-schema-official-2.0.9.tgz#e761520f21fce93b830cdab850bed10e24cc72c0"
@@ -7545,10 +7551,6 @@ joi@12.x.x:
     isemail "3.x.x"
     topo "2.x.x"
 
-jquery@3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
-
 js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.3.tgz#2e545ec2b0f2957f41356510205214e98fad6582"
@@ -12269,6 +12271,14 @@ strip-indent@^2.0.0:
 strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
+
+stripe@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-6.3.0.tgz#d11a2e7112af97b4a6701cb1379fb9df021fbab1"
+  dependencies:
+    lodash.isplainobject "^4.0.6"
+    qs "~6.5.1"
+    safe-buffer "^5.1.1"
 
 strong-log-transformer@^1.0.6:
   version "1.0.6"

@@ -1,5 +1,6 @@
 import * as express from 'express'
-import {IDatabaseExecutor, IRouterOptions} from 'klay'
+import {ActionType, IDatabaseExecutor, IRouterOptions} from 'klay'
+import {values} from 'lodash'
 
 import {
   AccountPlan,
@@ -9,6 +10,7 @@ import {
   IUser,
   IUserInput,
   ModelID,
+  Permission,
   accountModel,
   kiln,
   logger,
@@ -17,6 +19,7 @@ import {
   userModel,
 } from '../../../shared/lib'
 import {runRegisterHooks} from '../hooks/register-hooks'
+import {createOrUpdateStripe} from '../stripe'
 
 // tslint:disable-next-line
 const log = logger('api:accounts')
@@ -38,6 +41,7 @@ const registerResponseModel = modelContext
 export const accountsRouterOptions: IRouterOptions = {
   modelName: ModelID.Account,
   routes: {
+    'GET /:id': ActionType.Read,
     'POST /register': {
       bodyModel: registerModel,
       responseModel: registerResponseModel,
@@ -48,7 +52,8 @@ export const accountsRouterOptions: IRouterOptions = {
           const account = (await accountExecutor.create(
             {
               name: payload.account.name,
-              plan: AccountPlan.Gold,
+              plan: AccountPlan.Free,
+              stripeId: null,
             },
             {transaction},
           )) as IAccount
@@ -74,6 +79,24 @@ export const accountsRouterOptions: IRouterOptions = {
         })
 
         res.json(response)
+      },
+    },
+    'PUT /:id/payment-method': {
+      bodyModel: modelContext.object().children({
+        stripeSourceId: modelContext.string(),
+        plan: modelContext.string().enum(values(AccountPlan)),
+      }),
+      authorization: {
+        permission: Permission.AccountManage,
+        getAffectedCriteriaValues(req: express.Request): number[] {
+          return [Number(req.params.id)]
+        },
+      },
+      async handler(req: express.Request, res: express.Response): Promise<void> {
+        const user = req.grants!.userContext! as IUser
+        log('updating account', user.accountId, 'to', req.body.plan)
+        await createOrUpdateStripe(user, req.body.plan, req.body.stripeSourceId)
+        res.sendStatus(204)
       },
     },
   },

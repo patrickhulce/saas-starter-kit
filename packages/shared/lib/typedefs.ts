@@ -10,6 +10,7 @@ export interface IAccountInput {
   id?: number
   name: string
   plan: AccountPlan
+  stripeId: string | null
   createdAt?: Date
   updatedAt?: Date
 }
@@ -76,6 +77,12 @@ export enum VerificationType {
   ResetPassword = 'reset-password',
 }
 
+export interface IStripeConf {
+  productId: string
+  secretKey: string
+  publicKey: string
+}
+
 export interface IConf {
   debug: boolean
   production: boolean
@@ -91,4 +98,5 @@ export interface IConf {
 
   mailslurp: {apiKey: string}
   sparkpost: {fromAddress: string; apiKey: string; sendToTestMailboxOnly: boolean}
+  stripe: IStripeConf
 }

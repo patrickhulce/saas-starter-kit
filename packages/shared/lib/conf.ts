@@ -24,6 +24,12 @@ const conf: IConf = {
     apiKey: process.env.SPARKPOST_API_KEY || '',
     fromAddress: process.env.SPARKPOST_FROM || '',
   },
+
+  stripe: {
+    productId: process.env.STRIPE_PRODUCT_ID || '',
+    secretKey: process.env.STRIPE_SECRET_KEY || '',
+    publicKey: process.env.STRIPE_PUBLIC_KEY || '',
+  },
 }
 
 if (process.env.APP_ENV === 'aws-development') {
