@@ -1,12 +1,12 @@
 import * as express from 'express'
 import * as fetch from 'isomorphic-fetch'
-import {join} from 'path'
-import * as request from 'request'
+import * as LRU from 'lru-cache'
 
 import conf from '../../../shared/lib/conf'
 import {logger} from '../../../shared/lib/logger'
 
 const log = logger('api')
+const cache = LRU<string, string>({max: 10})
 
 export const pageRoutes = ['/', '/login', '/account']
 
@@ -15,6 +15,21 @@ const routeFilesWithPathPrefixes = [
   {file: 'account.html', prefix: '/account'},
   {file: 'index.html', prefix: ''},
 ]
+
+function injectIntoHEAD(html: string, content: string): string {
+  return html.replace('<head>', `<head>${content}`)
+}
+
+function transformHTML(url: string, html: string): string {
+  if (/account.html$/.test(url)) {
+    return injectIntoHEAD(
+      html,
+      `<script>window.STRIPE_PUBLIC_KEY = "${conf.stripe.publicKey}"</script>`,
+    )
+  }
+
+  return html
+}
 
 export async function handlePageRequest(
   req: express.Request,
@@ -32,17 +47,18 @@ export async function handlePageRequest(
 
   try {
     // TODO: support tags other than stable
-    const tagFileURL = join(conf.cdnAppURL, 'stable.txt').replace(':/', '://')
+    const tagFileURL = `${conf.cdnAppURL}/stable.txt`
     log('attempting to resolve tag at', tagFileURL)
 
     const tagResponse = await fetch(tagFileURL)
     if (tagResponse.status !== 200) return next(new Error('Could not resolve tag stable'))
 
     const hash = (await tagResponse.text()).trim()
-    const pageURL = join(conf.cdnAppURL, hash, matchingRoute.file).replace(':/', '://')
-    log('piping response for', pageURL)
-
-    request.get(pageURL).pipe(res)
+    const pageURL = `${conf.cdnAppURL}/${hash}/${matchingRoute.file}`
+    log('fetching file at', pageURL)
+    const rawFile = cache.get(pageURL) || (await (await fetch(pageURL)).text())
+    cache.set(pageURL, rawFile)
+    res.send(transformHTML(pageURL, rawFile))
   } catch (err) {
     next(err)
   }

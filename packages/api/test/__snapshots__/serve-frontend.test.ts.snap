@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`serve frontend serve frontend should inject stripe public key 1`] = `"<html><head><script>window.STRIPE_PUBLIC_KEY = \\"<key>\\"</script>"`;

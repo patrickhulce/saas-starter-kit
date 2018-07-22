@@ -10,6 +10,7 @@ describe('update payment', () => {
   let createCustomerFn: jest.Mock
 
   beforeAll(() => {
+    conf.stripe.productId = '<product-id>'
     customer = {id: `stripe-customer-id-${Date.now()}`}
     createCustomerFn = jest.fn().mockResolvedValue(customer)
     __stripe.customers = {create: createCustomerFn}
@@ -62,8 +63,9 @@ describe('update payment', () => {
     })
 
     it('should have updated stripe data', () => {
+      const plan = `<product-id>-${AccountPlan.Silver}`
       expect(createCustomerFn).toHaveBeenCalled()
-      expect(createCustomerFn.mock.calls[0]).toMatchObject({plan: AccountPlan.Silver})
+      expect(createCustomerFn.mock.calls[0][0]).toMatchObject({plan})
     })
 
     it('should have updated plan', async () => {

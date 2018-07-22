@@ -1,5 +1,6 @@
-import {IState} from './typedefs'
 import conf from '../../shared/lib/conf'
+
+import {IState} from './typedefs'
 
 describe('change password', () => {
   const state: IState = {}
