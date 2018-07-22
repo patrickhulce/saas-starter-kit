@@ -9,7 +9,8 @@ exports[`register/forms/register.tsx should render form 1`] = `
   >
     <div>
       <div
-        class="MuiFormControl-root-1 halfText"
+        class="MuiFormControl-root-1"
+        style="width: 50%;"
       >
         <label
           class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"
@@ -39,7 +40,8 @@ exports[`register/forms/register.tsx should render form 1`] = `
         </div>
       </div>
       <div
-        class="MuiFormControl-root-1 halfText"
+        class="MuiFormControl-root-1"
+        style="width: 50%;"
       >
         <label
           class="MuiFormLabel-root-10 MuiInputLabel-root-5 MuiInputLabel-formControl-6 MuiInputLabel-animated-9"

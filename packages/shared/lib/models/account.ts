@@ -1,4 +1,4 @@
-import {ConstraintType, IModel, READ_ACTIONS, SortDirection, WRITE_ACTIONS} from 'klay'
+import {IModel, READ_ACTIONS, SortDirection, WRITE_ACTIONS} from 'klay'
 import {values} from 'lodash'
 
 import {modelContext} from '../model-context'

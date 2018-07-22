@@ -18,5 +18,5 @@ async function init(): Promise<void> {
   render()
 }
 
-init()
+init() // tslint:disable-line
 HMR(module, module => module.hot.accept(render))
