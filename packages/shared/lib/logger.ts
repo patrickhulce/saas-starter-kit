@@ -15,13 +15,17 @@ export type LoggerScope = 'api' | 'email' | 'hooks' | 'api:accounts' | 'api:user
 export function logger(scope: LoggerScope): ILogger {
   if (conf.isUnderTest && process.env.DEBUG) {
     // @ts-ignore
-    const log: ILogger = () => console.log.call(console, scope, ...arguments)
-    const verbose = () => console.log.call(console, 'VERBOSE', scope, ...arguments)
+    const log: ILogger = function() {
+      console.log.call(console, scope, ...arguments)
+    }
+    const verbose = function() {
+      console.log.call(console, 'VERBOSE', scope, ...arguments)
+    }
     log.verbose = verbose
     return log
   } else {
     const log = debug(`the-product:${scope}`)
-    const verbose = debug(`the-product:verbose:${scope}`)
+    const verbose = debug(`the-product:${scope}:verbose`)
     log.verbose = verbose
     return log
   }
