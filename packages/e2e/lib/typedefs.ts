@@ -1,6 +1,7 @@
 import {Browser, Page} from 'puppeteer'
 
 export interface IState {
+  offline?: boolean
   browser?: Browser
   page?: Page
   rootURL?: string

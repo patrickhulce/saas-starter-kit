@@ -7,7 +7,7 @@ import {Mailslurp} from '../../lib/mailslurp'
 import {TestMailbox} from '../../lib/test-mailbox'
 import {IState} from '../../lib/typedefs'
 
-if (process.env.TEST_REAL_MAIL) {
+if (!process.env.OFFLINE && process.env.TEST_REAL_MAIL) {
   jest.setTimeout(15000)
 }
 
@@ -19,21 +19,23 @@ const toMatchImageSnapshot = configureToMatchImageSnapshot({
 expect.extend({toMatchImageSnapshot})
 
 module.exports = (state: IState) => {
+  state.offline = !!process.env.OFFLINE
+  const useRealMail = !state.offline && !!process.env.TEST_REAL_MAIL
+
   describe('initialize', () => {
     it('should initialize state', () => {
       const rootURL = `http://localhost:${process.env.PORT || 3000}`
       Object.assign(state, {
         rootURL,
-        mail: process.env.TEST_REAL_MAIL
-          ? new Mailslurp(conf.mailslurp.apiKey)
-          : new TestMailbox(rootURL),
+        mail: useRealMail ? new Mailslurp(conf.mailslurp.apiKey) : new TestMailbox(rootURL),
         waitFor: 500,
       })
     })
 
     it('should start chrome', async () => {
       const headless = !process.env.DEBUG
-      state.browser = await puppeteer.launch({headless})
+      const slowMo = process.env.DEBUG ? 10 : undefined
+      state.browser = await puppeteer.launch({headless, slowMo})
       state.page = await state.browser.newPage()
     })
 

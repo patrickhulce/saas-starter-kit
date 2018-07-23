@@ -2,6 +2,7 @@
 
 const path = require('path')
 const childProcess = require('child_process')
+const runIsOnline = require('is-online')
 
 const DEVSERVER_OUT = []
 const E2E_DIR = path.join(__dirname, '../')
@@ -30,6 +31,7 @@ function waitForPatternInOutput(pattern, interval = 500) {
 }
 
 async function run() {
+  const isOnline = await runIsOnline()
   const serverProc = childProcess.exec('PORT=0 npm start', {cwd: FRONTEND_DIR})
   serverProc.stdout.on('data', buf => DEVSERVER_OUT.push(buf.toString()))
 
@@ -43,10 +45,13 @@ async function run() {
   )
 
   console.log(`Ready for testing! Will run on port ${port}`)
+  console.log(`Internet is ${isOnline ? 'connected' : 'offline'}`)
 
   let success
   try {
-    childProcess.execSync(`PORT=${port} npm run start`, {stdio: 'inherit', cwd: E2E_DIR})
+    const OFFLINE = isOnline ? '' : 'OFFLINE=1 '
+    const ENV = `${OFFLINE}PORT=${port}`
+    childProcess.execSync(`${ENV} npm run start`, {stdio: 'inherit', cwd: E2E_DIR})
     success = true
   } catch (err) {
     success = false

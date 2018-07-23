@@ -10,6 +10,7 @@
     "test:lint": "lint"
   },
   "dependencies": {
+    "is-online": "^7.0.0",
     "isomorphic-fetch": "^2.2.1",
     "klay": "2.5.0-alpha.0c051183",
     "pptr-testing-library": "^0.2.3",
