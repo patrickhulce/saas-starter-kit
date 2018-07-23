@@ -47,6 +47,8 @@ class PaymentMethodFormUnconnected extends Form<{user: IUser}> {
       postal_code: data.zipcode,
       country: 'US',
     })
+
+    this.setState({successMessage: 'Payment details saved'})
   }
 
   public renderInputUI(): JSX.Element {

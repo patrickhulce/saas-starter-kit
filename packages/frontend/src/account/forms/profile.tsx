@@ -13,6 +13,7 @@ class NamesForm extends Form<{user: IUser}> {
 
   protected async _handleSubmit(data: IFormData): Promise<void> {
     await updateAccount(this.props.user.id, {firstName: data.firstName, lastName: data.lastName})
+    this.setState({successMessage: 'Profile saved'})
   }
 
   public renderInputUI(): JSX.Element {

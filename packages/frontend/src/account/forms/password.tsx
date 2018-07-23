@@ -11,6 +11,7 @@ class PasswordResetForm extends Form<{user: IUser}> {
 
   protected async _handleSubmit(data: IFormData): Promise<void> {
     await requestPasswordReset(this.props.user.email)
+    this.setState({successMessage: 'Password reset email sent'})
   }
 
   public renderInputUI(): JSX.Element {
