@@ -59,9 +59,8 @@ export class Form<TProps = {}, TState extends IFormState = IFormState> extends R
           variant="raised"
           color="primary"
           type="submit"
-          data-testid={options.testId}
-          disabled={!!this.state.isLoading}
-        >
+          data-testid={options.testId || testIds.defaultSubmitBtn}
+          disabled={!!this.state.isLoading}>
           {options.label || 'Submit'}
         </Button>
       </React.Fragment>
@@ -73,8 +72,7 @@ export class Form<TProps = {}, TState extends IFormState = IFormState> extends R
       <form
         data-testid={this.testId || testIds.defaultForm}
         onSubmit={this.handleSubmit}
-        className={this.props.className}
-      >
+        className={this.props.className}>
         {this.renderLoadingUI()}
         {this.renderInputUI()}
         {this.renderSubmitUI()}

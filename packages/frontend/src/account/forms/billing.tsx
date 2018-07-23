@@ -8,6 +8,8 @@ import * as formStyles from '../../components/form/form.scss'
 import {updatePaymentMethod} from '../../services/user-service'
 import * as styles from '../account.scss'
 
+import {testIds} from '../../utils'
+
 const stripeUIOptions = {
   base: {
     fontSize: '16px',
@@ -25,6 +27,7 @@ const stripeUIOptions = {
 
 class PaymentMethodFormUnconnected extends Form<{user: IUser}> {
   public state: IFormState = {}
+  public testId: string = testIds.paymentForm
   public submitUIOptions: ISubmitOptions = {label: 'Update Payment Method'}
 
   protected async _handleSubmit(data: IFormData): Promise<void> {
@@ -52,10 +55,8 @@ class PaymentMethodFormUnconnected extends Form<{user: IUser}> {
   }
 
   public renderInputUI(): JSX.Element {
-    const {firstName, lastName} = this.props.user
     return (
       <React.Fragment>
-        <BasicTextField name="billingName" defaultValue={`${firstName} ${lastName}`} />
         <BasicTextField name="addressLine1" />
         <BasicTextField name="addressLine2" required={false} />
         <div>

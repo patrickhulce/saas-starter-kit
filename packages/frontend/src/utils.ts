@@ -50,6 +50,7 @@ export function addScript(url: string): void {
 
 export const testIds = {
   defaultForm: 'default-form',
+  defaultSubmitBtn: 'default-submit-btn',
   loadingBar: 'loading-bar',
   messageBar: 'message-bar',
   // Login IDs
@@ -60,5 +61,8 @@ export const testIds = {
   loginForm: 'login-form',
   registerForm: 'register-form',
   passwordResetForm: 'password-reset-form',
+  // Account IDs
+  billingTab: 'billing-tab',
   profileNamesForm: 'profile-names-form',
+  paymentForm: 'payment-form',
 }

@@ -12,6 +12,8 @@ import {Helmet} from 'react-helmet'
 import conf from '../../../shared/lib/conf'
 import {IUser} from '../../../shared/lib/typedefs'
 
+import {testIds} from '../utils'
+
 import * as styles from './account.scss'
 import {BillingForm} from './forms/billing'
 import {PasswordForm} from './forms/password'
@@ -34,18 +36,18 @@ export interface IPageState {
 const forms = [
   {id: FormType.Profile, Icon: PersonIcon, Form: ProfileForm},
   {id: FormType.Password, Icon: LockIcon, Form: PasswordForm},
-  {id: FormType.Billing, Icon: AttachMoneyIcon, Form: BillingForm},
+  {id: FormType.Billing, Icon: AttachMoneyIcon, Form: BillingForm, testId: testIds.billingTab},
 ]
 
 export class AccountPage extends React.Component<IPageProps, IPageState> {
   public state: IPageState = {activeForm: FormType.Profile}
 
   private _renderFormNavItems(): JSX.Element[] {
-    return forms.map(({id, Icon}) => {
+    return forms.map(({id, Icon, testId}) => {
       const classes = id === this.state.activeForm ? styles.active : ''
       const onClick = () => this.setState({activeForm: id})
       return (
-        <ListItem key={id} button className={classes} onClick={onClick}>
+        <ListItem key={id} button className={classes} onClick={onClick} data-testid={testId}>
           <ListItemIcon>
             <Icon />
           </ListItemIcon>

@@ -20,6 +20,7 @@ app.use('/api', proxy({target: `http://localhost:${API_PORT}/`, changeOrigin: tr
 app.use('/_test', proxy({target: `http://localhost:${API_PORT}/`, changeOrigin: true}))
 app.get('/', (req, res) => res.redirect(`/index.html${req.originalUrl.slice(1)}`))
 app.get('/login', (req, res) => res.redirect(`/login.html${req.originalUrl.slice(6)}`))
+app.get('/account', (req, res) => res.redirect(`/account.html${req.originalUrl.slice(8)}`))
 app.use(middleware(compiler, {}))
 app.use(hot(compiler))
 
