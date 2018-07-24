@@ -71,6 +71,7 @@ exports[`account/forms/profile.tsx should render form 1`] = `
     </div>
     <button
       class="MuiButtonBase-root-50 MuiButton-root-28 MuiButton-contained-37 MuiButton-containedPrimary-38 MuiButton-raised-40 MuiButton-raisedPrimary-41"
+      data-testid="default-submit-btn"
       tabindex="0"
       type="submit"
     >
