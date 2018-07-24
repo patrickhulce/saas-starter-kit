@@ -1,4 +1,4 @@
-import {IModel, READ_ACTIONS, SortDirection, WRITE_ACTIONS} from 'klay'
+import {ConstraintType, IModel, READ_ACTIONS, SortDirection, WRITE_ACTIONS} from 'klay'
 import {values} from 'lodash'
 
 import {modelContext} from '../model-context'
@@ -12,8 +12,7 @@ export const accountModel: IModel = modelContext
     plan: modelContext.string().enum(values(AccountPlan)),
     stripeId: modelContext
       .string()
-      // TODO: uncomment when https://github.com/patrickhulce/klay/issues/105 is fixed
-      // .constrain({type: ConstraintType.Unique})
+      .constrain({type: ConstraintType.Unique})
       .nullable()
       .max(40),
     createdAt: modelContext.createdAt(),
