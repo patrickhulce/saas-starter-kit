@@ -41,7 +41,7 @@ class PaymentMethodFormUnconnected extends Form<{user: IUser}> {
 
     if (error) throw error
 
-    // TODO: let user pick plan
+    // TODO: let user pick plan, https://github.com/patrickhulce/saas-starter-kit/issues/37
     await updatePaymentMethod(accountId, source.id, AccountPlan.Gold, {
       line1: data.addressLine1,
       line2: data.addressLine2,

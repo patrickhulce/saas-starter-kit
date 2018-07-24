@@ -37,7 +37,7 @@ export class RegisterForm extends Form {
       </span>
     )
 
-    // TODO: add company name field
+    // TODO: add company name field, https://github.com/patrickhulce/saas-starter-kit/issues/38
 
     return (
       <React.Fragment>

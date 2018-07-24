@@ -42,11 +42,11 @@ export async function handlePageRequest(
 
   // Check that user is logged in if they're fetching anything other than the login page
   const isUserLoggedIn = !!req.grants && !!req.grants.userContext
-  // TODO: add redirectTo functionality
+  // TODO: add redirectTo functionality, https://github.com/patrickhulce/saas-starter-kit/issues/33
   if (!isUserLoggedIn && matchingRoute.prefix !== '/login') return res.redirect('/login')
 
   try {
-    // TODO: support tags other than stable
+    // TODO: support tags other than stable, https://github.com/patrickhulce/saas-starter-kit/issues/34
     const tagFileURL = `${conf.cdnAppURL}/stable.txt`
     log('attempting to resolve tag at', tagFileURL)
 

@@ -4,7 +4,7 @@ import {accountExecutor} from '../../shared/lib'
 import conf from '../../shared/lib/conf'
 import {AccountPlan, IStripeBillingAddress, IUser} from '../../shared/lib/typedefs'
 
-// TODO: add stripe webhooks
+// TODO: add stripe webhooks, https://github.com/patrickhulce/saas-starter-kit/issues/35
 
 export const stripe = new Stripe(conf.stripe.secretKey)
 
@@ -15,7 +15,7 @@ export async function createOrUpdateStripe(
   stripeBillingAddress?: IStripeBillingAddress,
 ): Promise<void> {
   const account = await accountExecutor.findByIdOrThrow(user.accountId)
-  // TODO: update payment information too
+  // TODO: update payment information too, https://github.com/patrickhulce/saas-starter-kit/issues/36
   if (account.stripeId) throw new Error('Update not yet supported')
 
   const customer = await createStripeCustomer(user, plan, stripeSourceId, stripeBillingAddress)
