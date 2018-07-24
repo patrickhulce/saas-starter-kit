@@ -3,7 +3,7 @@
 ## Getting Started
 
 1.  Create an AWS account.
-2.  Create a bucket for hosting static assets i.e. `cdn.the-product.com`, [see AWS docs for more.](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html)
+2.  Create buckets for hosting static assets i.e. `www.the-product.com` and `cdn.the-product.com`, [see AWS docs for more.](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html)
     1.  Create the bucket with the domain name you wish to use.
     2.  Enable public permissions and static hosting.
     3.  Add a bucket policy enabling read on all objects.

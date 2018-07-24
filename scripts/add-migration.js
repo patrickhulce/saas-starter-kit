@@ -12,16 +12,15 @@ const PRETTIER_EXECUTABLE = path.join(__dirname, '../node_modules/.bin/prettier'
 const MIGRATION_FOLDER = path.join(__dirname, '../migrations')
 const DIST_DIR = path.join(__dirname, '../dist')
 const KILN_FILE = path.join(DIST_DIR, 'shared/lib/kiln.js')
+const SQL_URL = process.env.APP_MYSQL_URL
 
 async function run() {
   const filesBefore = fs.readdirSync(MIGRATION_FOLDER)
-  shelljs.exec(`${KLAY_EXECUTABLE} migration:bootstrap -k ${KILN_FILE}`)
+  shelljs.exec(`${KLAY_EXECUTABLE} migration:incremental -k ${KILN_FILE} --url "${SQL_URL}"`)
   const filesAfter = fs.readdirSync(MIGRATION_FOLDER)
 
-  const bootstrapFile = path.join(MIGRATION_FOLDER, filesBefore.find(f => /bootstrap.js$/.test(f)))
   const createdFile = path.join(MIGRATION_FOLDER, _.difference(filesAfter, filesBefore)[0])
   shelljs.exec(`${PRETTIER_EXECUTABLE} --write ${createdFile}`, {silent: true})
-  shelljs.mv(createdFile, bootstrapFile)
 }
 
 run().catch(err => {
