@@ -19,7 +19,7 @@
     }
   },
   "dependencies": {
-    "klay": "2.5.0-alpha.0c051183",
+    "klay": "3.0.0-alpha.4",
     "lodash": "^4.17.5",
     "stripe": "^6.3.0"
   },

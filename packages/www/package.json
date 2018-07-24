@@ -1,5 +1,5 @@
 {
-  "name": "www",
+  "name": "@the-product/www",
   "version": "0.0.0",
   "description": "Marketing and landing page",
   "scripts": {

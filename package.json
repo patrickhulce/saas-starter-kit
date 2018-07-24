@@ -6,7 +6,7 @@
   "scripts": {
     "deploy-all": "cd packages/aws && yarn deploy",
     "migrate": "klay-kiln-sql migrate",
-    "bump-klay": "lerna exec --concurrency 1 'yarn add --exact --force klay@next'",
+    "bump-klay": "lerna exec --scope '@the-product/shared' --scope '@the-product/api' --concurrency 1 'yarn add --exact --force klay@next'",
     "build": "tsc --diagnostics",
     "test": "npm run build && npm run test:lint && npm run test:unit && npm run test:e2e",
     "test:lint": "lint",

@@ -7,8 +7,7 @@
     "deploy": "./scripts/deploy-all.js"
   },
   "dependencies": {
-    "aws-serverless-express": "^3.2.0",
-    "klay": "2.5.0-alpha.0c051183"
+    "aws-serverless-express": "^3.2.0"
   },
   "devDependencies": {
     "@types/aws-serverless-express": "^3.0.1"
