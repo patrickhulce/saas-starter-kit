@@ -12,13 +12,13 @@
   "dependencies": {
     "is-online": "^7.0.0",
     "isomorphic-fetch": "^2.2.1",
-    "pptr-testing-library": "^0.2.3",
-    "puppeteer": "^1.5.0"
+    "pptr-testing-library": "^0.3.1",
+    "puppeteer": "^1.10.0"
   },
   "devDependencies": {
     "@types/isomorphic-fetch": "^0.0.34",
     "@types/jest-image-snapshot": "^2.4.0",
-    "@types/puppeteer": "^1.2.3",
+    "@types/puppeteer": "^1.10.0",
     "jest-image-snapshot": "^2.4.3"
   }
 }
